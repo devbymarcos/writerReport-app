@@ -10,4 +10,5 @@ export const Colors = {
   btnPrimary: "#0d6efd",
   btnSuccess: "#198754",
   btnDanger: "#dc3545",
+  bgPrimary: "#f8f9ff",
 };

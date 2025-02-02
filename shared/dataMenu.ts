@@ -17,11 +17,11 @@ export const dataMenu: MenuItem[] = [
     path: "/implantacao",
   },
   {
-    title: "Vistoria Diária",
+    title: "Vistoria veiculos diária",
     path: "/vistoria-diaria",
   },
   {
-    title: "Vistoria Mensal",
+    title: "Vistoria veiculos mensal",
     path: "/vistoria-mensal",
   },
 ];

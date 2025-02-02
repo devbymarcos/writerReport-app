@@ -1,7 +1,7 @@
 import InitTicket from "@/components/forms/preventiva/InitTicket";
 import { BtnPrimary } from "@/components/ui/btnPrimay";
 import { useRouter } from "expo-router";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 
 export default function Home() {
   const { push } = useRouter();
@@ -11,6 +11,7 @@ export default function Home() {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.title}>Preventiva </Text>
       <InitTicket />
       <BtnPrimary title="Iniciar Ticket" onPress={msg} />
     </View>
@@ -20,8 +21,14 @@ export default function Home() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // justifyContent: "center",
-    // alignItems: "center",
     padding: 10,
+    paddingTop: 50,
+  },
+  title: {
+    fontSize: 20,
+    marginBottom: 5,
+    fontWeight: "bold",
+    textAlign: "center",
+    textTransform: "uppercase",
   },
 });
