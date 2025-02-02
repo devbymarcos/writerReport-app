@@ -3,7 +3,7 @@ import { BtnPrimary } from "@/components/ui/btnPrimay";
 import { useRouter } from "expo-router";
 import { View, StyleSheet } from "react-native";
 
-export default function Task() {
+export default function Home() {
   const { push } = useRouter();
   function msg() {
     push("/preventiva/task");
