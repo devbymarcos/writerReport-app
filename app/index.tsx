@@ -1,6 +1,7 @@
 import { ButtonLink } from "@/components/ui/btnLink";
 import { View, StyleSheet, Text } from "react-native";
 import { dataMenu } from "@/shared/dataMenu";
+
 export default function Home() {
   return (
     <View style={styles.container}>
