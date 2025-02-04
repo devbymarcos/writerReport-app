@@ -1,4 +1,4 @@
-import InitTicket from "@/components/forms/preventiva/InitTicket";
+import InitTicket from "@/components/forms/baseTicket/InitTicket";
 import { BtnPrimary } from "@/components/ui/btnPrimay";
 import { useRouter } from "expo-router";
 import { View, StyleSheet, Text } from "react-native";

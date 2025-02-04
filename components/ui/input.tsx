@@ -36,11 +36,11 @@ const styles = StyleSheet.create({
     fontWeight: "500",
   },
   input: {
-    height: 40,
+    height: 55,
     paddingHorizontal: 10,
     borderWidth: 1,
     borderColor: "#ced4da",
-    borderRadius: 4,
+    borderRadius: 6,
     backgroundColor: "#fff",
     fontSize: 16,
     color: "#212529",

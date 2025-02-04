@@ -10,7 +10,7 @@ interface MenuItem {
 const dataMenuPreventive: MenuItem[] = [
   {
     title: "Relogio Ponto",
-    path: "/rep",
+    path: "/preventiva/rep",
   },
   {
     title: "Catraca",
