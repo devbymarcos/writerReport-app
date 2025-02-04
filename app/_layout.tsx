@@ -32,12 +32,6 @@ export default function Layout() {
           name="preventiva/task/index"
           options={{ headerTitle: "Adicionar checklist ao ticket" }}
         />
-        <Stack.Screen
-          name="preventiva/task/modal"
-          options={{
-            presentation: "modal",
-          }}
-        />
       </Stack>
       <View style={styles.menu}>
         <Link style={styles.btn} href="/">

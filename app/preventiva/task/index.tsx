@@ -1,13 +1,16 @@
-import { Link } from "expo-router";
-import { Plus } from "lucide-react-native";
-import React from "react";
+import { ArrowDown, Plus } from "lucide-react-native";
+import { useState } from "react";
 import {
   View,
   Text,
   StyleSheet,
   FlatList,
-  TouchableOpacity,
+  Modal,
+  Pressable,
+  Alert,
 } from "react-native";
+import SubMenuModalPreventive from "./SubMenuModalPreventive";
+import { Colors } from "@/constants/Colors";
 
 const list = [
   { id: 1, name: "Task 1" },
@@ -24,6 +27,7 @@ const renderItem = ({ item }: { item: { id: number; name: string } }) => (
 );
 
 export default function Task() {
+  const [modalVisible, setModalVisible] = useState(false);
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Preventiva </Text>
@@ -33,11 +37,32 @@ export default function Task() {
         keyExtractor={(item) => item.id.toString()}
       />
 
-      <Link href="/preventiva/task/modal" asChild>
-        <TouchableOpacity style={styles.btnAdd} activeOpacity={0.8}>
-          <Plus color="#fff" />
-        </TouchableOpacity>
-      </Link>
+      <Pressable
+        style={styles.btnAdd}
+        onPress={() => setModalVisible(!modalVisible)}
+      >
+        <Plus color="#fff" />
+      </Pressable>
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <SubMenuModalPreventive />
+        <View style={styles.boxModalClose}>
+          <Pressable
+            style={styles.modalClose}
+            onPress={() => setModalVisible(!modalVisible)}
+          >
+            <ArrowDown color="#fff" />
+          </Pressable>
+        </View>
+      </Modal>
     </View>
   );
 }
@@ -70,7 +95,32 @@ const styles = StyleSheet.create({
     bottom: 100,
     right: 10,
     backgroundColor: "#008000",
-    padding: 30,
+    padding: 20,
     borderRadius: 9999,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  boxModalClose: {
+    alignItems: "flex-end",
+    padding: 20,
+    backgroundColor: "#fff",
+  },
+  modalClose: {
+    padding: 10,
+    backgroundColor: Colors.btnPrimary,
+    borderRadius: 5,
   },
 });
