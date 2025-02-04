@@ -6,42 +6,46 @@ import { LayoutGrid, List } from "lucide-react-native";
 export default function Layout() {
   return (
     <>
-      <View style={styles.menu}>
-        <Stack
-          screenOptions={{
-            headerShown: true,
+      <Stack
+        screenOptions={{
+          headerShown: true,
+        }}
+      >
+        <Stack.Screen name="index" options={{ headerTitle: "Inicio" }} />
+        <Stack.Screen
+          name="corretiva/index"
+          options={{ headerTitle: "Corretiva" }}
+        />
+        <Stack.Screen
+          name="implantacao/index"
+          options={{ headerTitle: "Implantação" }}
+        />
+        <Stack.Screen
+          name="preventiva/index"
+          options={{ headerTitle: "Preventiva" }}
+        />
+        <Stack.Screen
+          name="list/index"
+          options={{ headerTitle: "Relatórios" }}
+        />
+        <Stack.Screen
+          name="preventiva/task/index"
+          options={{ headerTitle: "Adicionar checklist ao ticket" }}
+        />
+        <Stack.Screen
+          name="preventiva/task/modal"
+          options={{
+            presentation: "modal",
           }}
-        >
-          <Stack.Screen name="index" options={{ headerTitle: "Inicio" }} />
-          <Stack.Screen
-            name="corretiva/index"
-            options={{ headerTitle: "Corretiva" }}
-          />
-          <Stack.Screen
-            name="implantacao/index"
-            options={{ headerTitle: "Implantação" }}
-          />
-          <Stack.Screen
-            name="preventiva/index"
-            options={{ headerTitle: "Preventiva" }}
-          />
-          <Stack.Screen
-            name="list/index"
-            options={{ headerTitle: "Relatórios" }}
-          />
-          <Stack.Screen
-            name="preventiva/task/index"
-            options={{ headerTitle: "Adicionar checklist ao ticket" }}
-          />
-        </Stack>
-        <View style={styles.menu}>
-          <Link style={styles.btn} href="/">
-            <LayoutGrid color="#000" />
-          </Link>
-          <Link style={styles.btn} href="/list">
-            <List color="#000" />
-          </Link>
-        </View>
+        />
+      </Stack>
+      <View style={styles.menu}>
+        <Link style={styles.btn} href="/">
+          <LayoutGrid color="#000" />
+        </Link>
+        <Link style={styles.btn} href="/list">
+          <List color="#000" />
+        </Link>
       </View>
     </>
   );

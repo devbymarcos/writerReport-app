@@ -1,6 +1,13 @@
-import EditInitTicket from "@/components/forms/preventiva/EditInitTicket";
+import { Link } from "expo-router";
+import { Plus } from "lucide-react-native";
 import React from "react";
-import { View, Text, StyleSheet, FlatList, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
 
 const list = [
   { id: 1, name: "Task 1" },
@@ -25,12 +32,19 @@ export default function Task() {
         renderItem={renderItem}
         keyExtractor={(item) => item.id.toString()}
       />
+
+      <Link href="/preventiva/task/modal" asChild>
+        <TouchableOpacity style={styles.btnAdd} activeOpacity={0.8}>
+          <Plus color="#fff" />
+        </TouchableOpacity>
+      </Link>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     padding: 20,
     paddingTop: 20,
   },
@@ -50,5 +64,13 @@ const styles = StyleSheet.create({
   },
   titleItem: {
     fontSize: 16,
+  },
+  btnAdd: {
+    position: "absolute",
+    bottom: 100,
+    right: 10,
+    backgroundColor: "#008000",
+    padding: 30,
+    borderRadius: 9999,
   },
 });

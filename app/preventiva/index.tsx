@@ -6,7 +6,7 @@ import { View, StyleSheet, Text } from "react-native";
 export default function Home() {
   const { push } = useRouter();
   function msg() {
-    push("/preventiva/task");
+    push("/preventiva/task?id=1");
   }
 
   return (
