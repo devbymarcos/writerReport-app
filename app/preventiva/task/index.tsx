@@ -1,4 +1,4 @@
-import { ArrowDown, Plus } from "lucide-react-native";
+import { ArrowDown, Eye, Plus } from "lucide-react-native";
 import { useState } from "react";
 import {
   View,
@@ -11,6 +11,8 @@ import {
 } from "react-native";
 import SubMenuModalPreventive from "./SubMenuModalPreventive";
 import { Colors } from "@/constants/Colors";
+import { useRouter, useLocalSearchParams } from "expo-router";
+import React from "react";
 
 const list = [
   { id: 1, name: "Task 1" },
@@ -28,42 +30,59 @@ const renderItem = ({ item }: { item: { id: number; name: string } }) => (
 
 export default function Task() {
   const [modalVisible, setModalVisible] = useState(false);
+  const { id } = useLocalSearchParams();
+  const { push } = useRouter();
+
+  function viewSend() {
+    push(`/view?id=${id}`);
+  }
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Preventiva </Text>
-      <FlatList
-        data={list}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id.toString()}
-      />
+    <>
+      <View style={styles.container}>
+        <Text style={styles.title}>Preventiva </Text>
+        <FlatList
+          data={list}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id.toString()}
+        />
 
-      <Pressable
-        style={styles.btnAdd}
-        onPress={() => setModalVisible(!modalVisible)}
-      >
-        <Plus color="#fff" />
-      </Pressable>
-
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
-          setModalVisible(!modalVisible);
-        }}
-      >
-        <SubMenuModalPreventive />
-        <View style={styles.boxModalClose}>
-          <Pressable
-            style={styles.modalClose}
-            onPress={() => setModalVisible(!modalVisible)}
-          >
-            <ArrowDown color="#fff" />
-          </Pressable>
-        </View>
-      </Modal>
-    </View>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            Alert.alert("Modal has been closed.");
+            setModalVisible(!modalVisible);
+          }}
+        >
+          <SubMenuModalPreventive />
+          <View style={styles.boxModalClose}>
+            <Pressable
+              style={styles.modalClose}
+              onPress={() => setModalVisible(!modalVisible)}
+            >
+              <ArrowDown color="#fff" />
+            </Pressable>
+          </View>
+        </Modal>
+      </View>
+      <View style={styles.boxBtnAction}>
+        <Pressable
+          style={[styles.btnAction, { backgroundColor: Colors.btnSuccess }]}
+          onPress={viewSend}
+        >
+          {/* <Eye color="#fff" /> */}
+          <Text style={{ color: "#fff" }}>Ver e Enviar</Text>
+        </Pressable>
+        <Pressable
+          style={styles.btnAction}
+          onPress={() => setModalVisible(!modalVisible)}
+        >
+          <Plus color="#fff" />
+        </Pressable>
+      </View>
+    </>
   );
 }
 
@@ -90,13 +109,17 @@ const styles = StyleSheet.create({
   titleItem: {
     fontSize: 16,
   },
-  btnAdd: {
+  boxBtnAction: {
+    width: "100%",
     position: "absolute",
-    bottom: 100,
-    right: 10,
-    backgroundColor: "#008000",
+    bottom: 70,
+    flexDirection: "row",
+  },
+  btnAction: {
+    backgroundColor: Colors.btnPrimary,
     padding: 20,
-    borderRadius: 9999,
+    width: "50%",
+    alignItems: "center",
   },
   modalView: {
     margin: 20,

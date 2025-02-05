@@ -1,9 +1,13 @@
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import { StyleSheet, Text, View, ScrollView, Button } from "react-native";
 import React from "react";
 import { Colors } from "@/constants/Colors";
 import StatusAndData from "./StatusAndData";
 import CleaningActions from "./CleaningActions";
 import InspectionOfEssentialResources from "./InspectionOfEssentialResources";
+import InstallationConditions from "./InstallationConditions";
+import InterviewWithHR from "./InterviewWithHR";
+import Conclusion from "./Conclusion";
+import { BtnPrimary } from "@/components/ui/btnPrimay";
 
 export default function Rep() {
   return (
@@ -13,6 +17,12 @@ export default function Rep() {
         <StatusAndData />
         <CleaningActions />
         <InspectionOfEssentialResources />
+        <InstallationConditions />
+        <InterviewWithHR />
+        <Conclusion />
+        <View>
+          <BtnPrimary title="Salvar" onPress={() => {}} />
+        </View>
       </View>
     </ScrollView>
   );
