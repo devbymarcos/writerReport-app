@@ -1,9 +1,18 @@
 import { Link, Slot, Stack } from "expo-router";
-import React from "react";
+import React, { useEffect } from "react";
 import { View, StyleSheet } from "react-native";
 import { LayoutGrid, List } from "lucide-react-native";
+import { createTables } from "@/database/schema";
 
 export default function Layout() {
+  // inicia banco e tabelas
+  useEffect(() => {
+    const initializeDatabase = async () => {
+      await createTables();
+      console.log("executado create table");
+    };
+    initializeDatabase();
+  }, []);
   return (
     <>
       <Stack

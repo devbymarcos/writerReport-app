@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "formularios_app",
-    "slug": "formularios_app",
+    "name": "Write Report",
+    "slug": "write-report",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",

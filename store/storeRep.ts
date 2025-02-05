@@ -1,6 +1,7 @@
 import { create } from "zustand";
 
 interface IStoreRep {
+  //StatusAndData
   stateOperation: string;
   brand: string;
   model: string;
