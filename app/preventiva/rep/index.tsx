@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, ScrollView, Button } from "react-native";
+import { StyleSheet, Text, View, ScrollView } from "react-native";
 import React from "react";
 import { Colors } from "@/constants/Colors";
 import StatusAndData from "./StatusAndData";
@@ -8,12 +8,13 @@ import InstallationConditions from "./InstallationConditions";
 import InterviewWithHR from "./InterviewWithHR";
 import Conclusion from "./Conclusion";
 import { BtnPrimary } from "@/components/ui/btnPrimay";
+import TitleForm from "@/components/ui/titleForm";
 
 export default function Rep() {
   return (
     <ScrollView>
       <View style={styles.container}>
-        <Text style={styles.title}>Preventiva Relogio Ponto</Text>
+        <TitleForm title="Preventiva REP" />
         <StatusAndData />
         <CleaningActions />
         <InspectionOfEssentialResources />

@@ -4,17 +4,23 @@ import Card from "@/components/ui/card";
 import { useState } from "react";
 import TitleSectionForm from "@/components/ui/titleSectionForm";
 import Select from "@/components/ui/select";
+import { storeRep } from "@/store/storeRep";
 
 export default function InterviewWithHR() {
-  const [value, setValue] = useState("...");
+  const {
+    hrInterviewEquipmentFunctioning,
+    setHrInterviewEquipmentFunctioning,
+    hrInterviewSoftwareQuestions,
+    setHrInterviewSoftwareQuestions,
+  } = storeRep();
   return (
     <Card>
       <TitleSectionForm title="Condições de Instalação:" />
       <Select
         label="Funcionamento do equipamento"
         items={["...", "Sem dúvidas", "Abrir Ticket", "Não perguntado"]}
-        value={value}
-        setValue={setValue}
+        value={hrInterviewEquipmentFunctioning}
+        setValue={setHrInterviewEquipmentFunctioning}
       />
       <Select
         label="Dúvidas no software"
@@ -25,8 +31,8 @@ export default function InterviewWithHR() {
           "Abrir Ticket",
           "Não perguntado",
         ]}
-        value={value}
-        setValue={setValue}
+        value={hrInterviewSoftwareQuestions}
+        setValue={setHrInterviewSoftwareQuestions}
       />
     </Card>
   );

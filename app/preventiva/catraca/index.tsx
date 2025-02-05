@@ -3,12 +3,13 @@ import React from "react";
 import { Colors } from "@/constants/Colors";
 import { BtnPrimary } from "@/components/ui/btnPrimay";
 import StatusAndData from "./StatusAndData";
+import TitleForm from "@/components/ui/titleForm";
 
 export default function Rep() {
   return (
     <ScrollView>
       <View style={styles.container}>
-        <Text style={styles.title}>Preventiva Relogio Ponto</Text>
+        <TitleForm title="Preventiva Catraca" />
         <StatusAndData />
         <View>
           <BtnPrimary title="Salvar" onPress={() => {}} />

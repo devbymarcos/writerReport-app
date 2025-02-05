@@ -4,9 +4,21 @@ import Card from "@/components/ui/card";
 import Input from "@/components/ui/input";
 import Select from "@/components/ui/select";
 import TitleSectionForm from "@/components/ui/titleSectionForm";
+import { storeRep } from "@/store/storeRep";
 
 export default function StatusAndData() {
-  const [value, setValue] = useState("...");
+  const {
+    stateOperation,
+    setStateOperation,
+    brand,
+    setBrand,
+    model,
+    setModel,
+    ns,
+    setNs,
+    fiscalSeal,
+    setFiscalSeal,
+  } = storeRep();
 
   return (
     <Card>
@@ -19,19 +31,30 @@ export default function StatusAndData() {
           "Parcial",
           "Desligado ou desativado",
         ]}
-        value={value}
-        setValue={setValue}
+        value={stateOperation}
+        setValue={setStateOperation}
       />
       <Select
         label="Marca do relógio"
         items={["...", "Madis", "Control ID", "Proveu"]}
-        value={value}
-        setValue={setValue}
+        value={brand}
+        setValue={setBrand}
       />
-      <Input label="Modelo" />
+      <Input label="Modelo" value={model} onChangeText={setModel} />
+
       <Input label="IP" keyboardType="numeric" />
-      <Input label="Numero de série" keyboardType="numeric" />
-      <Input label="Lacre Fiscal" keyboardType="numeric" />
+      <Input
+        label="Numero de série"
+        keyboardType="numeric"
+        value={ns}
+        onChangeText={setNs}
+      />
+      <Input
+        label="Lacre Fiscal"
+        keyboardType="numeric"
+        value={fiscalSeal}
+        onChangeText={setFiscalSeal}
+      />
     </Card>
   );
 }
