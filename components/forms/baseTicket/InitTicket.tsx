@@ -1,11 +1,15 @@
 import Card from "@/components/ui/card";
 import Input from "@/components/ui/input";
 import { storeTicket } from "@/store/storeTicket";
-import DateTimePicker from "react-native-ui-datepicker";
+import React, { useState } from "react";
+import DateTimePicker from "@react-native-community/datetimepicker";
+import { Text, StyleSheet, View, Button, Pressable } from "react-native";
 
-import { Text, StyleSheet } from "react-native";
+import { Calendar } from "lucide-react-native";
 
 export default function InitTicket() {
+  const [mode, setMode] = useState<"date" | "time">("date");
+  const [show, setShow] = useState(false);
   const {
     setNumberTicket,
     date,
@@ -15,6 +19,21 @@ export default function InitTicket() {
     setFollowed,
   } = storeTicket();
 
+  const onChange = (event: any, selectedDate: any) => {
+    const currentDate = selectedDate;
+    setShow(false);
+    setDate(currentDate);
+  };
+
+  const showMode = (currentMode: any) => {
+    setShow(true);
+    setMode(currentMode);
+  };
+
+  const showDatepicker = () => {
+    showMode("date");
+  };
+
   return (
     <Card>
       <Text style={styles.title}>Dados Iniciais:</Text>
@@ -23,7 +42,25 @@ export default function InitTicket() {
         onChangeText={setNumberTicket}
         keyboardType="numeric"
       />
-      <Input label="Data:" value={date} onChangeText={setDate} />
+      {show && (
+        <DateTimePicker
+          testID="dateTimePicker"
+          value={date}
+          mode={mode}
+          is24Hour={true}
+          onChange={onChange}
+        />
+      )}
+      <View style={styles.boxDate}>
+        <View style={{ width: "90%" }}>
+          <Input label="Data:" value={date.toLocaleDateString()} />
+        </View>
+        <View>
+          <Pressable onPress={showDatepicker}>
+            <Calendar color="#000" />
+          </Pressable>
+        </View>
+      </View>
       <Input label="Titulo ticket:" onChangeText={setTitleTicket} />
       <Input label="Empresa Contratante:" onChangeText={setNameBusiness} />
       <Input
@@ -37,7 +74,11 @@ export default function InitTicket() {
 const styles = StyleSheet.create({
   title: {
     marginBottom: 15,
-
     fontSize: 20,
+  },
+  boxDate: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
   },
 });

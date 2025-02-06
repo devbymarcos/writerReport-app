@@ -9,18 +9,19 @@ import {
 import { Colors } from "@/constants/Colors";
 
 interface ButtonProps {
-  title: string;
+  title?: string;
   onPress: (event: GestureResponderEvent) => void;
+  children?: React.ReactNode;
 }
 
-export function BtnPrimary({ onPress, title }: ButtonProps) {
+export function BtnPrimary({ onPress, title, children }: ButtonProps) {
   return (
     <TouchableOpacity
       onPress={onPress}
       activeOpacity={0.8}
       style={styles.button} // Aplicando opacidade ao pressionar
     >
-      <Text style={styles.buttonText}>{title}</Text>
+      <Text style={styles.buttonText}>{title ? title : children}</Text>
     </TouchableOpacity>
   );
 }

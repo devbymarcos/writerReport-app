@@ -1,15 +1,14 @@
 import { create } from "zustand";
-import dayjs from "dayjs";
 
 interface IStoreTicket {
   numberTicket: string;
   titleTicket: string;
-  date: string;
+  date: Date;
   nameBusiness: string;
   followed: string;
   setNumberTicket: (numberTicket: string) => void;
   setTitleTicket: (titleTicket: string) => void;
-  setDate: (date: string) => void;
+  setDate: (date: Date) => void;
   setNameBusiness: (nameBusiness: string) => void;
   setFollowed: (followed: string) => void;
 }
@@ -17,12 +16,12 @@ interface IStoreTicket {
 export const storeTicket = create<IStoreTicket>((set) => ({
   numberTicket: "",
   titleTicket: "",
-  date: new Date().toLocaleDateString(),
+  date: new Date(),
   nameBusiness: "",
   followed: "",
   setNumberTicket: (numberTicket: string) => set({ numberTicket }),
   setTitleTicket: (titleTicket: string) => set({ titleTicket }),
-  setDate: (date: string) => set({ date }),
+  setDate: (date: Date) => set({ date }),
   setNameBusiness: (nameBusiness: string) => set({ nameBusiness }),
   setFollowed: (followed: string) => set({ followed }),
 }));
