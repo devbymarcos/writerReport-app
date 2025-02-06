@@ -13,35 +13,11 @@ export const createTables = async () => {
         nameBusiness TEXT NOT NULL,
         followed TEXT NOT NULL
       );
-
-      CREATE TABLE IF NOT EXISTS rep (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        id_ticket INTEGER NOT NULL,
-        stateOperation TEXT NOT NULL,
-        brand TEXT NOT NULL,
-        model TEXT NOT NULL,
-        ip TEXT NOT NULL,
-        ns TEXT NOT NULL,
-        fiscalSeal TEXT NOT NULL,
-        sealWork TEXT NOT NULL,
-        cleaningExternal TEXT NOT NULL,
-        cleaningPrinter TEXT NOT NULL,
-        cleaningSpoolCompartment TEXT NOT NULL,
-        installationConditionsEquipmentMounting TEXT NOT NULL,
-        installationConditionsCableOrganization TEXT NOT NULL,
-        installationConditionsConduitsAndRaceways TEXT NOT NULL,
-        installationConditionsExposureToRainSun TEXT NOT NULL,
-        inspectionDisplay TEXT NOT NULL,
-        inspectionPrinter TEXT NOT NULL,
-        inspectionKeyboard TEXT NOT NULL,
-        inspectionReadersCardAndBiometrics TEXT NOT NULL,
-        inspectionCutterOrPerforator TEXT NOT NULL,
-        frontAndRear TEXT NOT NULL,
-        hrInterviewEquipmentFunctioning TEXT NOT NULL,
-        hrInterviewSoftwareQuestions TEXT NOT NULL,
-        nonConformitiesDescription TEXT NOT NULL,
-        improvementSuggestions TEXT NOT NULL,
-        pendingOrNextActions TEXT NOT NULL
+      
+      CREATE TABLE IF NOT EXISTS tasks (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          id_ticket INTEGER NOT NULL,
+          content TEXT NOT NULL
       );
       
 

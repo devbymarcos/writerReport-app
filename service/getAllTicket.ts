@@ -11,11 +11,8 @@ export interface IResponse {
 
 export async function getAllTicket() {
   const db = await getDB();
-  const statement = await db.prepareAsync("SELECT * FROM tickets");
-
   try {
-    const result = await statement.executeAsync();
-    const data = await result.getAllAsync();
+    const data = await db.getAllAsync("SELECT * FROM tickets");
     if (typeof data !== "object" || !data) {
       return [];
     }
@@ -24,6 +21,5 @@ export async function getAllTicket() {
   } catch (err) {
     console.log("Erro getAllTicket", err);
   } finally {
-    await statement.finalizeAsync();
   }
 }

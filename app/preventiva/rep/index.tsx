@@ -9,8 +9,79 @@ import InterviewWithHR from "./InterviewWithHR";
 import Conclusion from "./Conclusion";
 import { BtnPrimary } from "@/components/ui/btnPrimay";
 import TitleForm from "@/components/ui/titleForm";
+import { storeRep } from "@/store/storeRep";
+import { registerTask } from "@/service/registerTask";
+import { useLocalSearchParams } from "expo-router";
 
 export default function Rep() {
+  const { id } = useLocalSearchParams();
+  console.log(id);
+  const {
+    stateOperation,
+    brand,
+    model,
+    ip,
+    ns,
+    fiscalSeal,
+    sealWork,
+    //cleanignActions--
+    cleaningExternal,
+    cleaningPrinter,
+    cleaningSpoolCompartment,
+    //InstallationConditions--
+    installationConditionsEquipmentMounting,
+    installationConditionsCableOrganization,
+    installationConditionsConduitsAndRaceways,
+    installationConditionsExposureToRainSun,
+    //InspectionOfEssentialResources--
+    inspectionDisplay,
+    inspectionPrinter,
+    inspectionKeyboard,
+    inspectionReadersCardAndBiometrics,
+    inspectionCutterOrPerforator,
+    frontAndRear,
+    //InterviewWithHR--
+    hrInterviewEquipmentFunctioning,
+    hrInterviewSoftwareQuestions,
+    //Conclusion--
+    nonConformitiesDescription,
+    improvementSuggestions,
+    pendingOrNextActions,
+  } = storeRep();
+
+  function save() {
+    registerTask({
+      id_ticket: Number(id),
+      content: JSON.stringify({
+        stateOperation,
+        brand,
+        model,
+        ip,
+        ns,
+        fiscalSeal,
+        sealWork,
+        cleaningExternal,
+        cleaningPrinter,
+        cleaningSpoolCompartment,
+        installationConditionsEquipmentMounting,
+        installationConditionsCableOrganization,
+        installationConditionsConduitsAndRaceways,
+        installationConditionsExposureToRainSun,
+        inspectionDisplay,
+        inspectionPrinter,
+        inspectionKeyboard,
+        inspectionReadersCardAndBiometrics,
+        inspectionCutterOrPerforator,
+        frontAndRear,
+        hrInterviewEquipmentFunctioning,
+        hrInterviewSoftwareQuestions,
+        nonConformitiesDescription,
+        improvementSuggestions,
+        pendingOrNextActions,
+      }),
+    });
+  }
+
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -22,7 +93,7 @@ export default function Rep() {
         <InterviewWithHR />
         <Conclusion />
         <View>
-          <BtnPrimary title="Salvar" onPress={() => {}} />
+          <BtnPrimary title="Salvar" onPress={save} />
         </View>
       </View>
     </ScrollView>

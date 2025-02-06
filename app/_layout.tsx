@@ -45,6 +45,10 @@ export default function Layout() {
           name="preventiva/rep/index"
           options={{ headerTitle: "Preventiva REP" }}
         />
+        <Stack.Screen
+          name="view/index"
+          options={{ headerTitle: "Relatório" }}
+        />
       </Stack>
       <View style={styles.menu}>
         <Link style={styles.btn} href="/">

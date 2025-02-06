@@ -1,5 +1,5 @@
 import { Colors } from "@/constants/Colors";
-import { getAllTicket, IResponse } from "@/service/ticketBase/getAllTicket";
+import { getAllTicket, IResponse } from "@/service/getAllTicket";
 import { Link } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, FlatList } from "react-native";
