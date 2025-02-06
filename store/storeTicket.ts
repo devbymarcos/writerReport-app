@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import dayjs from "dayjs";
 
 interface IStoreTicket {
   numberTicket: string;
@@ -16,7 +17,7 @@ interface IStoreTicket {
 export const storeTicket = create<IStoreTicket>((set) => ({
   numberTicket: "",
   titleTicket: "",
-  date: "",
+  date: new Date().toLocaleDateString(),
   nameBusiness: "",
   followed: "",
   setNumberTicket: (numberTicket: string) => set({ numberTicket }),
