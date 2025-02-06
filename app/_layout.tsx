@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { View, StyleSheet } from "react-native";
 import { LayoutGrid, List } from "lucide-react-native";
 import { createTables } from "@/database/schema";
+import { StatusBar } from "expo-status-bar";
 
 export default function Layout() {
   // inicia banco e tabelas
@@ -50,6 +51,7 @@ export default function Layout() {
           options={{ headerTitle: "Relatório" }}
         />
       </Stack>
+      <StatusBar style="dark" />
       <View style={styles.menu}>
         <Link style={styles.btn} href="/">
           <LayoutGrid color="#000" />

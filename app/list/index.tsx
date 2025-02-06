@@ -1,17 +1,37 @@
 import { Colors } from "@/constants/Colors";
+import { deleteTicketAndTask } from "@/service/deleteTicketAndTask";
 import { getAllTicket, IResponse } from "@/service/getAllTicket";
+import { storeTicket } from "@/store/storeTicket";
 import { Link } from "expo-router";
+import { Eye, Trash } from "lucide-react-native";
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import { View, Text, StyleSheet, FlatList, Pressable } from "react-native";
 
-const ListItem = ({ name, id }: { name: string; id: number }) => (
-  <Link style={styles.item} href={`/preventiva/task?id=${id}`}>
-    <Text style={styles.title}>{name}</Text>
-  </Link>
-);
+const ListItem = ({ name, id }: { name: string; id: number }) => {
+  const { setLoadPage, loadPage } = storeTicket();
+  async function deleteTicket() {
+    await deleteTicketAndTask({ id });
+    setLoadPage(!loadPage);
+  }
+
+  return (
+    <View style={styles.item}>
+      <Text style={styles.title}>{name}</Text>
+      <View style={styles.boxIcons}>
+        <Link style={styles.iconView} href={`/preventiva/task?id=${id}`}>
+          <Eye color="#000" />
+        </Link>
+        <Pressable style={styles.iconTash} onPress={deleteTicket}>
+          <Trash color="#000" />
+        </Pressable>
+      </View>
+    </View>
+  );
+};
 
 const ListScreen = () => {
   const [dataSql, setDataSql] = useState<IResponse[]>();
+  const { loadPage } = storeTicket();
 
   async function listAll() {
     const response = await getAllTicket();
@@ -22,7 +42,7 @@ const ListScreen = () => {
 
   useEffect(() => {
     listAll();
-  }, []);
+  }, [loadPage]);
   return (
     <View style={styles.container}>
       <FlatList
@@ -43,6 +63,9 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   item: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     backgroundColor: "#fff",
     padding: 20,
     marginVertical: 8,
@@ -51,6 +74,19 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 16,
+  },
+  boxIcons: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    gap: 5,
+  },
+  iconView: {
+    padding: 10,
+    borderRadius: 6,
+  },
+  iconTash: {
+    padding: 10,
+    borderRadius: 6,
   },
 });
 

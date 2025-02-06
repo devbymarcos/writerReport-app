@@ -5,7 +5,7 @@ export const createTables = async () => {
     const db = await getDB();
     await db.execAsync(`
       
-        CREATE TABLE IF NOT EXISTS tickets (
+      CREATE TABLE IF NOT EXISTS tickets (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         numberTicket TEXT NOT NULL,
         titleTicket TEXT NOT NULL,
