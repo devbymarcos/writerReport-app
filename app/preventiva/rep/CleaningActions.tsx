@@ -3,37 +3,47 @@ import React, { useState } from "react";
 import Card from "@/components/ui/card";
 import Select from "@/components/ui/select";
 import TitleSectionForm from "@/components/ui/titleSectionForm";
-import { storeRep } from "@/store/storeRep";
+import { Controller } from "react-hook-form";
 
-export default function CleaningActions() {
-  const {
-    cleaningExternal,
-    setCleaningExternal,
-    cleaningPrinter,
-    setCleaningPrinter,
-    cleaningSpoolCompartment,
-    setCleaningSpoolCompartment,
-  } = storeRep();
+export default function CleaningActions({ control }: { control: any }) {
   return (
     <Card>
       <TitleSectionForm title="Ações de limpeza" />
-      <Select
-        label="Estética e Externa (Silicone):"
-        items={["...", "Realizada", "Não Realizada"]}
-        value={cleaningExternal}
-        setValue={setCleaningExternal}
+      <Controller
+        control={control}
+        name="cleaningExternal"
+        render={({ field }) => (
+          <Select
+            label="Estética e Externa (Silicone):"
+            items={["...", "Realizada", "Não Realizada"]}
+            value={field.value}
+            setValue={field.onChange}
+          />
+        )}
       />
-      <Select
-        label="Compartimento de bobina:"
-        items={["...", "Realizada", "Não Realizada"]}
-        value={cleaningPrinter}
-        setValue={setCleaningPrinter}
+      <Controller
+        control={control}
+        name="cleaningPrinter"
+        render={({ field }) => (
+          <Select
+            label="Compartimento de bobina:"
+            items={["...", "Realizada", "Não Realizada"]}
+            value={field.value}
+            setValue={field.onChange}
+          />
+        )}
       />
-      <Select
-        label="Cabeça de impressão:"
-        items={["...", "Realizada", "Não Realizada"]}
-        value={cleaningSpoolCompartment}
-        setValue={setCleaningSpoolCompartment}
+      <Controller
+        control={control}
+        name="cleaningSpoolCompartment"
+        render={({ field }) => (
+          <Select
+            label="Cabeça de impressão:"
+            items={["...", "Realizada", "Não Realizada"]}
+            value={field.value}
+            setValue={field.onChange}
+          />
+        )}
       />
     </Card>
   );
