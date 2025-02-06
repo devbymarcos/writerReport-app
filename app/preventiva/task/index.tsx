@@ -40,7 +40,7 @@ export default function Task() {
   return (
     <>
       <View style={styles.container}>
-        <Text style={styles.title}>Preventiva </Text>
+        <Text style={styles.title}>Tarefas do ticket {id} </Text>
         <FlatList
           data={list}
           renderItem={renderItem}

@@ -1,28 +1,36 @@
 import { Colors } from "@/constants/Colors";
-import React from "react";
+import { getAllTicket, IResponse } from "@/service/ticketBase/getAllTicket";
+import { Link } from "expo-router";
+import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, FlatList } from "react-native";
 
-const data = [
-  { id: "1", name: "2240 worksystem" },
-  { id: "2", name: "10 Rocha" },
-  { id: "4", name: "789  worksystem" },
-  { id: "5", name: "789  worksystem" },
-  { id: "6", name: "789  worksystem" },
-];
-
-const ListItem = ({ name }: { name: string }) => (
-  <View style={styles.item}>
+const ListItem = ({ name, id }: { name: string; id: number }) => (
+  <Link style={styles.item} href={`/preventiva/task?id=${id}`}>
     <Text style={styles.title}>{name}</Text>
-  </View>
+  </Link>
 );
 
 const ListScreen = () => {
+  const [dataSql, setDataSql] = useState<IResponse[]>();
+
+  async function listAll() {
+    const response = await getAllTicket();
+    //@ts-ignore
+    setDataSql(response);
+    console.log(response);
+  }
+
+  useEffect(() => {
+    listAll();
+  }, []);
   return (
     <View style={styles.container}>
       <FlatList
-        data={data}
-        renderItem={({ item }) => <ListItem name={item.name} />}
-        keyExtractor={(item) => item.id}
+        data={dataSql}
+        renderItem={({ item }) => (
+          <ListItem name={item.titleTicket} id={item.id} />
+        )}
+        keyExtractor={(item) => String(item.id)}
       />
     </View>
   );
