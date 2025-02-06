@@ -59,7 +59,7 @@ export default function StatusAndData({ control }: StatusAndDataProps) {
         render={({ field }) => (
           <Input
             label="IP"
-            keyboardType="numeric"
+            keyboardType="default"
             value={field.value}
             onChangeText={field.onChange}
           />
@@ -71,7 +71,7 @@ export default function StatusAndData({ control }: StatusAndDataProps) {
         render={({ field }) => (
           <Input
             label="Numero de série"
-            keyboardType="numeric"
+            keyboardType="phone-pad"
             value={field.value}
             onChangeText={field.onChange}
           />
@@ -83,7 +83,7 @@ export default function StatusAndData({ control }: StatusAndDataProps) {
         render={({ field }) => (
           <Input
             label="Lacre Fiscal"
-            keyboardType="numeric"
+            keyboardType="phone-pad"
             value={field.value}
             onChangeText={field.onChange}
           />

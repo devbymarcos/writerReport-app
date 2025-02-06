@@ -15,20 +15,24 @@ import { useRouter, useLocalSearchParams } from "expo-router";
 import React from "react";
 import { getTasksByIdTicket } from "@/service/getTasksByIdTicket";
 
-const renderItem = ({ item }: { item: { id: number; name: string } }) => {
+const renderItem = ({
+  item,
+}: {
+  item: { id: number; name: string; content: any };
+}) => {
   const content = JSON.parse(item.content); //TODO CONTINUAR DAQUI
   console.log(content);
 
   return (
     <View style={styles.item}>
-      <Text style={styles.titleItem}>{content.stateOperation}</Text>
+      <Text style={styles.titleItem}>{content.titleCheck}</Text>
     </View>
   );
 };
 
 export default function Task() {
   const [modalVisible, setModalVisible] = useState(false);
-  const [tasks, setTasks] = useState(null);
+  const [tasks, setTasks] = useState<any>(null);
   const { id, ticket } = useLocalSearchParams();
   const { push } = useRouter();
 

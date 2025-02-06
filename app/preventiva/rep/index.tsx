@@ -11,11 +11,13 @@ import { BtnPrimary } from "@/components/ui/btnPrimay";
 import TitleForm from "@/components/ui/titleForm";
 import { storeRep } from "@/store/storeRep";
 import { registerTask } from "@/service/registerTask";
-import { useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import { useForm } from "react-hook-form";
+import TitleCheck from "./TitleCheck";
 
 export default function Rep() {
   const { id } = useLocalSearchParams();
+  const { push } = useRouter();
   const { control, handleSubmit } = useForm();
   console.log(id);
 
@@ -23,6 +25,7 @@ export default function Rep() {
     registerTask({
       id_ticket: Number(id),
       content: JSON.stringify({
+        titleCheck: data.titleCheck,
         stateOperation: data.stateOperation,
         brand: data.brand,
         model: data.model,
@@ -55,12 +58,14 @@ export default function Rep() {
         pendingOrNextActions: data.pendingOrNextActions,
       }),
     });
+    push(`/preventiva/task?id=${id}`);
   }
 
   return (
     <ScrollView>
       <View style={styles.container}>
         <TitleForm title="Preventiva REP" />
+        <TitleCheck control={control} />
         <StatusAndData control={control} />
         <CleaningActions control={control} />
         <InspectionOfEssentialResources control={control} />

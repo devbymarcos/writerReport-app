@@ -42,7 +42,7 @@ export default function InitTicket({ control }: InitTicketProps) {
             label="Numero ticket:"
             value={field.value}
             onChangeText={field.onChange}
-            keyboardType="numeric"
+            keyboardType="phone-pad"
           />
         )}
       />

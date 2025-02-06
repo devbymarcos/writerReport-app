@@ -22,7 +22,9 @@ export default function Home() {
     });
     console.log(response);
     if (response?.lastInsertRowId) {
-      push(`/preventiva/task?id=${response.lastInsertRowId}`);
+      push(
+        `/preventiva/task?id=${response.lastInsertRowId}&ticket=${data.numberTicket}`
+      );
     }
   }
 
