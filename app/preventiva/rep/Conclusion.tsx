@@ -1,30 +1,35 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import React from "react";
 import InputMultiplo from "@/components/ui/inputMultiplo";
 import Card from "@/components/ui/card";
 import TitleSectionForm from "@/components/ui/titleSectionForm";
-import { storeRep } from "@/store/storeRep";
+import { Controller } from "react-hook-form";
 
-export default function Conclusion() {
-  const {
-    setNonConformitiesDescription,
-    setImprovementSuggestions,
-    setPendingOrNextActions,
-  } = storeRep();
+export default function Conclusion({ control }: { control: any }) {
   return (
     <Card>
       <TitleSectionForm title="Conclusão:(use 'ENTER' para quebra de linha) " />
-      <InputMultiplo
-        onChangeText={setNonConformitiesDescription}
-        label="Descreva as não conformidades "
+      <Controller
+        control={control}
+        name="setNonConformitiesDescription"
+        render={({ field }) => (
+          <InputMultiplo
+            label="Descreva as não conformidades "
+            value={field.value}
+            onChangeText={field.onChange}
+          />
+        )}
       />
-      <InputMultiplo
-        onChangeText={setImprovementSuggestions}
-        label="Sugestões de melhorias "
-      />
-      <InputMultiplo
-        onChangeText={setPendingOrNextActions}
-        label="Pendencias ou próximas etapas "
+      <Controller
+        control={control}
+        name="setPendingOrNextActions"
+        render={({ field }) => (
+          <InputMultiplo
+            label="Pendencias ou próximas etapas "
+            value={field.value}
+            onChangeText={field.onChange}
+          />
+        )}
       />
     </Card>
   );

@@ -3,45 +3,59 @@ import React, { useState } from "react";
 import Card from "@/components/ui/card";
 import TitleSectionForm from "@/components/ui/titleSectionForm";
 import Select from "@/components/ui/select";
-import { storeRep } from "@/store/storeRep";
+import { Controller } from "react-hook-form";
 
-export default function InstallationConditions() {
-  const {
-    installationConditionsEquipmentMounting,
-    setInstallationConditionsEquipmentMounting,
-    installationConditionsCableOrganization,
-    setInstallationConditionsCableOrganization,
-    installationConditionsConduitsAndRaceways,
-    setInstallationConditionsConduitsAndRaceways,
-    installationConditionsExposureToRainSun,
-    setInstallationConditionsExposureToRainSun,
-  } = storeRep();
+export default function InstallationConditions({ control }: { control: any }) {
   return (
     <Card>
       <TitleSectionForm title="Condições de Instalação:" />
-      <Select
-        label="Fixação do equipamento"
-        items={["...", "Ok", "Abrir Ticket", "Corrigido", "Não realizado"]}
-        value={installationConditionsEquipmentMounting}
-        setValue={setInstallationConditionsEquipmentMounting}
+      <Controller
+        control={control}
+        name="installationConditionsEquipmentMounting"
+        render={({ field }) => (
+          <Select
+            label="Fixação do equipamento"
+            items={["...", "Ok", "Abrir Ticket", "Corrigido", "Não realizado"]}
+            value={field.value}
+            setValue={field.onChange}
+          />
+        )}
       />
-      <Select
-        label="Organização cabos de rede/energia"
-        items={["...", "Ok", "Abrir Ticket", "Corrigido", "Não realizado"]}
-        value={installationConditionsCableOrganization}
-        setValue={setInstallationConditionsCableOrganization}
+      <Controller
+        control={control}
+        name="installationConditionsCableOrganization"
+        render={({ field }) => (
+          <Select
+            label="Organização cabos de rede/energia"
+            items={["...", "Ok", "Abrir Ticket", "Corrigido", "Não realizado"]}
+            value={field.value}
+            setValue={field.onChange}
+          />
+        )}
       />
-      <Select
-        label="Canaletas e Eletrodutos"
-        items={["...", "Ok", "Abrir Ticket", "Corrigido", "Não realizado"]}
-        value={installationConditionsConduitsAndRaceways}
-        setValue={setInstallationConditionsConduitsAndRaceways}
+      <Controller
+        control={control}
+        name="installationConditionsConduitsAndRaceways"
+        render={({ field }) => (
+          <Select
+            label="Canaletas e Eletrodutos"
+            items={["...", "Ok", "Abrir Ticket", "Corrigido", "Não realizado"]}
+            value={field.value}
+            setValue={field.onChange}
+          />
+        )}
       />
-      <Select
-        label="Exposição a Chuva/Sol"
-        items={["...", "Ok", "Abrir Ticket", "Corrigido", "Não realizado"]}
-        value={installationConditionsExposureToRainSun}
-        setValue={setInstallationConditionsExposureToRainSun}
+      <Controller
+        control={control}
+        name="installationConditionsExposureToRainSun"
+        render={({ field }) => (
+          <Select
+            label="Exposição a Chuva/Sol"
+            items={["...", "Ok", "Abrir Ticket", "Corrigido", "Não realizado"]}
+            value={field.value}
+            setValue={field.onChange}
+          />
+        )}
       />
     </Card>
   );
