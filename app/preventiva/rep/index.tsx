@@ -18,38 +18,6 @@ export default function Rep() {
   const { id } = useLocalSearchParams();
   const { control, handleSubmit } = useForm();
   console.log(id);
-  const {
-    stateOperation,
-    brand,
-    model,
-    ip,
-    ns,
-    fiscalSeal,
-    sealWork,
-    //cleanignActions--
-    cleaningExternal,
-    cleaningPrinter,
-    cleaningSpoolCompartment,
-    //InstallationConditions--
-    installationConditionsEquipmentMounting,
-    installationConditionsCableOrganization,
-    installationConditionsConduitsAndRaceways,
-    installationConditionsExposureToRainSun,
-    //InspectionOfEssentialResources--
-    inspectionDisplay,
-    inspectionPrinter,
-    inspectionKeyboard,
-    inspectionReadersCardAndBiometrics,
-    inspectionCutterOrPerforator,
-    frontAndRear,
-    //InterviewWithHR--
-    hrInterviewEquipmentFunctioning,
-    hrInterviewSoftwareQuestions,
-    //Conclusion--
-    nonConformitiesDescription,
-    improvementSuggestions,
-    pendingOrNextActions,
-  } = storeRep();
 
   function save(data: any) {
     registerTask({

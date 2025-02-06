@@ -7,11 +7,11 @@ import { Text, StyleSheet, View, Button, Pressable } from "react-native";
 import { Controller } from "react-hook-form";
 import { Calendar } from "lucide-react-native";
 
-interface StatusAndDataProps {
+interface InitTicketProps {
   control: any;
 }
 
-export default function InitTicket({ control }: StatusAndDataProps) {
+export default function InitTicket({ control }: InitTicketProps) {
   const [mode, setMode] = useState<"date" | "time">("date");
   const [show, setShow] = useState(false);
   const { date, setDate } = storeTicket();
