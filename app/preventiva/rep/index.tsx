@@ -12,9 +12,11 @@ import TitleForm from "@/components/ui/titleForm";
 import { storeRep } from "@/store/storeRep";
 import { registerTask } from "@/service/registerTask";
 import { useLocalSearchParams } from "expo-router";
+import { useForm } from "react-hook-form";
 
 export default function Rep() {
   const { id } = useLocalSearchParams();
+  const { control, handleSubmit } = useForm();
   console.log(id);
   const {
     stateOperation,
@@ -49,35 +51,40 @@ export default function Rep() {
     pendingOrNextActions,
   } = storeRep();
 
-  function save() {
+  function save(data: any) {
     registerTask({
       id_ticket: Number(id),
       content: JSON.stringify({
-        stateOperation,
-        brand,
-        model,
-        ip,
-        ns,
-        fiscalSeal,
-        sealWork,
-        cleaningExternal,
-        cleaningPrinter,
-        cleaningSpoolCompartment,
-        installationConditionsEquipmentMounting,
-        installationConditionsCableOrganization,
-        installationConditionsConduitsAndRaceways,
-        installationConditionsExposureToRainSun,
-        inspectionDisplay,
-        inspectionPrinter,
-        inspectionKeyboard,
-        inspectionReadersCardAndBiometrics,
-        inspectionCutterOrPerforator,
-        frontAndRear,
-        hrInterviewEquipmentFunctioning,
-        hrInterviewSoftwareQuestions,
-        nonConformitiesDescription,
-        improvementSuggestions,
-        pendingOrNextActions,
+        stateOperation: data.stateOperation,
+        brand: data.brand,
+        model: data.model,
+        ip: data.ip,
+        ns: data.ns,
+        fiscalSeal: data.fiscalSeal,
+        sealWork: data.sealWork,
+        cleaningExternal: data.cleaningExternal,
+        cleaningPrinter: data.cleaningPrinter,
+        cleaningSpoolCompartment: data.cleaningSpoolCompartment,
+        installationConditionsEquipmentMounting:
+          data.installationConditionsEquipmentMounting,
+        installationConditionsCableOrganization:
+          data.installationConditionsCableOrganization,
+        installationConditionsConduitsAndRaceways:
+          data.installationConditionsConduitsAndRaceways,
+        installationConditionsExposureToRainSun:
+          data.installationConditionsExposureToRainSun,
+        inspectionDisplay: data.inspectionDisplay,
+        inspectionPrinter: data.inspectionPrinter,
+        inspectionKeyboard: data.inspectionKeyboard,
+        inspectionReadersCardAndBiometrics:
+          data.inspectionReadersCardAndBiometrics,
+        inspectionCutterOrPerforator: data.inspectionCutterOrPerforator,
+        frontAndRear: data.frontAndRear,
+        hrInterviewEquipmentFunctioning: data.hrInterviewEquipmentFunctioning,
+        hrInterviewSoftwareQuestions: data.hrInterviewSoftwareQuestions,
+        nonConformitiesDescription: data.nonConformitiesDescription,
+        improvementSuggestions: data.improvementSuggestions,
+        pendingOrNextActions: data.pendingOrNextActions,
       }),
     });
   }
@@ -86,14 +93,14 @@ export default function Rep() {
     <ScrollView>
       <View style={styles.container}>
         <TitleForm title="Preventiva REP" />
-        <StatusAndData />
-        <CleaningActions />
-        <InspectionOfEssentialResources />
-        <InstallationConditions />
-        <InterviewWithHR />
-        <Conclusion />
+        <StatusAndData control={control} />
+        <CleaningActions control={control} />
+        <InspectionOfEssentialResources control={control} />
+        <InstallationConditions control={control} />
+        <InterviewWithHR control={control} />
+        <Conclusion control={control} />
         <View>
-          <BtnPrimary title="Salvar" onPress={save} />
+          <BtnPrimary title="Salvar" onPress={handleSubmit(save)} />
         </View>
       </View>
     </ScrollView>

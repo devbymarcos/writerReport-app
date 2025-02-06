@@ -7,7 +7,15 @@ import { Eye, Trash } from "lucide-react-native";
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, FlatList, Pressable } from "react-native";
 
-const ListItem = ({ name, id }: { name: string; id: number }) => {
+const ListItem = ({
+  name,
+  id,
+  ticket,
+}: {
+  name: string;
+  id: number;
+  ticket: string;
+}) => {
   const { setLoadPage, loadPage } = storeTicket();
   async function deleteTicket() {
     await deleteTicketAndTask({ id });
@@ -18,7 +26,10 @@ const ListItem = ({ name, id }: { name: string; id: number }) => {
     <View style={styles.item}>
       <Text style={styles.title}>{name}</Text>
       <View style={styles.boxIcons}>
-        <Link style={styles.iconView} href={`/preventiva/task?id=${id}`}>
+        <Link
+          style={styles.iconView}
+          href={`/preventiva/task?id=${id}&ticket=${ticket}`}
+        >
           <Eye color="#000" />
         </Link>
         <Pressable style={styles.iconTash} onPress={deleteTicket}>
@@ -37,7 +48,6 @@ const ListScreen = () => {
     const response = await getAllTicket();
     //@ts-ignore
     setDataSql(response);
-    console.log(response);
   }
 
   useEffect(() => {
@@ -48,7 +58,11 @@ const ListScreen = () => {
       <FlatList
         data={dataSql}
         renderItem={({ item }) => (
-          <ListItem name={item.titleTicket} id={item.id} />
+          <ListItem
+            name={item.titleTicket}
+            id={item.id}
+            ticket={item.numberTicket}
+          />
         )}
         keyExtractor={(item) => String(item.id)}
       />

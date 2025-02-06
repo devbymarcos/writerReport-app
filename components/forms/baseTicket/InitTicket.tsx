@@ -4,20 +4,17 @@ import { storeTicket } from "@/store/storeTicket";
 import React, { useState } from "react";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { Text, StyleSheet, View, Button, Pressable } from "react-native";
-
+import { Controller } from "react-hook-form";
 import { Calendar } from "lucide-react-native";
 
-export default function InitTicket() {
+interface StatusAndDataProps {
+  control: any;
+}
+
+export default function InitTicket({ control }: StatusAndDataProps) {
   const [mode, setMode] = useState<"date" | "time">("date");
   const [show, setShow] = useState(false);
-  const {
-    setNumberTicket,
-    date,
-    setDate,
-    setTitleTicket,
-    setNameBusiness,
-    setFollowed,
-  } = storeTicket();
+  const { date, setDate } = storeTicket();
 
   const onChange = (event: any, selectedDate: any) => {
     const currentDate = selectedDate;
@@ -37,11 +34,19 @@ export default function InitTicket() {
   return (
     <Card>
       <Text style={styles.title}>Dados Iniciais:</Text>
-      <Input
-        label="Numero ticket:"
-        onChangeText={setNumberTicket}
-        keyboardType="numeric"
+      <Controller
+        control={control}
+        name="numberTicket"
+        render={({ field }) => (
+          <Input
+            label="Numero ticket:"
+            value={field.value}
+            onChangeText={field.onChange}
+            keyboardType="numeric"
+          />
+        )}
       />
+
       {show && (
         <DateTimePicker
           testID="dateTimePicker"
@@ -61,11 +66,38 @@ export default function InitTicket() {
           </Pressable>
         </View>
       </View>
-      <Input label="Titulo ticket:" onChangeText={setTitleTicket} />
-      <Input label="Empresa Contratante:" onChangeText={setNameBusiness} />
-      <Input
-        label="Quem acompanhou ou liberou o trabalho:"
-        onChangeText={setFollowed}
+      <Controller
+        control={control}
+        name="titleTicket"
+        render={({ field }) => (
+          <Input
+            label="Titulo ticket:"
+            value={field.value}
+            onChangeText={field.onChange}
+          />
+        )}
+      />
+      <Controller
+        control={control}
+        name="nameBusiness"
+        render={({ field }) => (
+          <Input
+            label="Empresa Contratante:"
+            value={field.value}
+            onChangeText={field.onChange}
+          />
+        )}
+      />
+      <Controller
+        control={control}
+        name="followed"
+        render={({ field }) => (
+          <Input
+            label="Quem acompanhou ou liberou o trabalho:"
+            value={field.value}
+            onChangeText={field.onChange}
+          />
+        )}
       />
     </Card>
   );

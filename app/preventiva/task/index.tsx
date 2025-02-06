@@ -1,5 +1,5 @@
 import { ArrowDown, Eye, Plus } from "lucide-react-native";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -13,36 +13,44 @@ import SubMenuModalPreventive from "./SubMenuModalPreventive";
 import { Colors } from "@/constants/Colors";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import React from "react";
+import { getTasksByIdTicket } from "@/service/getTasksByIdTicket";
 
-const list = [
-  { id: 1, name: "Task 1" },
-  { id: 2, name: "Task 2" },
-  { id: 3, name: "Task 3" },
-  { id: 4, name: "Task 4" },
-  { id: 5, name: "Task 5" },
-];
+const renderItem = ({ item }: { item: { id: number; name: string } }) => {
+  const content = JSON.parse(item.content); //TODO CONTINUAR DAQUI
+  console.log(content);
 
-const renderItem = ({ item }: { item: { id: number; name: string } }) => (
-  <View style={styles.item}>
-    <Text style={styles.titleItem}>{item.name}</Text>
-  </View>
-);
+  return (
+    <View style={styles.item}>
+      <Text style={styles.titleItem}>{content.stateOperation}</Text>
+    </View>
+  );
+};
 
 export default function Task() {
   const [modalVisible, setModalVisible] = useState(false);
-  const { id } = useLocalSearchParams();
+  const [tasks, setTasks] = useState(null);
+  const { id, ticket } = useLocalSearchParams();
   const { push } = useRouter();
 
   function viewSend() {
     push(`/view?id=${id}`);
   }
 
+  async function getTask() {
+    const data = await getTasksByIdTicket(Number(id));
+    // console.log(data);
+    setTasks(data);
+  }
+  // console.log(ticket);
+  useEffect(() => {
+    getTask();
+  }, []);
   return (
     <>
       <View style={styles.container}>
-        <Text style={styles.title}>Tarefas do ticket {id} </Text>
+        <Text style={styles.title}>Tarefas do ticket {ticket} </Text>
         <FlatList
-          data={list}
+          data={tasks}
           renderItem={renderItem}
           keyExtractor={(item) => item.id.toString()}
         />

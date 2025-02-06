@@ -5,6 +5,7 @@ import Input from "@/components/ui/input";
 import Select from "@/components/ui/select";
 import TitleSectionForm from "@/components/ui/titleSectionForm";
 import { storeRep } from "@/store/storeRep";
+import { Controller } from "react-hook-form";
 
 export default function StatusAndData() {
   const {
@@ -23,6 +24,18 @@ export default function StatusAndData() {
   return (
     <Card>
       <TitleSectionForm title="Dados e status:" />
+      <Controller
+        control={control}
+        name="numberTicket"
+        render={({ field }) => (
+          <Input
+            label="Numero ticket:"
+            value={field.value}
+            onChangeText={field.onChange}
+            keyboardType="numeric"
+          />
+        )}
+      />
       <Select
         label="Funcionamento"
         items={[

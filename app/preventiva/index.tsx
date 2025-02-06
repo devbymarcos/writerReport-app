@@ -4,22 +4,23 @@ import TitleForm from "@/components/ui/titleForm";
 import { registerTicket } from "@/service/registerTicket";
 import { storeTicket } from "@/store/storeTicket";
 import { useRouter } from "expo-router";
+import { useForm } from "react-hook-form";
 import { StyleSheet, ScrollView, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Home() {
   const { push } = useRouter();
-  const { numberTicket, titleTicket, date, nameBusiness, followed } =
-    storeTicket();
+  const { control, handleSubmit } = useForm();
+  const { date } = storeTicket();
 
-  async function save() {
+  async function save(data: any) {
     const response = await registerTicket({
-      numberTicket,
-      titleTicket,
+      numberTicket: data.numberTicket,
+      titleTicket: data.titleTicket,
       date: String(date),
-      nameBusiness,
-      followed,
+      nameBusiness: data.nameBusiness,
+      followed: data.followed,
     });
+    console.log(response);
     if (response?.lastInsertRowId) {
       push(`/preventiva/task?id=${response.lastInsertRowId}`);
     }
@@ -29,8 +30,8 @@ export default function Home() {
     <ScrollView>
       <View style={styles.container}>
         <TitleForm title="Preventiva" />
-        <InitTicket />
-        <BtnPrimary title="Iniciar Ticket" onPress={save} />
+        <InitTicket control={control} />
+        <BtnPrimary title="Iniciar Ticket" onPress={handleSubmit(save)} />
       </View>
     </ScrollView>
   );
