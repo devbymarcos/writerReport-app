@@ -19,7 +19,7 @@ export default function TitleCheck({ control }: TitleCheckProps) {
         render={({ field }) => (
           <Input
             label="Lacre Fiscal"
-            keyboardType="phone-pad"
+            keyboardType="default"
             value={field.value}
             onChangeText={field.onChange}
           />
