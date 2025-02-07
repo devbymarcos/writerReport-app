@@ -54,6 +54,7 @@ export default function Task() {
       <View style={styles.container}>
         <View style={styles.boxTitle}>
           <Text style={styles.title}>Tarefas do ticket {ticket} </Text>
+
           <Pressable
             style={styles.btnEditTicket}
             onPress={() => {
@@ -63,6 +64,10 @@ export default function Task() {
             <Edit color="#000" />
           </Pressable>
         </View>
+        <Text>
+          No icone ao lodo do título é possivel alterar dados do ticket e
+          inserir o tempo{" "}
+        </Text>
         <FlatList
           data={tasks}
           renderItem={renderItem}
@@ -117,8 +122,6 @@ const styles = StyleSheet.create({
     width: "100%",
     flexDirection: "row",
     alignItems: "center",
-    borderWidth: 1,
-    borderColor: "red",
     marginBottom: 5,
   },
   title: {
