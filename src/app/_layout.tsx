@@ -31,7 +31,7 @@ export default function Layout() {
           options={{ headerTitle: "Implantação" }}
         />
         <Stack.Screen
-          name="preventiva/index"
+          name="action/index"
           options={{ headerTitle: "Preventiva" }}
         />
         <Stack.Screen
@@ -39,12 +39,16 @@ export default function Layout() {
           options={{ headerTitle: "Relatórios" }}
         />
         <Stack.Screen
-          name="preventiva/task/index"
-          options={{ headerTitle: "Adicionar checklist ao ticket" }}
+          name="action/task/index"
+          options={{ headerTitle: "Tarefas" }}
         />
         <Stack.Screen
-          name="preventiva/rep/index"
+          name="action/rep/index"
           options={{ headerTitle: "Preventiva REP" }}
+        />
+        <Stack.Screen
+          name="action/catraca/index"
+          options={{ headerTitle: "Catraca preventiva" }}
         />
         <Stack.Screen
           name="view/index"

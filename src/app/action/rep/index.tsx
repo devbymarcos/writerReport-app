@@ -57,13 +57,13 @@ export default function Rep() {
         pendingOrNextActions: data.pendingOrNextActions,
       }),
     });
-    push(`/preventiva/task?id=${id}`);
+    push(`/action/task?id=${id}`);
   }
 
   return (
     <ScrollView>
       <View style={styles.container}>
-        <TitleForm title="Preventiva REP" />
+        <TitleForm title="rep preventiva" />
         <TitleCheck control={control} />
         <StatusAndData control={control} />
         <CleaningActions control={control} />

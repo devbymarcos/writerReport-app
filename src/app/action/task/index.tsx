@@ -52,7 +52,7 @@ export default function Task() {
     <>
       <View style={styles.container}>
         <View style={styles.boxTitle}>
-          <Text style={styles.title}>Tarefas do ticket {ticket} </Text>
+          <Text style={styles.title}>Tarefas do Atividade {ticket} </Text>
 
           <Pressable
             style={styles.btnEditTicket}

@@ -28,7 +28,7 @@ const ListItem = ({
       <View style={styles.boxIcons}>
         <Link
           style={styles.iconView}
-          href={`/preventiva/task?id=${id}&ticket=${ticket}`}
+          href={`/action/task?id=${id}&ticket=${ticket}`}
         >
           <Eye color="#000" />
         </Link>

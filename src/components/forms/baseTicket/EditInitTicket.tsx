@@ -71,7 +71,7 @@ export default function EditInitTicket() {
       <ScrollView>
         <Card style={{ flex: 1 }}>
           <View style={styles.boxModalClose}>
-            <Text style={styles.title}>Atualize o ticket:</Text>
+            <Text style={styles.title}>Atualize a atividade:</Text>
             <Pressable
               style={styles.modalClose}
               onPress={() => setModalEditVisible(!modalEditVisible)}

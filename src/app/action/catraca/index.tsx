@@ -9,7 +9,7 @@ export default function Rep() {
   return (
     <ScrollView>
       <View style={styles.container}>
-        <TitleForm title="Preventiva Catraca" />
+        <TitleForm title="catraca preventiva" />
         <StatusAndData />
         <View>
           <BtnPrimary title="Salvar" onPress={() => {}} />

@@ -21,10 +21,10 @@ export default function Home() {
       nameBusiness: data.nameBusiness,
       followed: data.followed,
     });
-    console.log(response);
+    console.log("response save", response);
     if (response?.lastInsertRowId) {
       push(
-        `/preventiva/task?id=${response.lastInsertRowId}&ticket=${data.numberTicket}`
+        `/action/task?id=${response.lastInsertRowId}&ticket=${data.numberTicket}`
       );
     }
   }
@@ -32,9 +32,9 @@ export default function Home() {
   return (
     <ScrollView>
       <View style={styles.container}>
-        <TitleForm title="Preventiva" />
+        <TitleForm title="Abertura da Atividade" />
         <InitTicket control={control} setValue={setValue} />
-        <BtnPrimary title="Iniciar Ticket" onPress={handleSubmit(save)} />
+        <BtnPrimary title="Iniciar Atividade" onPress={handleSubmit(save)} />
       </View>
     </ScrollView>
   );
