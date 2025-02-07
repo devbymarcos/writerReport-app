@@ -59,7 +59,7 @@ const ListScreen = () => {
         data={dataSql}
         renderItem={({ item }) => (
           <ListItem
-            name={item.titleTicket}
+            name={`${item.numberTicket} - ${item.titleTicket}`}
             id={item.id}
             ticket={item.numberTicket}
           />
