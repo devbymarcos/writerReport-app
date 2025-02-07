@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View } from "react-native";
-import React, { useState } from "react";
+import { StyleSheet } from "react-native";
+import React from "react";
 import Card from "@/components/ui/card";
 import TitleSectionForm from "@/components/ui/titleSectionForm";
 import Select from "@/components/ui/select";

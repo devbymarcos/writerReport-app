@@ -1,4 +1,4 @@
-import { ArrowDown, Eye, Plus } from "lucide-react-native";
+import { ArrowDown, Plus } from "lucide-react-native";
 import { useEffect, useState } from "react";
 import {
   View,

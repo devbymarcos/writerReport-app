@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import { StyleSheet, View, ScrollView } from "react-native";
 import React from "react";
 import { Colors } from "@/constants/Colors";
 import StatusAndData from "./StatusAndData";
@@ -9,7 +9,6 @@ import InterviewWithHR from "./InterviewWithHR";
 import Conclusion from "./Conclusion";
 import { BtnPrimary } from "@/components/ui/btnPrimay";
 import TitleForm from "@/components/ui/titleForm";
-import { storeRep } from "@/store/storeRep";
 import { registerTask } from "@/service/registerTask";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useForm } from "react-hook-form";

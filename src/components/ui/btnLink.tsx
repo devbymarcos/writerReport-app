@@ -8,7 +8,6 @@ import {
   TextStyle,
 } from "react-native";
 import { Colors } from "@/constants/Colors";
-import { View } from "react-native";
 import { Link } from "expo-router";
 
 interface ButtonLinkProps {
