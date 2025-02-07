@@ -6,6 +6,7 @@ interface IregisterTicket {
   nameBusiness: string;
   followed: string;
   date: string;
+  operator: string;
 }
 
 export async function registerTicket({
@@ -13,12 +14,13 @@ export async function registerTicket({
   titleTicket,
   nameBusiness,
   followed,
+  operator,
   date,
 }: IregisterTicket) {
   const db = await getDB();
 
   const statement = await db.prepareAsync(
-    "INSERT INTO tickets (numberTicket, titleTicket, date, nameBusiness, followed) VALUES($numberTicket,$titleTicket, $date, $nameBusiness, $followed);"
+    "INSERT INTO tickets (numberTicket, titleTicket, date, nameBusiness,followed,operator) VALUES($numberTicket,$titleTicket, $date, $nameBusiness,$followed, $operator);"
   );
   console.log("statement", statement);
   try {
@@ -27,6 +29,7 @@ export async function registerTicket({
       $titleTicket: titleTicket,
       $date: date,
       $nameBusiness: nameBusiness,
+      $operator: operator,
       $followed: followed,
     });
     console.log("registerTicke", result);

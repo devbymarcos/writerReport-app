@@ -165,6 +165,17 @@ export default function EditInitTicket() {
               />
             )}
           />
+          <Controller
+            control={control}
+            name="operator"
+            render={({ field }) => (
+              <Input
+                label="Técnico:"
+                value={field.value}
+                onChangeText={field.onChange}
+              />
+            )}
+          />
           <View style={{ flexDirection: "row", gap: 5 }}>
             <View style={{ width: "50%" }}>
               <Controller

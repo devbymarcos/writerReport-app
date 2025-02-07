@@ -20,6 +20,7 @@ export default function Home() {
       date: String(date),
       nameBusiness: data.nameBusiness,
       followed: data.followed,
+      operator: data.operator,
     });
     console.log("response save", response);
     if (response?.lastInsertRowId) {
@@ -45,5 +46,6 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
     paddingTop: 50,
+    paddingBottom: 100,
   },
 });

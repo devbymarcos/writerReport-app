@@ -23,11 +23,11 @@ export default function Layout() {
       >
         <Stack.Screen name="index" options={{ headerTitle: "Inicio" }} />
         <Stack.Screen
-          name="corretiva/index"
+          name="action/corretiva/index"
           options={{ headerTitle: "Corretiva" }}
         />
         <Stack.Screen
-          name="implantacao/index"
+          name="action/implantacao/index"
           options={{ headerTitle: "Implantação" }}
         />
         <Stack.Screen
@@ -57,10 +57,10 @@ export default function Layout() {
       </Stack>
       <StatusBar style="dark" />
       <View style={styles.menu}>
-        <Link style={styles.btn} href="/">
+        <Link style={styles.btn} href="/" replace>
           <LayoutGrid color="#000" />
         </Link>
-        <Link style={styles.btn} href="/list">
+        <Link style={styles.btn} href="/list" replace>
           <List color="#000" />
         </Link>
       </View>

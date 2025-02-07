@@ -5,7 +5,7 @@ export const createTables = async () => {
     const db = await getDB();
     await db.execAsync(`
 
-            
+                    
       CREATE TABLE IF NOT EXISTS tickets (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         numberTicket TEXT NOT NULL,
@@ -13,6 +13,7 @@ export const createTables = async () => {
         date DATE NOT NULL,
         nameBusiness TEXT NOT NULL,
         followed TEXT NOT NULL,
+        operator TEXT NOT NULL,
         init_time TEXT,
         end_time TEXT,
         pause_time TEXT

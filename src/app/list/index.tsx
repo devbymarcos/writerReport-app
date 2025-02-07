@@ -29,6 +29,7 @@ const ListItem = ({
         <Link
           style={styles.iconView}
           href={`/action/task?id=${id}&ticket=${ticket}`}
+          replace
         >
           <Eye color="#000" />
         </Link>

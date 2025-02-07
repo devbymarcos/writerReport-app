@@ -1,12 +1,6 @@
 import React from "react";
 
-import {
-  TouchableOpacity,
-  Text,
-  StyleSheet,
-  ViewStyle,
-  TextStyle,
-} from "react-native";
+import { Text, StyleSheet, ViewStyle, TextStyle } from "react-native";
 import { Colors } from "@/constants/Colors";
 import { Link } from "expo-router";
 
@@ -26,15 +20,10 @@ export function ButtonLink({
   textStyle,
 }: ButtonLinkProps) {
   return (
-    <Link asChild href={href as any} style={[styles.button]}>
-      <TouchableOpacity
-        // Aplicando backgroundColor corretamente
-        activeOpacity={0.8}
-      >
-        <Text style={[styles.buttonText, { color: textColor }, textStyle]}>
-          {title}
-        </Text>
-      </TouchableOpacity>
+    <Link href={href as any} style={[styles.button]} replace>
+      <Text style={[styles.buttonText, { color: textColor }, textStyle]}>
+        {title}
+      </Text>
     </Link>
   );
 }

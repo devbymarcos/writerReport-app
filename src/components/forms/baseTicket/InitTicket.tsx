@@ -81,25 +81,6 @@ export default function InitTicket({ control, setValue }: InitTicketProps) {
           </>
         )}
       />
-      {/* {show && (
-        <DateTimePicker
-          testID="dateTimePicker"
-          value={date}
-          mode={mode}
-          is24Hour={true}
-          onChange={onChange}
-        />
-      )}
-      <View style={styles.boxDate}>
-        <View style={{ width: "90%" }}>
-          <Input label="Data:" value={date.toLocaleDateString()} />
-        </View>
-        <View>
-          <Pressable onPress={showDatepicker}>
-            <Calendar color="#000" />
-          </Pressable>
-        </View>
-      </View> */}
       <Controller
         control={control}
         name="titleTicket"
@@ -128,6 +109,17 @@ export default function InitTicket({ control, setValue }: InitTicketProps) {
         render={({ field }) => (
           <Input
             label="Quem acompanhou ou liberou o trabalho:"
+            value={field.value}
+            onChangeText={field.onChange}
+          />
+        )}
+      />
+      <Controller
+        control={control}
+        name="operator"
+        render={({ field }) => (
+          <Input
+            label="Técnico:"
             value={field.value}
             onChangeText={field.onChange}
           />
