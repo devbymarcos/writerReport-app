@@ -9,10 +9,11 @@ import { StyleSheet, ScrollView, View } from "react-native";
 
 export default function Home() {
   const { push } = useRouter();
-  const { control, handleSubmit } = useForm();
+  const { control, handleSubmit, setValue } = useForm();
   const { date } = storeTicket();
 
   async function save(data: any) {
+    console.log("save", data);
     const response = await registerTicket({
       numberTicket: data.numberTicket,
       titleTicket: data.titleTicket,
@@ -32,7 +33,7 @@ export default function Home() {
     <ScrollView>
       <View style={styles.container}>
         <TitleForm title="Preventiva" />
-        <InitTicket control={control} />
+        <InitTicket control={control} setValue={setValue} />
         <BtnPrimary title="Iniciar Ticket" onPress={handleSubmit(save)} />
       </View>
     </ScrollView>

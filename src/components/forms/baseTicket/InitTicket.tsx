@@ -9,18 +9,12 @@ import { Calendar } from "lucide-react-native";
 
 interface InitTicketProps {
   control: any;
+  setValue: any;
 }
 
-export default function InitTicket({ control }: InitTicketProps) {
+export default function InitTicket({ control, setValue }: InitTicketProps) {
   const [mode, setMode] = useState<"date" | "time">("date");
   const [show, setShow] = useState(false);
-  const { date, setDate } = storeTicket();
-
-  const onChange = (event: any, selectedDate: any) => {
-    const currentDate = selectedDate;
-    setShow(false);
-    setDate(currentDate);
-  };
 
   const showMode = (currentMode: any) => {
     setShow(true);
@@ -46,8 +40,48 @@ export default function InitTicket({ control }: InitTicketProps) {
           />
         )}
       />
-
-      {show && (
+      <Controller
+        control={control}
+        name="date"
+        render={({ field }) => (
+          <>
+            {show && (
+              <DateTimePicker
+                testID="dateTimePicker"
+                value={field.value ? new Date(field.value) : new Date()}
+                mode={mode}
+                is24Hour={true}
+                onChange={(_, selectedDate) => {
+                  setShow(false);
+                  if (selectedDate) {
+                    setValue("date", selectedDate, {
+                      shouldValidate: true,
+                    }); // Atualiza o campo
+                  }
+                }}
+              />
+            )}
+            <View style={styles.boxDate}>
+              <View style={{ width: "90%" }}>
+                <Input
+                  label="Data:"
+                  value={
+                    field.value
+                      ? new Date(field.value).toLocaleDateString()
+                      : ""
+                  }
+                />
+              </View>
+              <View>
+                <Pressable onPress={showDatepicker}>
+                  <Calendar color="#000" />
+                </Pressable>
+              </View>
+            </View>
+          </>
+        )}
+      />
+      {/* {show && (
         <DateTimePicker
           testID="dateTimePicker"
           value={date}
@@ -65,7 +99,7 @@ export default function InitTicket({ control }: InitTicketProps) {
             <Calendar color="#000" />
           </Pressable>
         </View>
-      </View>
+      </View> */}
       <Controller
         control={control}
         name="titleTicket"

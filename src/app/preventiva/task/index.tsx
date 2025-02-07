@@ -32,7 +32,6 @@ const renderItem = ({
 export default function Task() {
   const [modalVisible, setModalVisible] = useState(false);
   const { setModalEditVisible } = storeTicket();
-
   const [tasks, setTasks] = useState<any>(null);
   const { id, ticket } = useLocalSearchParams();
   const { push } = useRouter();

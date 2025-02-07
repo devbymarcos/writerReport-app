@@ -4,7 +4,7 @@ import Input from "@/components/ui/input";
 import { Colors } from "@/constants/Colors";
 import { storeTicket } from "@/store/storeTicket";
 import { ArrowDown, Calendar } from "lucide-react-native";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { Controller } from "react-hook-form";
@@ -16,13 +16,18 @@ import {
   Pressable,
   ScrollView,
 } from "react-native";
+import { useLocalSearchParams } from "expo-router";
+import { getTicketById } from "@/service/getTicketById";
+import React from "react";
 
 export default function EditInitTicket() {
   const { date, setDate, modalEditVisible, setModalEditVisible } =
     storeTicket();
   const [mode, setMode] = useState<"date" | "time">("date");
   const [show, setShow] = useState(false);
-  const { control, handleSubmit } = useForm();
+  const [loadedData, setLoadedData] = useState(undefined);
+  const { control, handleSubmit, setValue } = useForm({ values: loadedData });
+  const { id } = useLocalSearchParams();
 
   const onChange = (event: any, selectedDate: any) => {
     const currentDate = selectedDate;
@@ -42,6 +47,18 @@ export default function EditInitTicket() {
   function update(data: any) {
     console.log(data);
   }
+
+  async function getTicket() {
+    const responseBd = await getTicketById(Number(id));
+    console.log("responseBd", responseBd);
+    //@ts-ignore
+    setLoadedData(responseBd[0]);
+  }
+
+  useEffect(() => {
+    getTicket();
+  }, []);
+
   return (
     <Modal
       animationType="slide"
@@ -74,26 +91,47 @@ export default function EditInitTicket() {
               />
             )}
           />
-
-          {show && (
-            <DateTimePicker
-              testID="dateTimePicker"
-              value={date}
-              mode={mode}
-              is24Hour={true}
-              onChange={onChange}
-            />
-          )}
-          <View style={styles.boxDate}>
-            <View style={{ width: "90%" }}>
-              <Input label="Data:" value={date.toLocaleDateString()} />
-            </View>
-            <View>
-              <Pressable onPress={showDatepicker}>
-                <Calendar color="#000" />
-              </Pressable>
-            </View>
-          </View>
+          <Controller
+            control={control}
+            name="date"
+            render={({ field }) => (
+              <>
+                {show && (
+                  <DateTimePicker
+                    testID="dateTimePicker"
+                    value={field.value ? new Date(field.value) : new Date()}
+                    mode={mode}
+                    is24Hour={true}
+                    onChange={(_, selectedDate) => {
+                      setShow(false);
+                      if (selectedDate) {
+                        setValue("date", selectedDate, {
+                          shouldValidate: true,
+                        }); // Atualiza o campo
+                      }
+                    }}
+                  />
+                )}
+                <View style={styles.boxDate}>
+                  <View style={{ width: "90%" }}>
+                    <Input
+                      label="Data:"
+                      value={
+                        field.value
+                          ? new Date(field.value).toLocaleDateString()
+                          : ""
+                      }
+                    />
+                  </View>
+                  <View>
+                    <Pressable onPress={showDatepicker}>
+                      <Calendar color="#000" />
+                    </Pressable>
+                  </View>
+                </View>
+              </>
+            )}
+          />
           <Controller
             control={control}
             name="titleTicket"
