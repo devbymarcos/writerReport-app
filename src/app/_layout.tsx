@@ -9,8 +9,8 @@ export default function Layout() {
   // inicia banco e tabelas
   useEffect(() => {
     const initializeDatabase = async () => {
-      await createTables();
       console.log("executado create table");
+      await createTables();
     };
     initializeDatabase();
   }, []);

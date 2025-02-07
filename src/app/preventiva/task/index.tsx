@@ -1,4 +1,4 @@
-import { ArrowDown, Plus } from "lucide-react-native";
+import { ArrowDown, Edit, Plus } from "lucide-react-native";
 import { useEffect, useState } from "react";
 import {
   View,
@@ -7,13 +7,14 @@ import {
   FlatList,
   Modal,
   Pressable,
-  Alert,
 } from "react-native";
 import SubMenuModalPreventive from "./SubMenuModalPreventive";
 import { Colors } from "@/constants/Colors";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import React from "react";
 import { getTasksByIdTicket } from "@/service/getTasksByIdTicket";
+import EditInitTicket from "@/components/forms/baseTicket/EditInitTicket";
+import { storeTicket } from "@/store/storeTicket";
 
 const renderItem = ({
   item,
@@ -21,8 +22,6 @@ const renderItem = ({
   item: { id: number; name: string; content: any };
 }) => {
   const content = JSON.parse(item.content); //TODO CONTINUAR DAQUI
-  console.log(content);
-
   return (
     <View style={styles.item}>
       <Text style={styles.titleItem}>{content.titleCheck}</Text>
@@ -32,6 +31,8 @@ const renderItem = ({
 
 export default function Task() {
   const [modalVisible, setModalVisible] = useState(false);
+  const { setModalEditVisible } = storeTicket();
+
   const [tasks, setTasks] = useState<any>(null);
   const { id, ticket } = useLocalSearchParams();
   const { push } = useRouter();
@@ -42,29 +43,36 @@ export default function Task() {
 
   async function getTask() {
     const data = await getTasksByIdTicket(Number(id));
-    // console.log(data);
     setTasks(data);
   }
-  // console.log(ticket);
+
   useEffect(() => {
     getTask();
   }, []);
   return (
     <>
       <View style={styles.container}>
-        <Text style={styles.title}>Tarefas do ticket {ticket} </Text>
+        <View style={styles.boxTitle}>
+          <Text style={styles.title}>Tarefas do ticket {ticket} </Text>
+          <Pressable
+            style={styles.btnEditTicket}
+            onPress={() => {
+              setModalEditVisible(true);
+            }}
+          >
+            <Edit color="#000" />
+          </Pressable>
+        </View>
         <FlatList
           data={tasks}
           renderItem={renderItem}
           keyExtractor={(item) => item.id.toString()}
         />
-
         <Modal
           animationType="slide"
           transparent={true}
           visible={modalVisible}
           onRequestClose={() => {
-            Alert.alert("Modal has been closed.");
             setModalVisible(!modalVisible);
           }}
         >
@@ -78,6 +86,7 @@ export default function Task() {
             </Pressable>
           </View>
         </Modal>
+        <EditInitTicket />
       </View>
       <View style={styles.boxBtnAction}>
         <Pressable
@@ -104,11 +113,18 @@ const styles = StyleSheet.create({
     padding: 20,
     paddingTop: 20,
   },
-  title: {
-    fontSize: 20,
+  boxTitle: {
+    width: "100%",
+    flexDirection: "row",
+    alignItems: "center",
+    borderWidth: 1,
+    borderColor: "red",
     marginBottom: 5,
+  },
+  title: {
+    width: "90%",
+    fontSize: 20,
     fontWeight: "bold",
-    textAlign: "center",
     textTransform: "uppercase",
   },
   item: {
@@ -157,5 +173,8 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: Colors.btnPrimary,
     borderRadius: 5,
+  },
+  btnEditTicket: {
+    padding: 10,
   },
 });
