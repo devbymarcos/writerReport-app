@@ -47,6 +47,10 @@ export default function Layout() {
           options={{ headerTitle: "Catraca preventiva" }}
         />
         <Stack.Screen
+          name="action/ocr/index"
+          options={{ headerTitle: "OCR preventiva" }}
+        />
+        <Stack.Screen
           name="action/corrective/index"
           options={{ headerTitle: "Corretiva" }}
         />
