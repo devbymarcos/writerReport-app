@@ -23,10 +23,6 @@ export default function Layout() {
       >
         <Stack.Screen name="index" options={{ headerTitle: "Inicio" }} />
         <Stack.Screen
-          name="action/corretiva/index"
-          options={{ headerTitle: "Corretiva" }}
-        />
-        <Stack.Screen
           name="action/implantacao/index"
           options={{ headerTitle: "Implantação" }}
         />
@@ -49,6 +45,10 @@ export default function Layout() {
         <Stack.Screen
           name="action/catraca/index"
           options={{ headerTitle: "Catraca preventiva" }}
+        />
+        <Stack.Screen
+          name="action/corrective/index"
+          options={{ headerTitle: "Corretiva" }}
         />
         <Stack.Screen
           name="view/index"

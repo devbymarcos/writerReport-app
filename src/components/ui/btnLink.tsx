@@ -11,6 +11,7 @@ interface ButtonLinkProps {
   textColor?: string;
   style?: ViewStyle;
   textStyle?: TextStyle;
+  replace?: boolean;
 }
 
 export function ButtonLink({
@@ -18,9 +19,10 @@ export function ButtonLink({
   href,
   textColor = "#ffffff", // Cor padrão branca
   textStyle,
+  replace,
 }: ButtonLinkProps) {
   return (
-    <Link href={href as any} style={[styles.button]} replace>
+    <Link href={href as any} style={[styles.button]} replace={replace}>
       <Text style={[styles.buttonText, { color: textColor }, textStyle]}>
         {title}
       </Text>

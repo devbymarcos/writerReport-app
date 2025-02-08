@@ -1,26 +1,25 @@
 import { StyleSheet, View, ScrollView } from "react-native";
 import React from "react";
 import { Colors } from "@/constants/Colors";
-import StatusAndData from "./StatusAndData";
-import CleaningActions from "./CleaningActions";
-import InspectionOfEssentialResources from "./InspectionOfEssentialResources";
-import InstallationConditions from "./InstallationConditions";
-import InterviewWithHR from "./InterviewWithHR";
-import Conclusion from "./Conclusion";
 import { BtnPrimary } from "@/components/ui/btnPrimay";
 import TitleForm from "@/components/ui/titleForm";
 import { registerTask } from "@/service/registerTask";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useForm } from "react-hook-form";
-import TitleCheck from "./TitleCheck";
+import TitleCheck from "@/components/forms/TitleCheck";
+import ReportProblem from "./ReportProblem";
+import Solution from "./Solution";
+import NextActivity from "./NextActivity";
+import MaterialUsed from "./MaterialUsed";
+import UnproductiveTime from "./UnproductiveTime";
 
 export default function Rep() {
   const { id } = useLocalSearchParams();
   const { push } = useRouter();
   const { control, handleSubmit } = useForm();
-  console.log(id);
 
   function save(data: any) {
+    console.log(data);
     registerTask({
       id_ticket: Number(id),
       content: JSON.stringify(data),
@@ -31,14 +30,13 @@ export default function Rep() {
   return (
     <ScrollView>
       <View style={styles.container}>
-        <TitleForm title="rep preventiva" />
+        <TitleForm title="Corretiva" />
         <TitleCheck control={control} />
-        <StatusAndData control={control} />
-        <CleaningActions control={control} />
-        <InspectionOfEssentialResources control={control} />
-        <InstallationConditions control={control} />
-        <InterviewWithHR control={control} />
-        <Conclusion control={control} />
+        <ReportProblem control={control} />
+        <Solution control={control} />
+        <NextActivity control={control} />
+        <MaterialUsed control={control} />
+        <UnproductiveTime control={control} />
         <View>
           <BtnPrimary title="Salvar" onPress={handleSubmit(save)} />
         </View>

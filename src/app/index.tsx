@@ -15,6 +15,7 @@ export default function Home() {
             href={item.path}
             title={item.title}
             backgroundColor="#0000"
+            replace={true}
           />
         </View>
       ))}

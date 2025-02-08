@@ -19,7 +19,6 @@ export default function InputMultiplo({ label, ...props }: InputProps) {
         style={styles.input}
         placeholderTextColor="#6c757d"
         multiline={true}
-        numberOfLines={15}
         {...props}
       />
     </View>

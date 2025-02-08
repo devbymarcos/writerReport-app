@@ -29,6 +29,10 @@ const dataMenuPreventive: MenuItem[] = [
     title: "Implantação",
     path: "/action/implantacao",
   },
+  {
+    title: "Corretiva",
+    path: "/action/corrective",
+  },
 ];
 
 export default function SubMenuModalPreventive() {
