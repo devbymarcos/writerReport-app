@@ -1,9 +1,9 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import InputMultiplo from "@/components/ui/inputMultiplo";
 import Card from "@/components/ui/card";
 import TitleSectionForm from "@/components/ui/titleSectionForm";
 import { Controller } from "react-hook-form";
+import InputMultiplo from "@/components/ui/inputMultiplo";
 
 export default function Conclusion({ control }: { control: any }) {
   return (
@@ -22,10 +22,21 @@ export default function Conclusion({ control }: { control: any }) {
       />
       <Controller
         control={control}
+        name="improvementSuggestions"
+        render={({ field }) => (
+          <InputMultiplo
+            label="Sugestão de melhorias:"
+            value={field.value}
+            onChangeText={field.onChange}
+          />
+        )}
+      />
+      <Controller
+        control={control}
         name="pendingOrNextActions"
         render={({ field }) => (
           <InputMultiplo
-            label="Pendencias ou próximas etapas "
+            label="Pendencias ou próximas etapas:"
             value={field.value}
             onChangeText={field.onChange}
           />

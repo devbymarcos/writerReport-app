@@ -1,20 +1,38 @@
+import TitleForm from "@/components/ui/titleForm";
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet, ScrollView } from "react-native";
+import TitleCheckDeployment from "./TitleCheckDeployment";
+import { useForm } from "react-hook-form";
+import { BtnPrimary } from "@/components/ui/btnPrimay";
+import InstallationSteps from "./InstallationSteps";
+import { Colors } from "@/constants/Colors";
 
 function Implantacao() {
+  const { control, handleSubmit } = useForm();
+
+  function save(data: any) {
+    console.log(data);
+  }
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Implantação</Text>
-    </View>
+    <ScrollView>
+      <View style={styles.container}>
+        <TitleForm title="Implantação" />
+        <TitleCheckDeployment control={control} />
+        <InstallationSteps control={control} />
+        <View>
+          <BtnPrimary title="Salvar" onPress={handleSubmit(save)} />
+        </View>
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#F5FCFF",
+    backgroundColor: Colors.bgPrimary,
+    padding: 20,
+    paddingBottom: 100,
   },
   text: {
     fontSize: 20,

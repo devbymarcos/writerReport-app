@@ -27,7 +27,7 @@ const dataMenuPreventive: MenuItem[] = [
   },
   {
     title: "Implantação",
-    path: "/action/implatacao",
+    path: "/action/implantacao",
   },
 ];
 

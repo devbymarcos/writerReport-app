@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import { StyleSheet, View, ScrollView } from "react-native";
 import React from "react";
 import { Colors } from "@/constants/Colors";
 import { BtnPrimary } from "@/components/ui/btnPrimay";
@@ -9,6 +9,8 @@ import StatusAndDataCatraca from "./ StatusAndDataCatraca";
 import CleaningActions from "./CleaningActions";
 import InspectionOfEssentialResources from "./InspectionOfEssentialResources";
 import FaceReader from "./FaceReader";
+import InterviewWithClient from "./InterviewWithClient";
+import Conclusion from "../rep/Conclusion";
 
 export default function Rep() {
   const { control } = useForm();
@@ -21,6 +23,8 @@ export default function Rep() {
         <CleaningActions control={control} />
         <InspectionOfEssentialResources control={control} />
         <FaceReader control={control} />
+        <InterviewWithClient control={control} />
+        <Conclusion control={control} />
         <View>
           <BtnPrimary title="Salvar" onPress={() => {}} />
         </View>
