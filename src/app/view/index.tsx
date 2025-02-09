@@ -8,7 +8,7 @@ export default function index() {
 
   async function getAlltickets() {
     const data = await getTicketAndTasks(Number(id));
-    console.log(data);
+    console.log("view", data);
   }
 
   useEffect(() => {

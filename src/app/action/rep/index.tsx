@@ -18,12 +18,11 @@ export default function Rep() {
   const { id } = useLocalSearchParams();
   const { push } = useRouter();
   const { control, handleSubmit } = useForm();
-  console.log(id);
 
   function save(data: any) {
     registerTask({
       id_ticket: Number(id),
-      content: JSON.stringify(data),
+      content: JSON.stringify({ type: "rep", ...data }),
     });
     push(`/action/task?id=${id}`);
   }

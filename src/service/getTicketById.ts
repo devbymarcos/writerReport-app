@@ -6,7 +6,7 @@ export async function getTicketById(id: number) {
     const data = await db.getAllAsync(
       `SELECT  * FROM tickets WHERE id = ${id};`
     );
-    console.log("getTicketById:", data);
+
     if (typeof data !== "object" || !data) {
       return [];
     }

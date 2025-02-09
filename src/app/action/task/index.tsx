@@ -13,8 +13,8 @@ import { Colors } from "@/constants/Colors";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import React from "react";
 import { getTasksByIdTicket } from "@/service/getTasksByIdTicket";
-import EditInitTicket from "@/components/forms/baseTicket/EditInitTicket";
 import { storeTicket } from "@/store/storeTicket";
+import ModalEditTicket from "./ModalEditTicket";
 
 const renderItem = ({
   item,
@@ -90,8 +90,8 @@ export default function Task() {
             </Pressable>
           </View>
         </Modal>
-        <EditInitTicket />
       </View>
+      <ModalEditTicket />
       <View style={styles.boxBtnAction}>
         <Pressable
           style={[styles.btnAction, { backgroundColor: Colors.btnSuccess }]}

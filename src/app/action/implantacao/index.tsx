@@ -6,12 +6,20 @@ import { useForm } from "react-hook-form";
 import { BtnPrimary } from "@/components/ui/btnPrimay";
 import InstallationSteps from "./InstallationSteps";
 import { Colors } from "@/constants/Colors";
+import { registerTask } from "@/service/registerTask";
+import { useLocalSearchParams, useRouter } from "expo-router";
 
 function Implantacao() {
   const { control, handleSubmit } = useForm();
+  const { id } = useLocalSearchParams();
+  const { push } = useRouter();
 
   function save(data: any) {
-    console.log(data);
+    registerTask({
+      id_ticket: Number(id),
+      content: JSON.stringify({ type: "rep", ...data }),
+    });
+    push(`/action/task?id=${id}`);
   }
   return (
     <ScrollView>

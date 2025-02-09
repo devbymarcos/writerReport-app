@@ -6,7 +6,7 @@ export async function getTasksByIdTicket(id: number) {
     const data = await db.getAllAsync(
       `SELECT  * FROM tasks WHERE id_ticket = ${id};`
     );
-    console.log(data);
+
     if (typeof data !== "object" || !data) {
       return [];
     }

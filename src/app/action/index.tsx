@@ -17,7 +17,7 @@ export default function Home() {
     const response = await registerTicket({
       numberTicket: data.numberTicket,
       titleTicket: data.titleTicket,
-      date: String(date),
+      date: String(data.date),
       nameBusiness: data.nameBusiness,
       followed: data.followed,
       operator: data.operator,

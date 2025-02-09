@@ -11,9 +11,21 @@ import InspectionOfEssentialResources from "./InspectionOfEssentialResources";
 import FaceReader from "./FaceReader";
 import InterviewWithClient from "./InterviewWithClient";
 import Conclusion from "../rep/Conclusion";
+import { useLocalSearchParams, useRouter } from "expo-router";
+import { registerTask } from "@/service/registerTask";
 
 export default function Rep() {
-  const { control } = useForm();
+  const { id } = useLocalSearchParams();
+  const { push } = useRouter();
+  const { control, handleSubmit } = useForm();
+
+  function save(data: any) {
+    registerTask({
+      id_ticket: Number(id),
+      content: JSON.stringify({ type: "corrective", ...data }),
+    });
+    push(`/action/task?id=${id}`);
+  }
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -26,7 +38,7 @@ export default function Rep() {
         <InterviewWithClient control={control} />
         <Conclusion control={control} />
         <View>
-          <BtnPrimary title="Salvar" onPress={() => {}} />
+          <BtnPrimary title="Salvar" onPress={handleSubmit(save)} />
         </View>
       </View>
     </ScrollView>

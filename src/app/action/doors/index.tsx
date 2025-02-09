@@ -25,10 +25,9 @@ export default function Rep() {
   const { control, handleSubmit } = useForm();
 
   function save(data: any) {
-    console.log(data);
     registerTask({
       id_ticket: Number(id),
-      content: JSON.stringify(data),
+      content: JSON.stringify({ type: "doors", ...data }),
     });
     push(`/action/task?id=${id}`);
   }

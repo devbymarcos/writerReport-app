@@ -7,7 +7,7 @@ export async function getTicketAndTasks(id: number) {
       `SELECT DISTINCT t.*, ta.* FROM tickets AS t 
        LEFT JOIN tasks AS ta ON t.id = ta.id_ticket WHERE t.id = ${id};`
     );
-    console.log(data);
+
     if (typeof data !== "object" || !data) {
       return [];
     }
