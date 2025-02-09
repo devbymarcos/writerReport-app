@@ -34,9 +34,9 @@ const styles = StyleSheet.create({
   button: {
     width: "100%",
     backgroundColor: Colors.btnPrimary,
-    paddingVertical: 12,
+    paddingVertical: 15,
     paddingHorizontal: 24,
-    borderRadius: 12,
+    borderRadius: 3,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
@@ -49,5 +49,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "600",
     textAlign: "center",
+    textTransform: "uppercase",
   },
 });

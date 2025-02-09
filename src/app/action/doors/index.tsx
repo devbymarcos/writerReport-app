@@ -7,11 +7,17 @@ import { registerTask } from "@/service/registerTask";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useForm } from "react-hook-form";
 import TitleCheck from "@/components/forms/TitleCheck";
-import CleaningOcr from "./CleaningOcr";
-import ExternalInspection from "./ExternalInspection";
-import CableInspection from "./CableInspection";
-import Testes from "./Teste";
+import CleaningOcr from "./ElectromagneticLock";
 import Conclusion from "./Conclusion";
+import ElectromagneticLock from "./ElectromagneticLock";
+import DoorSpring from "./DoorSpring";
+import DoorInspect from "./DoorInspect";
+import CardReader from "./CardReader";
+import PacriKey from "./PacriKey";
+import EmergencyButton from "./EmergencyButton";
+import CableManagement from "./CableManagement";
+import AccessControlPanel from "./AccessControlPanel";
+import PowerSource from "./PowerSource";
 
 export default function Rep() {
   const { id } = useLocalSearchParams();
@@ -30,12 +36,17 @@ export default function Rep() {
   return (
     <ScrollView>
       <View style={styles.container}>
-        <TitleForm title=" Preventiva OCR" />
+        <TitleForm title="Portas preventiva" />
         <TitleCheck control={control} />
-        <CleaningOcr control={control} />
-        <ExternalInspection control={control} />
-        <CableInspection control={control} />
-        <Testes control={control} />
+        <ElectromagneticLock control={control} />
+        <DoorSpring control={control} />
+        <DoorInspect control={control} />
+        <CardReader control={control} />
+        <PacriKey control={control} />
+        <EmergencyButton control={control} />
+        <CableManagement control={control} />
+        <AccessControlPanel control={control} />
+        <PowerSource control={control} />
         <Conclusion control={control} />
         <View>
           <BtnPrimary title="Salvar" onPress={handleSubmit(save)} />

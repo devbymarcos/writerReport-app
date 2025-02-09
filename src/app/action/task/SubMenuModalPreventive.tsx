@@ -18,7 +18,7 @@ const dataMenuPreventive: MenuItem[] = [
     path: "/action/catraca",
   },
   {
-    title: "Orc preventia",
+    title: "Orc preventiva",
     path: "/action/ocr",
   },
   {

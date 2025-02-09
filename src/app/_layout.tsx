@@ -40,7 +40,7 @@ export default function Layout() {
         />
         <Stack.Screen
           name="action/rep/index"
-          options={{ headerTitle: "Preventiva REP" }}
+          options={{ headerTitle: "REP preventiva" }}
         />
         <Stack.Screen
           name="action/catraca/index"
@@ -49,6 +49,10 @@ export default function Layout() {
         <Stack.Screen
           name="action/ocr/index"
           options={{ headerTitle: "OCR preventiva" }}
+        />
+        <Stack.Screen
+          name="action/doors/index"
+          options={{ headerTitle: "Portas preventiva" }}
         />
         <Stack.Screen
           name="action/corrective/index"

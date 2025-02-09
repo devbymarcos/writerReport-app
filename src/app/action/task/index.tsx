@@ -52,7 +52,7 @@ export default function Task() {
     <>
       <View style={styles.container}>
         <View style={styles.boxTitle}>
-          <Text style={styles.title}>Tarefas do Atividade {ticket} </Text>
+          <Text style={styles.title}>Tarefas da Atividade {ticket} </Text>
 
           <Pressable
             style={styles.btnEditTicket}
@@ -64,8 +64,8 @@ export default function Task() {
           </Pressable>
         </View>
         <Text>
-          No icone ao lodo do título é possivel alterar dados do ticket e
-          inserir o tempo{" "}
+          No icone ao lodo é possível alterar dados da atividade e inserir o
+          tempo{" "}
         </Text>
         <FlatList
           data={tasks}
@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
   modalClose: {
     padding: 10,
     backgroundColor: Colors.btnPrimary,
-    borderRadius: 5,
+    borderRadius: 99999,
   },
   btnEditTicket: {
     padding: 10,
