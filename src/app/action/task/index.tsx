@@ -105,7 +105,6 @@ export default function Task() {
           onPress={() => setModalVisible(!modalVisible)}
         >
           <Plus color="#fff" />
-          <Text>Tarefa</Text>
         </Pressable>
       </View>
     </>
@@ -149,7 +148,7 @@ const styles = StyleSheet.create({
   },
   btnAction: {
     backgroundColor: Colors.btnPrimary,
-    padding: 20,
+    padding: 15,
     // width: "50%",
     alignItems: "center",
     borderRadius: 9999,

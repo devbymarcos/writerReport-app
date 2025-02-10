@@ -47,7 +47,7 @@ export default function CleaningActions({ control }: { control: any }) {
       />
       <Controller
         control={control}
-        name="switch"
+        name="cleaningSwitch"
         render={({ field }) => (
           <Select
             label="Switch (caso exista)::"

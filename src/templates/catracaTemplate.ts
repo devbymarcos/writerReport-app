@@ -1,9 +1,6 @@
-import { formatDate } from "@/helpers/formatDate";
-import { ICatraca, ITaskCatraca } from "../catraca/types/interfaceCatraca";
-
-export function catracaTemplate(item: ITaskCatraca) {
+export function catracaTemplate(item: any) {
   return `
-TITULO CHECKLIST: ${item.nameCheckList}
+TITULO CHECKLIST: ${item.titleCheck}
 
   1 - Descrição das ações realizadas:
 

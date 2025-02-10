@@ -10,7 +10,7 @@ export default function FaceReader({ control }: { control: any }) {
       <TitleSectionForm title="Leitor Facial:" />
       <Controller
         control={control}
-        name="equipmentFixation"
+        name="cleaningFace"
         render={({ field }) => (
           <Select
             label="Limpeza:"
@@ -22,7 +22,7 @@ export default function FaceReader({ control }: { control: any }) {
       />
       <Controller
         control={control}
-        name="Display"
+        name="displayFace"
         render={({ field }) => (
           <Select
             label="Display:"

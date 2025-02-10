@@ -11,7 +11,7 @@ export default function InterviewWithClient({ control }: { control: any }) {
       <TitleSectionForm title="Entrevista com Cliente" />
       <Controller
         control={control}
-        name="equipmentFixation"
+        name="clientInterviewEquipmentFunctioning"
         render={({ field }) => (
           <Select
             label="Funcionamento do equipamento:"

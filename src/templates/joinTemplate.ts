@@ -1,30 +1,26 @@
 import { catracaTemplate } from "./catracaTemplate";
+import { executeTemplates } from "./executeTemplates";
 import { preventivaRepTemplate } from "./preventivaRepTemplate";
 
 export function joinTemplate(text: any) {
   const body =
-    text.task
+    text
       ?.map((item: any) => {
-        if (item.taskType == "catraca-preventive") {
-          return catracaTemplate(item);
-        }
-        if (item.taskType == "rep-preventive") {
-          return preventivaRepTemplate(item);
-        }
+        const objData = JSON.parse(item.content);
+        type TemplateKeys = keyof typeof executeTemplates;
+        return executeTemplates[objData.type as TemplateKeys](objData);
       })
       .join(" ") || "Sem dados disponíveis";
 
   return `
-Chamado/Cliente: ${text.numberTicket} - ${text.titleTicket}
-Data: ${text.date}
-Técnico:  ${text.operator}
+Chamado/Cliente: ${text[0].numberTicket} - ${text[0].titleTicket}
+Data: ${text[0].date}
+Técnico:  ${text[0].operator}
 Tipo: Preventiva
-Acompanhou: ${text.followed}
-Empresa contratante: ${text.nameBusiness}
+Acompanhou: ${text[0].followed}
+Empresa contratante: ${text[0].nameBusiness}
 ${body}
 
-*Tempo*
-Produtivo : ${new TimerTracker().formatTime(Number(text.productiveTime))}
-Inprodutivo : ${text.totalPause}
+
   `;
 }

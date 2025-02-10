@@ -1,9 +1,7 @@
-import { ITaskRep } from "../rep/types/interfaceRep";
-
-export function preventivaRepTemplate(item: ITaskRep) {
+export function preventivaRepTemplate(item: any) {
   return `   
 
-TITULO CHECKLIST: ${item.nameCheckList}
+TITULO CHECKLIST: ${item.titleCheck}
 
 1 - Descrição das ações realizadas:
 

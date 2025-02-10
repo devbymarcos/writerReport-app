@@ -13,6 +13,7 @@ import InterviewWithClient from "./InterviewWithClient";
 import Conclusion from "../rep/Conclusion";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { registerTask } from "@/service/registerTask";
+import InstallationConditions from "./InstallationConditions";
 
 export default function Rep() {
   const { id } = useLocalSearchParams();
@@ -22,7 +23,7 @@ export default function Rep() {
   function save(data: any) {
     registerTask({
       id_ticket: Number(id),
-      content: JSON.stringify({ type: "corrective", ...data }),
+      content: JSON.stringify({ type: "catraca", ...data }),
     });
     push(`/action/task?id=${id}`);
   }
@@ -34,6 +35,7 @@ export default function Rep() {
         <StatusAndDataCatraca control={control} />
         <CleaningActions control={control} />
         <InspectionOfEssentialResources control={control} />
+        <InstallationConditions control={control} />
         <FaceReader control={control} />
         <InterviewWithClient control={control} />
         <Conclusion control={control} />
