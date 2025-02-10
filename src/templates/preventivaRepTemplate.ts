@@ -1,7 +1,7 @@
 export function preventivaRepTemplate(item: any) {
   return `   
 
-TITULO CHECKLIST: ${item.titleCheck}
+*TAREFA: ${item.titleCheck}:* 
 
 1 - Descrição das ações realizadas:
 

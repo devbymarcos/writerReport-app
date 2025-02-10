@@ -1,8 +1,8 @@
-import { catracaTemplate } from "./catracaTemplate";
+import { formatDate } from "@/util/formatDate";
 import { executeTemplates } from "./executeTemplates";
-import { preventivaRepTemplate } from "./preventivaRepTemplate";
 
 export function joinTemplate(text: any) {
+  console.log(text[0].date);
   const body =
     text
       ?.map((item: any) => {
@@ -14,7 +14,7 @@ export function joinTemplate(text: any) {
 
   return `
 Chamado/Cliente: ${text[0].numberTicket} - ${text[0].titleTicket}
-Data: ${text[0].date}
+Data: ${formatDate(text[0].date)}
 Técnico:  ${text[0].operator}
 Tipo: Preventiva
 Acompanhou: ${text[0].followed}

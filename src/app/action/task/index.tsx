@@ -1,4 +1,4 @@
-import { ArrowDown, Edit, Plus, Send } from "lucide-react-native";
+import { ArrowDown, Edit, Plus, Send, Timer } from "lucide-react-native";
 import { useEffect, useState } from "react";
 import {
   View,
@@ -16,6 +16,7 @@ import React from "react";
 import { getTasksByIdTicket } from "@/service/getTasksByIdTicket";
 import { storeTicket } from "@/store/storeTicket";
 import ModalEditTicket from "./ModalEditTicket";
+import ModalTimeTask from "./ModalTimeTask";
 
 const renderItem = ({
   item,
@@ -32,7 +33,7 @@ const renderItem = ({
 
 export default function Task() {
   const [modalVisible, setModalVisible] = useState(false);
-  const { setModalEditVisible } = storeTicket();
+  const { setModalEditVisible, setModalTime } = storeTicket();
   const [tasks, setTasks] = useState<any>(null);
   const { id, ticket } = useLocalSearchParams();
   const { push } = useRouter();
@@ -93,7 +94,14 @@ export default function Task() {
         </Modal>
       </View>
       <ModalEditTicket />
+      <ModalTimeTask />
       <View style={styles.boxBtnAction}>
+        <Pressable
+          style={[styles.btnAction, { backgroundColor: Colors.btnSuccess }]}
+          onPress={() => setModalTime(true)}
+        >
+          <Timer color="#fff" />
+        </Pressable>
         <Pressable
           style={[styles.btnAction, { backgroundColor: Colors.btnSuccess }]}
           onPress={viewSend}

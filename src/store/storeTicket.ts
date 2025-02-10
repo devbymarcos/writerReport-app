@@ -8,13 +8,15 @@ interface IStoreTicket {
   followed: string;
   loadPage: boolean;
   modalEditVisible: boolean;
-  setNumberTicket: (numberTicket: string) => void;
-  setTitleTicket: (titleTicket: string) => void;
-  setDate: (date: Date) => void;
-  setNameBusiness: (nameBusiness: string) => void;
-  setFollowed: (followed: string) => void;
-  setLoadPage: (loadPage: boolean) => void;
-  setModalEditVisible: (modalEditVisible: boolean) => void;
+  modalTime: boolean;
+  setNumberTicket: (value: string) => void;
+  setTitleTicket: (value: string) => void;
+  setDate: (value: Date) => void;
+  setNameBusiness: (value: string) => void;
+  setFollowed: (value: string) => void;
+  setLoadPage: (value: boolean) => void;
+  setModalEditVisible: (value: boolean) => void;
+  setModalTime: (value: boolean) => void;
 }
 
 export const storeTicket = create<IStoreTicket>((set) => ({
@@ -25,6 +27,7 @@ export const storeTicket = create<IStoreTicket>((set) => ({
   followed: "",
   loadPage: true,
   modalEditVisible: false,
+  modalTime: false,
   setNumberTicket: (numberTicket: string) => set({ numberTicket }),
   setTitleTicket: (titleTicket: string) => set({ titleTicket }),
   setDate: (date: Date) => set({ date }),
@@ -32,4 +35,5 @@ export const storeTicket = create<IStoreTicket>((set) => ({
   setFollowed: (followed: string) => set({ followed }),
   setLoadPage: (loadPage: boolean) => set({ loadPage }),
   setModalEditVisible: (modalEditVisible: boolean) => set({ modalEditVisible }),
+  setModalTime: (modalTime: boolean) => set({ modalTime }),
 }));

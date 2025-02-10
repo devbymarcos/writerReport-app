@@ -1,6 +1,6 @@
 export function correctiveTemplate(item: any) {
   return `    
-TITULO CHECKLIST: ${item.titleCheck}
+*TAREFA: ${item.titleCheck}:* 
 
 *1 - O defeito reclamado foi confirmado ou outro problema foi identificado?*
 

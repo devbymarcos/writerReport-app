@@ -1,5 +1,6 @@
 import { catracaTemplate } from "./catracaTemplate";
 import { correctiveTemplate } from "./correctiveTemplate";
+import { deploymentTemplate } from "./deploymentTemplate";
 import { preventivaDoorsTemplate } from "./preventivaDoorsTemplate";
 import { preventivaOcrTemplate } from "./preventivaOcrTemplate";
 import { preventivaRepTemplate } from "./preventivaRepTemplate";
@@ -10,5 +11,5 @@ export const executeTemplates = {
   doors: (obj: any) => preventivaDoorsTemplate(obj),
   ocr: (obj: any) => preventivaOcrTemplate(obj),
   corrective: (obj: any) => correctiveTemplate(obj),
-  //TODO Falta implantacao
+  deployment: (obj: any) => deploymentTemplate(obj),
 };

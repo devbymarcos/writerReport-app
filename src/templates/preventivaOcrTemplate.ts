@@ -1,6 +1,6 @@
 export function preventivaOcrTemplate(item: any) {
   return `    
-*TAREFA:* ${item.nameSector}
+*TAREFA: ${item.titleCheck}:* 
 
 1 - Descrição das ações realizadas:
 
