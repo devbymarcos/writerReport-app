@@ -9,9 +9,9 @@ import { useForm } from "react-hook-form";
 import TitleCheck from "@/components/forms/TitleCheck";
 import ReportProblem from "./ReportProblem";
 import Solution from "./Solution";
-import NextActivity from "./NextActivity";
-import MaterialUsed from "./MaterialUsed";
-import UnproductiveTime from "./UnproductiveTime";
+import NonRepetitionSuggestion from "./NonRepetitionSuggestion";
+
+import FullyResolved from "./FullyResolved";
 
 export default function Rep() {
   const { id } = useLocalSearchParams();
@@ -33,9 +33,8 @@ export default function Rep() {
         <TitleCheck control={control} />
         <ReportProblem control={control} />
         <Solution control={control} />
-        <NextActivity control={control} />
-        <MaterialUsed control={control} />
-        <UnproductiveTime control={control} />
+        <NonRepetitionSuggestion control={control} />
+        <FullyResolved control={control} />
         <View>
           <BtnPrimary title="Salvar" onPress={handleSubmit(save)} />
         </View>

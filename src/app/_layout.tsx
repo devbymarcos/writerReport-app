@@ -4,7 +4,7 @@ import { View, StyleSheet } from "react-native";
 import { LayoutGrid, List } from "lucide-react-native";
 import { createTables } from "@/database/schema";
 import { StatusBar } from "expo-status-bar";
-import MenuPrimary from "@/components/ui/menuPrimary";
+import MenuPrimary from "@/components/app/menuPrimary";
 
 export default function Layout() {
   // inicia banco e tabelas
@@ -37,7 +37,7 @@ export default function Layout() {
         />
         <Stack.Screen
           name="action/task/index"
-          options={{ headerTitle: "Tarefas" }}
+          options={{ headerTitle: "TAREFA" }}
         />
         <Stack.Screen
           name="action/rep/index"

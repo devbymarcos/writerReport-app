@@ -15,8 +15,8 @@ export default function MenuPrimary() {
       </Link>
       <Link style={[styles.btn, { flex: 1 }]} href="/action" replace>
         <View style={styles.btnInit}>
-          <Plus color="#fff" size={30} />
-          <Text style={styles.btnInitText}>Iniciar</Text>
+          {/* <Plus color="#fff" size={30} /> */}
+          <Text style={styles.btnInitText}>Iniciar ticket</Text>
         </View>
       </Link>
     </View>

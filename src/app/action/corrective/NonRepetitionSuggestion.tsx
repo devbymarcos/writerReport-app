@@ -4,16 +4,15 @@ import TitleSectionForm from "@/components/ui/titleSectionForm";
 import { Controller } from "react-hook-form";
 import InputMultiplo from "@/components/ui/inputMultiplo";
 
-export default function MaterialUsed({ control }: { control: any }) {
+export default function NonRepetitionSuggestion({ control }: { control: any }) {
   return (
     <Card>
-      <TitleSectionForm title="Material:" />
       <Controller
         control={control}
-        name="materialUsed"
+        name="nonRepetitionSuggestion"
         render={({ field }) => (
           <InputMultiplo
-            label="Relação de material utilizado?"
+            label="O que pode ser feito para o problema não se repetir?"
             value={field.value}
             onChangeText={field.onChange}
           />

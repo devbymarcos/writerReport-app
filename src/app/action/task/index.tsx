@@ -101,10 +101,11 @@ export default function Task() {
           <Send color="#fff" />
         </Pressable>
         <Pressable
-          style={styles.btnAction}
+          style={[styles.btnAction]}
           onPress={() => setModalVisible(!modalVisible)}
         >
           <Plus color="#fff" />
+          <Text>Tarefa</Text>
         </Pressable>
       </View>
     </>

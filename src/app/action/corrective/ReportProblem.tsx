@@ -7,7 +7,6 @@ import InputMultiplo from "@/components/ui/inputMultiplo";
 export default function ReportProblem({ control }: { control: any }) {
   return (
     <Card>
-      <TitleSectionForm title="Sobre o Defeito" />
       <Controller
         control={control}
         name="reportedProblemOrIdentifiedProblem"

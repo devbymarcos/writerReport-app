@@ -7,7 +7,6 @@ import InputMultiplo from "@/components/ui/inputMultiplo";
 export default function Solution({ control }: { control: any }) {
   return (
     <Card>
-      <TitleSectionForm title="Solução" />
       <Controller
         control={control}
         name="solutionTechiniques"
