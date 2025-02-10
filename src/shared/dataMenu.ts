@@ -5,10 +5,6 @@ interface MenuItem {
 
 export const dataMenu: MenuItem[] = [
   {
-    title: "Relatar atividade",
-    path: "/action",
-  },
-  {
     title: "Vistoria veiculos diária",
     path: "/vistoria-diaria",
   },

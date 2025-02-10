@@ -1,6 +1,7 @@
 import { ButtonLink } from "@/components/ui/btnLink";
 import { View, StyleSheet, Text } from "react-native";
 import { dataMenu } from "@/shared/dataMenu";
+import { Colors } from "@/constants/Colors";
 
 export default function Home() {
   return (
@@ -28,7 +29,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 50,
     padding: 20,
-    backgroundColor: "#dcdde1", // Fundo suave para destacar o botão
+    backgroundColor: Colors.bgPrimary, // Fundo suave para destacar o botão
   },
   boxButton: {
     width: "100%",

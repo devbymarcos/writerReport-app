@@ -1,6 +1,7 @@
 import InitTicket from "@/components/forms/baseTicket/InitTicket";
 import { BtnPrimary } from "@/components/ui/btnPrimay";
 import TitleForm from "@/components/ui/titleForm";
+import { Colors } from "@/constants/Colors";
 import { registerTicket } from "@/service/registerTicket";
 import { storeTicket } from "@/store/storeTicket";
 import { useRouter } from "expo-router";
@@ -46,6 +47,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
     paddingTop: 50,
-    paddingBottom: 100,
+    paddingBottom: 150,
+    backgroundColor: Colors.bgPrimary,
   },
 });

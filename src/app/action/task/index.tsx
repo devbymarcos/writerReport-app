@@ -1,4 +1,4 @@
-import { ArrowDown, Edit, Plus } from "lucide-react-native";
+import { ArrowDown, Edit, Plus, Send } from "lucide-react-native";
 import { useEffect, useState } from "react";
 import {
   View,
@@ -7,6 +7,7 @@ import {
   FlatList,
   Modal,
   Pressable,
+  ScrollView,
 } from "react-native";
 import SubMenuModalPreventive from "./SubMenuModalPreventive";
 import { Colors } from "@/constants/Colors";
@@ -97,8 +98,7 @@ export default function Task() {
           style={[styles.btnAction, { backgroundColor: Colors.btnSuccess }]}
           onPress={viewSend}
         >
-          {/* <Eye color="#fff" /> */}
-          <Text style={{ color: "#fff" }}>Ver e Enviar</Text>
+          <Send color="#fff" />
         </Pressable>
         <Pressable
           style={styles.btnAction}
@@ -140,16 +140,18 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   boxBtnAction: {
-    width: "100%",
     position: "absolute",
-    bottom: 70,
-    flexDirection: "row",
+    right: 10,
+    bottom: 150,
+    flexDirection: "column",
+    gap: 10,
   },
   btnAction: {
     backgroundColor: Colors.btnPrimary,
     padding: 20,
-    width: "50%",
+    // width: "50%",
     alignItems: "center",
+    borderRadius: 9999,
   },
   modalView: {
     margin: 20,
