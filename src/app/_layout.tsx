@@ -4,6 +4,7 @@ import { View, StyleSheet } from "react-native";
 import { LayoutGrid, List } from "lucide-react-native";
 import { createTables } from "@/database/schema";
 import { StatusBar } from "expo-status-bar";
+import MenuPrimary from "@/components/ui/menuPrimary";
 
 export default function Layout() {
   // inicia banco e tabelas
@@ -64,36 +65,7 @@ export default function Layout() {
         />
       </Stack>
       <StatusBar style="dark" />
-      <View style={styles.menu}>
-        <Link style={styles.btn} href="/" replace>
-          <LayoutGrid color="#000" />
-        </Link>
-        <Link style={styles.btn} href="/list" replace>
-          <List color="#000" />
-        </Link>
-      </View>
+      <MenuPrimary />
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  menu: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    backgroundColor: "white",
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.8,
-    shadowRadius: 2,
-    flexDirection: "row",
-    justifyContent: "space-around",
-  },
-  btn: {
-    flex: 1,
-    padding: 20,
-    textAlign: "center",
-    backgroundColor: "#fff",
-  },
-});

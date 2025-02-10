@@ -7,8 +7,11 @@ const tintColorLight = "#0a7ea4";
 const tintColorDark = "#fff";
 
 export const Colors = {
+  bgPrimary: "#f8f9ff",
   btnPrimary: "#0d6efd",
   btnSuccess: "#198754",
   btnDanger: "#dc3545",
-  bgPrimary: "#f8f9ff",
+  primary: "#0d6efd",
+  success: "#198754",
+  danger: "#dc3545",
 };

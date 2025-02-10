@@ -25,11 +25,10 @@ export default function Home() {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     paddingTop: 50,
     padding: 20,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#f8f9fa", // Fundo suave para destacar o botão
+    backgroundColor: "#dcdde1", // Fundo suave para destacar o botão
   },
   boxButton: {
     width: "100%",
