@@ -13,7 +13,7 @@ export async function getTasksByIdTicket(id: number) {
     //@ts-nocheck
     return data;
   } catch (err) {
-    console.log("Erro getTicketAndTasks", err);
+    console.log("Erro getTasksByIdTicket", err);
   } finally {
   }
 }

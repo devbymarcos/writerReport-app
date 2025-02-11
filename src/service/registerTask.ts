@@ -14,9 +14,9 @@ export async function registerTask({ id_ticket, content }: IregisterTask) {
       id_ticket,
       content
     );
-    console.log("query executada", result);
+
     return result;
   } catch (err) {
-    console.log("erro no execute", err);
+    console.log("erro no registerTask", err);
   }
 }

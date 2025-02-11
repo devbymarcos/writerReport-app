@@ -22,7 +22,7 @@ export async function registerTicket({
   const statement = await db.prepareAsync(
     "INSERT INTO tickets (numberTicket, titleTicket, date, nameBusiness,followed,operator) VALUES($numberTicket,$titleTicket, $date, $nameBusiness,$followed, $operator);"
   );
-  console.log("statement", statement);
+
   try {
     const result = await statement.executeAsync({
       $numberTicket: numberTicket,
@@ -32,10 +32,10 @@ export async function registerTicket({
       $operator: operator,
       $followed: followed,
     });
-    console.log("registerTicke", result);
+
     return result;
   } catch (err) {
-    console.log("erro no execute", err);
+    console.log("erro registerTicket ", err);
   } finally {
     await statement.finalizeAsync();
   }
