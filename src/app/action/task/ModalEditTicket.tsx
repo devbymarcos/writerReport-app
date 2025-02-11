@@ -19,7 +19,7 @@ import {
 import { useLocalSearchParams } from "expo-router";
 import { getTicketById } from "@/service/getTicketById";
 import React from "react";
-import EditInitTicket from "@/components/forms/baseTicket/EditInitTicket";
+import EditInitTicket from "@/components/forms/EditInitTicket";
 
 export default function ModalEditTicket() {
   const { modalEditVisible, setModalEditVisible } = storeTicket();

@@ -12,14 +12,20 @@ interface ButtonProps {
   title?: string;
   onPress: (event: GestureResponderEvent) => void;
   children?: React.ReactNode;
+  width?: any;
 }
 
-export function BtnPrimary({ onPress, title, children }: ButtonProps) {
+export function BtnPrimary({
+  onPress,
+  title,
+  children,
+  width = "100%",
+}: ButtonProps) {
   return (
     <TouchableOpacity
       onPress={onPress}
       activeOpacity={0.8}
-      style={styles.button} // Aplicando opacidade ao pressionar
+      style={[styles.button, { width: width }]} // Aplicando opacidade ao pressionar
     >
       <Text style={styles.buttonText}>{title ? title : children}</Text>
     </TouchableOpacity>
@@ -28,7 +34,6 @@ export function BtnPrimary({ onPress, title, children }: ButtonProps) {
 
 const styles = StyleSheet.create({
   button: {
-    width: "100%",
     backgroundColor: Colors.btnPrimary,
     paddingVertical: 12,
     paddingHorizontal: 24,

@@ -1,4 +1,4 @@
-import InitTicket from "@/components/forms/baseTicket/InitTicket";
+import InitTicket from "@/components/forms/InitTicket";
 import { BtnPrimary } from "@/components/ui/btnPrimay";
 import TitleForm from "@/components/ui/titleForm";
 import { Colors } from "@/constants/Colors";

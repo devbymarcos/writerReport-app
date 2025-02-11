@@ -7,8 +7,7 @@ interface IregisterTask {
 
 export async function registerTask({ id_ticket, content }: IregisterTask) {
   const db = await getDB();
-  // console.log("id create", id_ticket);
-  // console.log("json", content);
+
   try {
     const result = await db.runAsync(
       "INSERT INTO tasks (id_ticket,content) VALUES(?,?)",
