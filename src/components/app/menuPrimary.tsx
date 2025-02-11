@@ -8,14 +8,14 @@ export default function MenuPrimary() {
   return (
     <View style={styles.menu}>
       <Link style={[styles.btn, styles.btnHome]} href="/" replace>
-        <Home color="#fff" size={30} />
+        <Home color={Colors.colorIconsLight} size={30} />
       </Link>
       <Link style={[styles.btn]} href="/list" replace>
-        <List color="#fff" size={30} />
+        <List color={Colors.colorIconsLight} size={30} />
       </Link>
       <Link style={[styles.btn, { flex: 1 }]} href="/action" replace>
         <View style={styles.btnInit}>
-          {/* <Plus color="#fff" size={30} /> */}
+          {/* <Plus color={Colors.colorIconsLight} size={30} /> */}
           <Text style={styles.btnInitText}>Iniciar ticket</Text>
         </View>
       </Link>

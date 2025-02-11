@@ -8,7 +8,7 @@ export default function Home() {
     <View style={styles.container}>
       <View style={styles.boxTitle}>
         <Text style={styles.titleApp}>Write Report</Text>
-        <Text style={styles.subTitleApp}>using Grupo WorkSystem</Text>
+        <Text style={styles.subTitleApp}></Text>
       </View>
       {dataMenu.map((item, index) => (
         <View key={index} style={styles.boxButton}>

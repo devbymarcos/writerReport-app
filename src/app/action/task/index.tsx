@@ -55,20 +55,8 @@ export default function Task() {
       <View style={styles.container}>
         <View style={styles.boxTitle}>
           <Text style={styles.title}>Tarefas da Atividade {ticket} </Text>
-
-          <Pressable
-            style={styles.btnEditTicket}
-            onPress={() => {
-              setModalEditVisible(true);
-            }}
-          >
-            <Edit color="#000" />
-          </Pressable>
         </View>
-        <Text>
-          No icone ao lodo é possível alterar dados da atividade e inserir o
-          tempo{" "}
-        </Text>
+
         <FlatList
           data={tasks}
           renderItem={renderItem}
@@ -97,22 +85,30 @@ export default function Task() {
       <ModalTimeTask />
       <View style={styles.boxBtnAction}>
         <Pressable
+          style={[styles.btnEditTicket]}
+          onPress={() => {
+            setModalEditVisible(true);
+          }}
+        >
+          <Edit color={Colors.colorIconsLight} />
+        </Pressable>
+        <Pressable
           style={[styles.btnAction, { backgroundColor: Colors.btnSuccess }]}
           onPress={() => setModalTime(true)}
         >
-          <Timer color="#fff" />
+          <Timer color={Colors.colorIconsLight} />
         </Pressable>
         <Pressable
           style={[styles.btnAction, { backgroundColor: Colors.btnSuccess }]}
           onPress={viewSend}
         >
-          <Send color="#fff" />
+          <Send color={Colors.colorIconsLight} />
         </Pressable>
         <Pressable
           style={[styles.btnAction]}
           onPress={() => setModalVisible(!modalVisible)}
         >
-          <Plus color="#fff" />
+          <Plus color={Colors.colorIconsLight} />
         </Pressable>
       </View>
     </>
@@ -124,6 +120,8 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     paddingTop: 20,
+    paddingBottom: 150,
+    backgroundColor: Colors.bgPrimary,
   },
   boxTitle: {
     width: "100%",
@@ -157,9 +155,8 @@ const styles = StyleSheet.create({
   btnAction: {
     backgroundColor: Colors.btnPrimary,
     padding: 15,
-    // width: "50%",
     alignItems: "center",
-    borderRadius: 9999,
+    borderRadius: 10,
   },
   modalView: {
     margin: 20,
@@ -187,6 +184,9 @@ const styles = StyleSheet.create({
     borderRadius: 99999,
   },
   btnEditTicket: {
-    padding: 10,
+    padding: 15,
+    backgroundColor: Colors.btnSuccess,
+    borderRadius: 10,
+    alignItems: "center",
   },
 });

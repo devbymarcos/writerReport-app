@@ -34,6 +34,7 @@ export default function TimePicker({
               testID="dateTimePicker"
               value={field.value ? new Date(field.value) : new Date()}
               mode="time"
+              locale="pt-Br"
               is24Hour={true}
               onChange={(_, selectedDate) => {
                 setShow(false);

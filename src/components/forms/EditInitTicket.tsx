@@ -131,45 +131,6 @@ export default function EditInitTicket({
           />
         )}
       />
-      <View style={{ flexDirection: "row", gap: 5 }}>
-        <View style={{ width: "50%" }}>
-          <Controller
-            control={control}
-            name="initTime"
-            render={({ field }) => (
-              <Input
-                label="Hora inicial:"
-                value={field.value}
-                onChangeText={field.onChange}
-              />
-            )}
-          />
-        </View>
-        <View style={{ width: "50%" }}>
-          <Controller
-            control={control}
-            name="endTime"
-            render={({ field }) => (
-              <Input
-                label="Hora Final:"
-                value={field.value}
-                onChangeText={field.onChange}
-              />
-            )}
-          />
-        </View>
-      </View>
-      <Controller
-        control={control}
-        name="pauseTime"
-        render={({ field }) => (
-          <Input
-            label="Tempo de pausa:"
-            value={field.value}
-            onChangeText={field.onChange}
-          />
-        )}
-      />
     </Card>
   );
 }

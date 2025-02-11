@@ -22,14 +22,14 @@ export default function Layout() {
           headerShown: true,
         }}
       >
-        <Stack.Screen name="index" options={{ headerTitle: "Inicio" }} />
+        <Stack.Screen name="index" options={{ headerTitle: "Home" }} />
         <Stack.Screen
           name="action/implantacao/index"
           options={{ headerTitle: "Implantação" }}
         />
         <Stack.Screen
           name="action/index"
-          options={{ headerTitle: "Preventiva" }}
+          options={{ headerTitle: "Atividade" }}
         />
         <Stack.Screen
           name="list/index"
