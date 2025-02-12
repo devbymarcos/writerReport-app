@@ -14,8 +14,10 @@ export default function ViewSend() {
 
   async function getAlltickets() {
     const data = await getTicketAndTasks(Number(id));
-    console.log(data);
+    // console.log(data);
+    console.log("Text");
     const text = joinTemplate(data);
+    console.log("template aqui");
     setTextView(text);
   }
 
