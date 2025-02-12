@@ -9,6 +9,7 @@ interface IStoreTicket {
   loadPage: boolean;
   modalEditVisible: boolean;
   modalTime: boolean;
+  modalSubMenu: boolean;
   setNumberTicket: (value: string) => void;
   setTitleTicket: (value: string) => void;
   setDate: (value: Date) => void;
@@ -17,6 +18,7 @@ interface IStoreTicket {
   setLoadPage: (value: boolean) => void;
   setModalEditVisible: (value: boolean) => void;
   setModalTime: (value: boolean) => void;
+  setModalSubMenu: (value: boolean) => void;
 }
 
 export const storeTicket = create<IStoreTicket>((set) => ({
@@ -28,6 +30,7 @@ export const storeTicket = create<IStoreTicket>((set) => ({
   loadPage: true,
   modalEditVisible: false,
   modalTime: false,
+  modalSubMenu: false,
   setNumberTicket: (numberTicket: string) => set({ numberTicket }),
   setTitleTicket: (titleTicket: string) => set({ titleTicket }),
   setDate: (date: Date) => set({ date }),
@@ -36,4 +39,5 @@ export const storeTicket = create<IStoreTicket>((set) => ({
   setLoadPage: (loadPage: boolean) => set({ loadPage }),
   setModalEditVisible: (modalEditVisible: boolean) => set({ modalEditVisible }),
   setModalTime: (modalTime: boolean) => set({ modalTime }),
+  setModalSubMenu: (modalSubMenu: boolean) => set({ modalSubMenu }),
 }));

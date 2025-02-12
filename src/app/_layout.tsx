@@ -1,8 +1,9 @@
-import { Tabs } from "expo-router";
+import { Stack } from "expo-router";
 import React, { useEffect } from "react";
 import { createTables } from "@/database/schema";
 import { StatusBar } from "expo-status-bar";
-import { ClipboardPlus, Home, ListCollapse } from "lucide-react-native";
+
+import MenuPrimary from "@/components/app/menuPrimary";
 export default function RootLayout() {
   useEffect(() => {
     const initializeDatabase = async () => {
@@ -13,32 +14,32 @@ export default function RootLayout() {
   }, []);
   return (
     <>
-      <Tabs>
-        <Tabs.Screen
+      <Stack>
+        <Stack.Screen name="catraca" options={{ title: "Write report" }} />
+        <Stack.Screen name="reports/index" options={{ title: "Relatórios" }} />
+        <Stack.Screen name="action/index" options={{ title: "Write report" }} />
+        <Stack.Screen
+          name="action/corrective"
+          options={{ title: "Write report" }}
+        />
+        <Stack.Screen name="action/doors" options={{ title: "Write report" }} />
+        <Stack.Screen
+          name="action/implantacao"
+          options={{ title: "Write report" }}
+        />
+        <Stack.Screen name="action/ocr" options={{ title: "Write report" }} />
+        <Stack.Screen name="action/rep" options={{ title: "Write report" }} />
+        <Stack.Screen name="action/task" options={{ title: "Write report" }} />
+        <Stack.Screen name="action/view" options={{ title: "Write report" }} />
+        <Stack.Screen
           name="index"
           options={{
             title: "Home",
-            tabBarIcon: ({ color }) => <Home color={color} />,
-            headerShown: false,
           }}
         />
-        <Tabs.Screen
-          name="action"
-          options={{
-            title: "Início",
-            tabBarIcon: ({ color }) => <ClipboardPlus color={color} />,
-            headerShown: false,
-          }}
-        />
-        <Tabs.Screen
-          name="reports/index"
-          options={{
-            title: "Relatórios",
-            tabBarIcon: ({ color }) => <ListCollapse color={color} />,
-          }}
-        />
-      </Tabs>
+      </Stack>
       <StatusBar style="dark" />
+      <MenuPrimary />
     </>
   );
 }

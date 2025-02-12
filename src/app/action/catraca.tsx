@@ -15,7 +15,7 @@ import { useLocalSearchParams, useRouter } from "expo-router";
 import { registerTask } from "@/service/registerTask";
 import InstallationConditions from "@/components/forms/catraca/InstallationConditions";
 
-export default function Rep() {
+export default function Catraca() {
   const { id } = useLocalSearchParams();
   const { push } = useRouter();
   const { control, handleSubmit } = useForm();
