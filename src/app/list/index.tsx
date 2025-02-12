@@ -41,7 +41,7 @@ const ListItem = ({
   );
 };
 
-const ListScreen = () => {
+const List = () => {
   const [dataSql, setDataSql] = useState<IResponse[]>();
   const { loadPage } = storeTicket();
 
@@ -105,4 +105,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ListScreen;
+export default List;

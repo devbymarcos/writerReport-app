@@ -8,7 +8,7 @@ import Card from "@/components/ui/card";
 import { Copy } from "lucide-react-native";
 import { Colors } from "@/constants/Colors";
 
-export default function index() {
+export default function ViewSend() {
   const { id } = useLocalSearchParams();
   const [textView, setTextView] = useState("Não foi possivel carregar...");
 

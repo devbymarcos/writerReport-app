@@ -1,10 +1,10 @@
 import TitleForm from "@/components/ui/titleForm";
 import React from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
-import TitleCheckDeployment from "./TitleCheckDeployment";
+import TitleCheckDeployment from "@/components/forms/implantacao/TitleCheckDeployment";
 import { useForm } from "react-hook-form";
 import { BtnPrimary } from "@/components/ui/btnPrimay";
-import InstallationSteps from "./InstallationSteps";
+import InstallationSteps from "@/components/forms/implantacao/InstallationSteps";
 import { Colors } from "@/constants/Colors";
 import { registerTask } from "@/service/registerTask";
 import { useLocalSearchParams, useRouter } from "expo-router";

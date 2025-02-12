@@ -1,13 +1,9 @@
-import { Link, Slot, Stack } from "expo-router";
+import { Tabs } from "expo-router";
 import React, { useEffect } from "react";
-import { View, StyleSheet } from "react-native";
-import { LayoutGrid, List } from "lucide-react-native";
 import { createTables } from "@/database/schema";
 import { StatusBar } from "expo-status-bar";
-import MenuPrimary from "@/components/app/menuPrimary";
-
-export default function Layout() {
-  // inicia banco e tabelas
+import { ClipboardPlus, Home, ListCollapse } from "lucide-react-native";
+export default function RootLayout() {
   useEffect(() => {
     const initializeDatabase = async () => {
       console.log("executado create table");
@@ -17,55 +13,32 @@ export default function Layout() {
   }, []);
   return (
     <>
-      <Stack
-        screenOptions={{
-          headerShown: true,
-        }}
-      >
-        <Stack.Screen name="index" options={{ headerTitle: "Home" }} />
-        <Stack.Screen
-          name="action/implantacao/index"
-          options={{ headerTitle: "Implantação" }}
+      <Tabs>
+        <Tabs.Screen
+          name="index"
+          options={{
+            title: "Home",
+            tabBarIcon: ({ color }) => <Home color={color} />,
+            headerShown: false,
+          }}
         />
-        <Stack.Screen
-          name="action/index"
-          options={{ headerTitle: "Atividade" }}
+        <Tabs.Screen
+          name="action"
+          options={{
+            title: "Início",
+            tabBarIcon: ({ color }) => <ClipboardPlus color={color} />,
+            headerShown: false,
+          }}
         />
-        <Stack.Screen
+        <Tabs.Screen
           name="list/index"
-          options={{ headerTitle: "Relatórios" }}
+          options={{
+            title: "Relatórios",
+            tabBarIcon: ({ color }) => <ListCollapse color={color} />,
+          }}
         />
-        <Stack.Screen
-          name="action/task/index"
-          options={{ headerTitle: "TAREFA" }}
-        />
-        <Stack.Screen
-          name="action/rep/index"
-          options={{ headerTitle: "REP preventiva" }}
-        />
-        <Stack.Screen
-          name="action/catraca/index"
-          options={{ headerTitle: "Catraca preventiva" }}
-        />
-        <Stack.Screen
-          name="action/ocr/index"
-          options={{ headerTitle: "OCR preventiva" }}
-        />
-        <Stack.Screen
-          name="action/doors/index"
-          options={{ headerTitle: "Portas preventiva" }}
-        />
-        <Stack.Screen
-          name="action/corrective/index"
-          options={{ headerTitle: "Corretiva" }}
-        />
-        <Stack.Screen
-          name="view/index"
-          options={{ headerTitle: "Relatório" }}
-        />
-      </Stack>
+      </Tabs>
       <StatusBar style="dark" />
-      <MenuPrimary />
     </>
   );
 }

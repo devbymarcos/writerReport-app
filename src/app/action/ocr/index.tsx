@@ -7,11 +7,11 @@ import { registerTask } from "@/service/registerTask";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useForm } from "react-hook-form";
 import TitleCheck from "@/components/forms/TitleCheck";
-import CleaningOcr from "./CleaningOcr";
-import ExternalInspection from "./ExternalInspection";
-import CableInspection from "./CableInspection";
-import Testes from "./Teste";
-import Conclusion from "./Conclusion";
+import CleaningOcr from "@/components/forms/ocr/CleaningOcr";
+import ExternalInspection from "@/components/forms/ocr/ExternalInspection";
+import CableInspection from "@/components/forms/ocr/CableInspection";
+import Testes from "@/components/forms/ocr/Teste";
+import Conclusion from "@/components/forms/ocr/Conclusion";
 
 export default function Rep() {
   const { id } = useLocalSearchParams();

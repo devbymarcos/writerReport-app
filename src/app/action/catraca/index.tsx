@@ -3,17 +3,17 @@ import React from "react";
 import { Colors } from "@/constants/Colors";
 import { BtnPrimary } from "@/components/ui/btnPrimay";
 import TitleForm from "@/components/ui/titleForm";
-import TitleCheck from "./TitleCheck";
+import TitleCheck from "@/components/forms/catraca/TitleCheck";
 import { useForm } from "react-hook-form";
-import StatusAndDataCatraca from "./ StatusAndDataCatraca";
-import CleaningActions from "./CleaningActions";
-import InspectionOfEssentialResources from "./InspectionOfEssentialResources";
-import FaceReader from "./FaceReader";
-import InterviewWithClient from "./InterviewWithClient";
-import Conclusion from "../rep/Conclusion";
+import StatusAndDataCatraca from "@/components/forms/catraca/ StatusAndDataCatraca";
+import CleaningActions from "@/components/forms/catraca/CleaningActions";
+import InspectionOfEssentialResources from "@/components/forms/catraca/InspectionOfEssentialResources";
+import FaceReader from "@/components/forms/catraca/FaceReader";
+import InterviewWithClient from "@/components/forms/catraca/InterviewWithClient";
+import Conclusion from "@/components/forms/rep/Conclusion";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { registerTask } from "@/service/registerTask";
-import InstallationConditions from "./InstallationConditions";
+import InstallationConditions from "@/components/forms/catraca/InstallationConditions";
 
 export default function Rep() {
   const { id } = useLocalSearchParams();

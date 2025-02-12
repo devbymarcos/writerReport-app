@@ -39,7 +39,7 @@ export default function Task() {
   const { push } = useRouter();
 
   function viewSend() {
-    push(`/view?id=${id}`);
+    push(`/action/view?id=${id}`);
   }
 
   async function getTask() {

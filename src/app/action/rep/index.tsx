@@ -1,18 +1,18 @@
 import { StyleSheet, View, ScrollView } from "react-native";
 import React from "react";
 import { Colors } from "@/constants/Colors";
-import StatusAndData from "./StatusAndData";
-import CleaningActions from "./CleaningActions";
-import InspectionOfEssentialResources from "./InspectionOfEssentialResources";
-import InstallationConditions from "./InstallationConditions";
-import InterviewWithHR from "./InterviewWithHR";
-import Conclusion from "./Conclusion";
+import StatusAndData from "@/components/forms/rep/StatusAndData";
+import CleaningActions from "@/components/forms/rep/CleaningActions";
+import InspectionOfEssentialResources from "@/components/forms/rep/InspectionOfEssentialResources";
+import InstallationConditions from "@/components/forms/rep/InstallationConditions";
+import InterviewWithHR from "@/components/forms/rep/InterviewWithHR";
+import Conclusion from "@/components/forms/rep/Conclusion";
 import { BtnPrimary } from "@/components/ui/btnPrimay";
 import TitleForm from "@/components/ui/titleForm";
 import { registerTask } from "@/service/registerTask";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useForm } from "react-hook-form";
-import TitleCheck from "./TitleCheck";
+import TitleCheck from "@/components/forms/rep/TitleCheck";
 
 export default function Rep() {
   const { id } = useLocalSearchParams();

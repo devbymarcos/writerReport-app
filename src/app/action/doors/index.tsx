@@ -7,17 +7,16 @@ import { registerTask } from "@/service/registerTask";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useForm } from "react-hook-form";
 import TitleCheck from "@/components/forms/TitleCheck";
-import CleaningOcr from "./ElectromagneticLock";
-import Conclusion from "./Conclusion";
-import ElectromagneticLock from "./ElectromagneticLock";
-import DoorSpring from "./DoorSpring";
-import DoorInspect from "./DoorInspect";
-import CardReader from "./CardReader";
-import PacriKey from "./PacriKey";
-import EmergencyButton from "./EmergencyButton";
-import CableManagement from "./CableManagement";
-import AccessControlPanel from "./AccessControlPanel";
-import PowerSource from "./PowerSource";
+import Conclusion from "@/components/forms/doors/Conclusion";
+import ElectromagneticLock from "@/components/forms/doors/ElectromagneticLock";
+import DoorSpring from "@/components/forms/doors/DoorSpring";
+import DoorInspect from "@/components/forms/doors/DoorInspect";
+import CardReader from "@/components/forms/doors/CardReader";
+import PacriKey from "@/components/forms/doors/PacriKey";
+import EmergencyButton from "@/components/forms/doors/EmergencyButton";
+import CableManagement from "@/components/forms/doors/CableManagement";
+import AccessControlPanel from "@/components/forms/doors/AccessControlPanel";
+import PowerSource from "@/components/forms/doors/PowerSource";
 
 export default function Rep() {
   const { id } = useLocalSearchParams();

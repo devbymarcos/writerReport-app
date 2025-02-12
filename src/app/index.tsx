@@ -27,7 +27,7 @@ export default function Home() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 50,
+    paddingTop: 100,
     padding: 20,
     backgroundColor: Colors.bgPrimary, // Fundo suave para destacar o botão
   },
