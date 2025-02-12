@@ -9,14 +9,14 @@ import {
   Pressable,
   ScrollView,
 } from "react-native";
-import SubMenuModalPreventive from "./SubMenuModalPreventive";
+import SubMenuModalPreventive from "@/components/app/SubMenuModalPreventive";
 import { Colors } from "@/constants/Colors";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import React from "react";
 import { getTasksByIdTicket } from "@/service/getTasksByIdTicket";
 import { storeTicket } from "@/store/storeTicket";
-import ModalEditTicket from "./ModalEditTicket";
-import ModalTimeTask from "./ModalTimeTask";
+import ModalEditTicket from "@/components/forms/ModalEditTicket";
+import ModalTimeTask from "@/components/forms/ModalTimeTask";
 
 const renderItem = ({
   item,

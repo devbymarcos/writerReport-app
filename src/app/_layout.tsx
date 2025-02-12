@@ -31,7 +31,7 @@ export default function RootLayout() {
           }}
         />
         <Tabs.Screen
-          name="list/index"
+          name="reports/index"
           options={{
             title: "Relatórios",
             tabBarIcon: ({ color }) => <ListCollapse color={color} />,

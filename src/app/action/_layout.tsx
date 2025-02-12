@@ -3,13 +3,14 @@ import { Stack } from "expo-router";
 export default function ActionLayout() {
   return (
     <Stack>
-      <Stack.Screen name="catraca" />
-      <Stack.Screen name="corrective" />
-      <Stack.Screen name="doors" />
-      <Stack.Screen name="implantacao" />
-      <Stack.Screen name="ocr" />
-      <Stack.Screen name="rep" />
-      <Stack.Screen name="task" />
+      <Stack.Screen name="catraca" options={{ title: "Voltar" }} />
+      <Stack.Screen name="corrective" options={{ title: "Voltar" }} />
+      <Stack.Screen name="doors" options={{ title: "Voltar" }} />
+      <Stack.Screen name="implantacao" options={{ title: "Voltar" }} />
+      <Stack.Screen name="ocr" options={{ title: "Voltar" }} />
+      <Stack.Screen name="rep" options={{ title: "Voltar" }} />
+      <Stack.Screen name="task" options={{ title: "Voltar" }} />
+      <Stack.Screen name="view" options={{ title: "Enviar Relatorio" }} />
       <Stack.Screen
         name="index"
         options={{
