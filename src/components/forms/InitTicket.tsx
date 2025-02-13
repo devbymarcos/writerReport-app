@@ -1,18 +1,23 @@
 import Card from "@/components/ui/card";
 import Input from "@/components/ui/input";
-import { storeTicket } from "@/store/storeTicket";
 import React, { useState } from "react";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { Text, StyleSheet, View, Button, Pressable } from "react-native";
 import { Controller } from "react-hook-form";
 import { Calendar } from "lucide-react-native";
+import MessageInputValidation from "@/components/forms/MessageInputValidation";
 
 interface InitTicketProps {
   control: any;
   setValue: any;
+  error: any;
 }
 
-export default function InitTicket({ control, setValue }: InitTicketProps) {
+export default function InitTicket({
+  control,
+  setValue,
+  error,
+}: InitTicketProps) {
   const [mode, setMode] = useState<"date" | "time">("date");
   const [show, setShow] = useState(false);
 
@@ -31,15 +36,22 @@ export default function InitTicket({ control, setValue }: InitTicketProps) {
       <Controller
         control={control}
         name="numberTicket"
+        rules={{
+          required: "Numero do ticket  obrigatorio",
+        }}
         render={({ field }) => (
-          <Input
-            label="Numero ticket:"
-            value={field.value}
-            onChangeText={field.onChange}
-            keyboardType="phone-pad"
-          />
+          <>
+            <Input
+              label="Numero ticket:"
+              value={field.value}
+              onChangeText={field.onChange}
+              keyboardType="phone-pad"
+            />
+            <MessageInputValidation error={error} name="numberTicket" />
+          </>
         )}
       />
+
       <Controller
         control={control}
         name="date"
@@ -84,6 +96,9 @@ export default function InitTicket({ control, setValue }: InitTicketProps) {
       <Controller
         control={control}
         name="titleTicket"
+        rules={{
+          required: "Preencha o titulo",
+        }}
         render={({ field }) => (
           <Input
             label="Titulo ticket:"
@@ -92,39 +107,7 @@ export default function InitTicket({ control, setValue }: InitTicketProps) {
           />
         )}
       />
-      <Controller
-        control={control}
-        name="nameBusiness"
-        render={({ field }) => (
-          <Input
-            label="Empresa Contratante:"
-            value={field.value}
-            onChangeText={field.onChange}
-          />
-        )}
-      />
-      <Controller
-        control={control}
-        name="followed"
-        render={({ field }) => (
-          <Input
-            label="Quem acompanhou ou liberou o trabalho:"
-            value={field.value}
-            onChangeText={field.onChange}
-          />
-        )}
-      />
-      <Controller
-        control={control}
-        name="operator"
-        render={({ field }) => (
-          <Input
-            label="Técnico:"
-            value={field.value}
-            onChangeText={field.onChange}
-          />
-        )}
-      />
+      <MessageInputValidation error={error} name="titleTicket" />
     </Card>
   );
 }
