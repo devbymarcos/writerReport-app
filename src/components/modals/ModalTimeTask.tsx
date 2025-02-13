@@ -7,6 +7,7 @@ import {
   Text,
   Pressable,
   ScrollView,
+  ToastAndroid,
 } from "react-native";
 import React from "react";
 import TimePicker from "@/components/forms/TimePicker";
@@ -31,6 +32,9 @@ export default function ModalTimeTask() {
       pauseTime: String(data.pauseTime),
       justifyPause: data.justifyPause,
     });
+    if (response?.changes) {
+      ToastAndroid.showWithGravity("Registrado", 3000, ToastAndroid.TOP);
+    }
   }
 
   return (

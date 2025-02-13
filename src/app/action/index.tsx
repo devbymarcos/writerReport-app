@@ -5,7 +5,7 @@ import { Colors } from "@/constants/Colors";
 import { registerTicket } from "@/service/registerTicket";
 import { useRouter } from "expo-router";
 import { useForm } from "react-hook-form";
-import { StyleSheet, ScrollView, View } from "react-native";
+import { StyleSheet, ScrollView, View, ToastAndroid } from "react-native";
 
 export default function Home() {
   const { push } = useRouter();
@@ -29,7 +29,7 @@ export default function Home() {
       followed: data.followed,
       operator: data.operator,
     });
-    console.log("response save", response);
+
     if (response?.lastInsertRowId) {
       push(
         `/action/task?id=${response.lastInsertRowId}&ticket=${data.numberTicket}`
