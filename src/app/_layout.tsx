@@ -15,7 +15,10 @@ export default function RootLayout() {
   return (
     <>
       <Stack>
-        <Stack.Screen name="catraca" options={{ title: "Write report" }} />
+        <Stack.Screen
+          name="action/catraca"
+          options={{ title: "Write report" }}
+        />
         <Stack.Screen name="reports/index" options={{ title: "Relatórios" }} />
         <Stack.Screen name="action/index" options={{ title: "Write report" }} />
         <Stack.Screen

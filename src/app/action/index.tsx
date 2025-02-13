@@ -4,7 +4,7 @@ import TitleForm from "@/components/ui/titleForm";
 import { Colors } from "@/constants/Colors";
 import { registerTicket } from "@/service/registerTicket";
 import { storeTicket } from "@/store/storeTicket";
-import { convertFromUTCToGMT3 } from "@/util/formatDate";
+import { convertFromUTCToGMT3 } from "@/util/formatDateAndTime";
 import { useRouter } from "expo-router";
 import { useForm } from "react-hook-form";
 import { StyleSheet, ScrollView, View } from "react-native";

@@ -16,7 +16,7 @@ import { ArrowDown } from "lucide-react-native";
 import { Colors } from "@/constants/Colors";
 import { updateTimeTicket } from "@/service/updateTimeTicket";
 import { useLocalSearchParams } from "expo-router";
-import { convertFromUTCToGMT3 } from "@/util/formatDate";
+import { convertFromUTCToGMT3 } from "@/util/formatDateAndTime";
 
 export default function ModalTimeTask() {
   const { modalTime, setModalTime } = storeTicket();
@@ -26,12 +26,11 @@ export default function ModalTimeTask() {
   async function updateTime(data: any) {
     const response = await updateTimeTicket({
       id: Number(id),
-      initHour: String(convertFromUTCToGMT3(data.initHour)),
-      endHour: String(convertFromUTCToGMT3(data.endHour)),
-      pauseTime: String(convertFromUTCToGMT3(data.pauseTime)),
+      initHour: String(data.initHour),
+      endHour: String(data.endHour),
+      pauseTime: String(data.pauseTime),
       justifyPause: data.justifyPause,
     });
-    console.log(response);
   }
 
   return (

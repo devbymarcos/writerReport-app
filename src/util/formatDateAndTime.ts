@@ -1,4 +1,4 @@
-export const formatDate = (dateString: string): string => {
+export function formatDate(dateString: string): string {
   const date = new Date(dateString);
 
   if (isNaN(date.getTime())) {
@@ -6,7 +6,7 @@ export const formatDate = (dateString: string): string => {
   }
 
   return new Intl.DateTimeFormat("pt-BR").format(date);
-};
+}
 
 export function formatTime(dataISO: string): string {
   const data = new Date(dataISO);

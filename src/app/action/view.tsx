@@ -7,6 +7,7 @@ import * as Clipboard from "expo-clipboard";
 import Card from "@/components/ui/card";
 import { Copy } from "lucide-react-native";
 import { Colors } from "@/constants/Colors";
+import { calculateTimeBetweenDates } from "@/util/calcTime";
 
 export default function ViewSend() {
   const { id } = useLocalSearchParams();
@@ -14,10 +15,17 @@ export default function ViewSend() {
 
   async function getAlltickets() {
     const data = await getTicketAndTasks(Number(id));
-    // console.log(data);
-    console.log("Text");
+    console.log(typeof data);
+    const productiveTime = calculateTimeBetweenDates(
+      //@ts-ignore
+      data[0].init_time,
+      //@ts-ignore
+      data[0].end_time
+    );
+    //@ts-ignore
+    data[0].productiveTime = productiveTime;
     const text = joinTemplate(data);
-    console.log("template aqui");
+
     setTextView(text);
   }
 

@@ -1,4 +1,4 @@
-import { formatDate, formatTime } from "@/util/formatDate";
+import { formatDate, formatTime } from "@/util/formatDateAndTime";
 import { executeTemplates } from "./executeTemplates";
 
 export function joinTemplate(text: any) {
@@ -17,14 +17,20 @@ export function joinTemplate(text: any) {
       })
       .join(" ") || "Sem dados disponíveis";
 
-  const header = `
+  return `
 Chamado/Cliente: ${text[0].numberTicket} - ${text[0].titleTicket}
 Data: ${formatDate(text[0].date)}
-Hora: ${text[0].init_time} até ${text[0].end_time}
+Hora: ${formatTime(text[0].init_time)} até ${formatTime(text[0].end_time)}
 Técnico:  ${text[0].operator}
 Tipo: Preventiva
 Acompanhou: ${text[0].followed}
 Empresa contratante: ${text[0].nameBusiness}
-  `;
-  return header;
+${body}
+
+*Tempo produtividade*
+Produtivo: ${text[0].productiveTime}
+Inprodutivo: ${formatTime(text[0].pause_time)}
+
+Justificativa: 
+${text[0].justify_pause}   `;
 }
