@@ -5,7 +5,7 @@ import { Colors } from "@/constants/Colors";
 import { registerTicket } from "@/service/registerTicket";
 import { useRouter } from "expo-router";
 import { useForm } from "react-hook-form";
-import { StyleSheet, ScrollView, View, ToastAndroid } from "react-native";
+import { StyleSheet, ScrollView, View } from "react-native";
 
 export default function Home() {
   const { push } = useRouter();
@@ -22,12 +22,9 @@ export default function Home() {
 
   async function save(data: any) {
     const response = await registerTicket({
+      date: String(data.date),
       numberTicket: data.numberTicket,
       titleTicket: data.titleTicket,
-      date: String(data.date),
-      nameBusiness: data.nameBusiness,
-      followed: data.followed,
-      operator: data.operator,
     });
 
     if (response?.lastInsertRowId) {

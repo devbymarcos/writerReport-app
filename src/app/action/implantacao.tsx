@@ -17,7 +17,7 @@ function Implantacao() {
   function save(data: any) {
     registerTask({
       id_ticket: Number(id),
-      content: JSON.stringify({ type: "rep", ...data }),
+      content: JSON.stringify({ type: "deployment", ...data }),
     });
     push(`/action/task?id=${id}`);
   }

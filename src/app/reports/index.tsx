@@ -3,16 +3,9 @@ import { deleteTicketAndTask } from "@/service/deleteTicketAndTask";
 import { getAllTicket, IResponse } from "@/service/getAllTicket";
 import { storeTicket } from "@/store/storeTicket";
 import { Link } from "expo-router";
-import { Eye, FilePenLine, Trash } from "lucide-react-native";
+import { FilePenLine, Trash } from "lucide-react-native";
 import React, { useEffect, useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  FlatList,
-  Pressable,
-  Animated,
-} from "react-native";
+import { View, Text, StyleSheet, FlatList, Pressable } from "react-native";
 import Swipeable from "react-native-gesture-handler/ReanimatedSwipeable";
 
 const ListItem = ({
@@ -25,6 +18,7 @@ const ListItem = ({
   ticket: string;
 }) => {
   const { setLoadPage, loadPage } = storeTicket();
+
   async function deleteTicket() {
     await deleteTicketAndTask({ id });
     setLoadPage(!loadPage);
@@ -33,9 +27,9 @@ const ListItem = ({
   const Delete = (progress: any, dragX: any) => {
     return (
       <Pressable style={styles.iconTrash} onPress={deleteTicket}>
-        <Animated.Text>
+        <Text>
           <Trash color="#fff" />
-        </Animated.Text>
+        </Text>
       </Pressable>
     );
   };

@@ -20,7 +20,7 @@ export function joinTemplate(text: any) {
   return `
 Chamado/Cliente: ${text[0].numberTicket} - ${text[0].titleTicket}
 Data: ${formatDate(text[0].date)}
-Hora: ${formatTime(text[0].init_time)} até ${formatTime(text[0].end_time)}
+Hora: ${formatTime(text[0].initHour)} até ${formatTime(text[0].endHour)}
 Técnico:  ${text[0].operator}
 Tipo: Preventiva
 Acompanhou: ${text[0].followed}
@@ -29,8 +29,8 @@ ${body}
 
 *Tempo produtividade*
 Produtivo: ${text[0].productiveTime}
-Inprodutivo: ${formatTime(text[0].pause_time)}
+Inprodutivo: ${formatTime(text[0].pauseTime)}
 
 Justificativa: 
-${text[0].justify_pause}   `;
+${text[0].justifyPause}   `;
 }

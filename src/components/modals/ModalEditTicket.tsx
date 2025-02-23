@@ -31,7 +31,15 @@ export default function ModalEditTicket() {
   const { id } = useLocalSearchParams();
 
   async function update(data: any) {
-    const response = await updateTicket({ id: Number(id), ...data });
+    const response = await updateTicket({
+      id: Number(id),
+      date: String(data.date),
+      numberTicket: data.numberTicket,
+      followed: data.followed,
+      nameBusiness: data.nameBusiness,
+      operator: data.operator,
+      titleTicket: data.titleTicket,
+    });
     if (response?.changes == 1) {
       ToastAndroid.showWithGravity("Registrado", 3000, ToastAndroid.TOP);
     }
@@ -39,7 +47,7 @@ export default function ModalEditTicket() {
 
   async function getTicket() {
     const responseBd = await getTicketById(Number(id));
-    console.log("debug", responseBd);
+    console.log("buscar", responseBd);
     //@ts-ignore
     setLoadedData(responseBd[0]);
   }
