@@ -15,11 +15,13 @@ import {
   View,
   Pressable,
   ScrollView,
+  ToastAndroid,
 } from "react-native";
 import { useLocalSearchParams } from "expo-router";
 import { getTicketById } from "@/service/getTicketById";
 import React from "react";
 import EditInitTicket from "@/components/forms/EditInitTicket";
+import { updateTicket } from "@/service/updateTicket";
 
 export default function ModalEditTicket() {
   const { modalEditVisible, setModalEditVisible } = storeTicket();
@@ -28,12 +30,16 @@ export default function ModalEditTicket() {
   const { control, handleSubmit, setValue } = useForm({ values: loadedData });
   const { id } = useLocalSearchParams();
 
-  function update(data: any) {
-    console.log(data);
+  async function update(data: any) {
+    const response = await updateTicket({ id: Number(id), ...data });
+    if (response?.changes == 1) {
+      ToastAndroid.showWithGravity("Registrado", 3000, ToastAndroid.TOP);
+    }
   }
 
   async function getTicket() {
     const responseBd = await getTicketById(Number(id));
+    console.log("debug", responseBd);
     //@ts-ignore
     setLoadedData(responseBd[0]);
   }
@@ -52,14 +58,19 @@ export default function ModalEditTicket() {
       }}
     >
       <ScrollView>
-        <EditInitTicket control={control} setValue={setValue} />
-        <BtnPrimary title="Atualizar" onPress={handleSubmit(update)} />
+        <View style={styles.container}>
+          <EditInitTicket control={control} setValue={setValue} />
+          <BtnPrimary title="Atualizar" onPress={handleSubmit(update)} />
+        </View>
       </ScrollView>
     </Modal>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    padding: 10,
+  },
   title: {
     marginBottom: 15,
     fontSize: 20,

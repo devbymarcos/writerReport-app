@@ -107,9 +107,8 @@ const styles = StyleSheet.create({
   },
   title: {
     width: "90%",
-    fontSize: 20,
+    fontSize: 16,
     fontWeight: "bold",
-    textTransform: "uppercase",
   },
   item: {
     backgroundColor: "#fff",

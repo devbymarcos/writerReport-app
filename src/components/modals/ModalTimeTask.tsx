@@ -9,7 +9,7 @@ import {
   ScrollView,
   ToastAndroid,
 } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TimePicker from "@/components/forms/TimePicker";
 import InputMultiplo from "@/components/ui/inputMultiplo";
 import { BtnPrimary } from "@/components/ui/btnPrimay";
@@ -17,11 +17,15 @@ import { ArrowDown } from "lucide-react-native";
 import { Colors } from "@/constants/Colors";
 import { updateTimeTicket } from "@/service/updateTimeTicket";
 import { useLocalSearchParams } from "expo-router";
-import { convertFromUTCToGMT3 } from "@/util/formatDateAndTime";
+import { getTicketById } from "@/service/getTicketById";
 
 export default function ModalTimeTask() {
   const { modalTime, setModalTime } = storeTicket();
-  const { control, handleSubmit, setValue } = useForm();
+  const [loadData, setLoadData] = useState(undefined);
+  const { control, handleSubmit, setValue } = useForm({
+    defaultValues: { justifyPause: "00:00" },
+    values: loadData,
+  });
   const { id } = useLocalSearchParams();
 
   async function updateTime(data: any) {
@@ -32,11 +36,22 @@ export default function ModalTimeTask() {
       pauseTime: String(data.pauseTime),
       justifyPause: data.justifyPause,
     });
+    // console.log(response);
     if (response?.changes) {
       ToastAndroid.showWithGravity("Registrado", 3000, ToastAndroid.TOP);
     }
   }
 
+  async function getDataTicket() {
+    const responseBd = await getTicketById(Number(id));
+    console.log(responseBd);
+    //@ts-ignore
+    setLoadData(responseBd[0]);
+  }
+
+  useEffect(() => {
+    getDataTicket();
+  }, []);
   return (
     <Modal
       animationType="slide"

@@ -3,7 +3,6 @@ import {
   TouchableOpacity,
   Text,
   StyleSheet,
-  View,
   GestureResponderEvent,
 } from "react-native";
 import { Colors } from "@/constants/Colors";
@@ -15,17 +14,11 @@ interface ButtonProps {
   width?: any;
 }
 
-export function BtnPrimary({
-  onPress,
-  title,
-  children,
-  width = "100%",
-}: ButtonProps) {
+export function BtnPrimary({ onPress, title, children }: ButtonProps) {
   return (
     <TouchableOpacity
       onPress={onPress}
-      activeOpacity={0.8}
-      style={[styles.button, { width: width }]} // Aplicando opacidade ao pressionar
+      style={[styles.button]} // Aplicando opacidade ao pressionar
     >
       <Text style={styles.buttonText}>{title ? title : children}</Text>
     </TouchableOpacity>
@@ -37,7 +30,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.btnPrimary,
     paddingVertical: 12,
     paddingHorizontal: 24,
-    borderRadius: 12,
+    borderRadius: 6,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,

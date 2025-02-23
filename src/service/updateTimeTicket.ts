@@ -19,13 +19,13 @@ export async function updateTimeTicket({
 
   try {
     const result = await db.runAsync(
-      `UPDATE tickets SET init_time = $init_time,end_time = $end_time ,pause_time=$pause_time,justify_pause=$justify_pause WHERE id = $id`,
+      `UPDATE tickets SET initHour = $initHour,endHour = $endHour ,pauseTime=$pauseTime,justifyPause=$justifyPause WHERE id = $id`,
       {
         $id: id,
-        $init_time: initHour,
-        $end_time: endHour,
-        $pause_time: pauseTime,
-        $justify_pause: justifyPause,
+        $initHour: initHour,
+        $endHour: endHour,
+        $pauseTime: pauseTime,
+        $justifyPause: justifyPause,
       }
     );
 

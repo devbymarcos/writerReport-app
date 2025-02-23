@@ -2,6 +2,7 @@ import { Stack } from "expo-router";
 import React, { useEffect } from "react";
 import { createTables } from "@/database/schema";
 import { StatusBar } from "expo-status-bar";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import MenuPrimary from "@/components/app/menuPrimary";
 export default function RootLayout() {
@@ -13,7 +14,7 @@ export default function RootLayout() {
     initializeDatabase();
   }, []);
   return (
-    <>
+    <GestureHandlerRootView>
       <Stack>
         <Stack.Screen
           name="action/catraca"
@@ -43,6 +44,6 @@ export default function RootLayout() {
       </Stack>
       <StatusBar style="dark" />
       <MenuPrimary />
-    </>
+    </GestureHandlerRootView>
   );
 }

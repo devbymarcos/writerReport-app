@@ -59,7 +59,7 @@ export default function StatusAndData({ control }: StatusAndDataProps) {
         render={({ field }) => (
           <Input
             label="IP"
-            keyboardType="default"
+            keyboardType="phone-pad"
             value={field.value}
             onChangeText={field.onChange}
           />

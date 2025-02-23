@@ -3,9 +3,17 @@ import { deleteTicketAndTask } from "@/service/deleteTicketAndTask";
 import { getAllTicket, IResponse } from "@/service/getAllTicket";
 import { storeTicket } from "@/store/storeTicket";
 import { Link } from "expo-router";
-import { Eye, Trash } from "lucide-react-native";
+import { Eye, FilePenLine, Trash } from "lucide-react-native";
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, FlatList, Pressable } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  Pressable,
+  Animated,
+} from "react-native";
+import Swipeable from "react-native-gesture-handler/ReanimatedSwipeable";
 
 const ListItem = ({
   name,
@@ -22,22 +30,31 @@ const ListItem = ({
     setLoadPage(!loadPage);
   }
 
+  const Delete = (progress: any, dragX: any) => {
+    return (
+      <Pressable style={styles.iconTrash} onPress={deleteTicket}>
+        <Animated.Text>
+          <Trash color="#fff" />
+        </Animated.Text>
+      </Pressable>
+    );
+  };
+
   return (
-    <View style={styles.item}>
-      <Text style={styles.title}>{name}</Text>
-      <View style={styles.boxIcons}>
-        <Link
-          style={styles.iconView}
-          href={`/action/task?id=${id}&ticket=${ticket}`}
-          replace
-        >
-          <Eye color="#000" />
-        </Link>
-        <Pressable style={styles.iconTash} onPress={deleteTicket}>
-          <Trash color="#000" />
-        </Pressable>
+    <Swipeable renderRightActions={Delete}>
+      <View style={styles.item}>
+        <Text style={styles.title}>{name}</Text>
+        <View style={styles.boxIcons}>
+          <Link
+            style={styles.iconView}
+            href={`/action/task?id=${id}&ticket=${ticket}`}
+            replace
+          >
+            <FilePenLine color="#000" />
+          </Link>
+        </View>
       </View>
-    </View>
+    </Swipeable>
   );
 };
 
@@ -54,10 +71,13 @@ const List = () => {
   useEffect(() => {
     listAll();
   }, [loadPage]);
+
+  const ItemSeparator = () => <View style={styles.separator} />;
   return (
     <View style={styles.container}>
       <FlatList
         data={dataSql}
+        ItemSeparatorComponent={ItemSeparator}
         renderItem={({ item }) => (
           <ListItem
             name={`${item.numberTicket} - ${item.titleTicket}`}
@@ -75,16 +95,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.bgPrimary,
-    padding: 20,
   },
   item: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     backgroundColor: "#fff",
-    padding: 20,
-    marginVertical: 8,
-    borderRadius: 5,
+    padding: 10,
+
     boxShadow: "0 0 5px rgba(0, 0, 0, 0.1)",
   },
   title: {
@@ -99,9 +117,15 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 6,
   },
-  iconTash: {
-    padding: 10,
-    borderRadius: 6,
+  iconTrash: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: 100,
+    backgroundColor: "red",
+  },
+  separator: {
+    height: 1,
+    backgroundColor: "#ccc",
   },
 });
 
