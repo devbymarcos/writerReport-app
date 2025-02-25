@@ -44,7 +44,7 @@ export default function ModalTimeTask() {
 
   async function getDataTicket() {
     const responseBd = await getTicketById(Number(id));
-    console.log(responseBd);
+
     //@ts-ignore
     setLoadData(responseBd[0]);
   }

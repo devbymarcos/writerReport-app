@@ -1,4 +1,4 @@
-import { ArrowDown, Edit, Plus, Send, Timer } from "lucide-react-native";
+import { Edit, Plus, Send, Timer } from "lucide-react-native";
 import { useEffect, useState } from "react";
 import { View, Text, StyleSheet, FlatList, Pressable } from "react-native";
 import SubMenuModalPreventive from "@/components/app/SubMenuModalPreventive";
@@ -9,17 +9,38 @@ import { getTasksByIdTicket } from "@/service/getTasksByIdTicket";
 import { storeTicket } from "@/store/storeTicket";
 import ModalEditTicket from "@/components/modals/ModalEditTicket";
 import ModalTimeTask from "@/components/modals/ModalTimeTask";
+import Swipeable from "react-native-gesture-handler/ReanimatedSwipeable";
+import { Trash } from "lucide-react-native";
+import { deleteTask } from "@/service/deleteTasks";
 
-const renderItem = ({
-  item,
-}: {
+interface renderItemProps {
   item: { id: number; name: string; content: any };
-}) => {
-  const content = JSON.parse(item.content); //TODO CONTINUAR DAQUI
+}
+
+const RenderItem = ({ item }: renderItemProps) => {
+  const content = JSON.parse(item.content);
+  const { setLoadPage, loadPage } = storeTicket();
+  async function removeTask() {
+    await deleteTask({ id: Number(item.id) });
+    setLoadPage(!loadPage);
+  }
+
+  const Delete = (progress: any, dragX: any) => {
+    return (
+      <Pressable style={styles.iconTrash} onPress={removeTask}>
+        <Text>
+          <Trash color="#fff" />
+        </Text>
+      </Pressable>
+    );
+  };
+
   return (
-    <View style={styles.item}>
-      <Text style={styles.titleItem}>{content.titleCheck}</Text>
-    </View>
+    <Swipeable renderRightActions={Delete}>
+      <View style={styles.item}>
+        <Text style={styles.titleItem}>{content.titleCheck}</Text>
+      </View>
+    </Swipeable>
   );
 };
 
@@ -29,6 +50,7 @@ export default function Task() {
   const [tasks, setTasks] = useState<any>(null);
   const { id, ticket } = useLocalSearchParams();
   const { push } = useRouter();
+  const { setLoadPage, loadPage } = storeTicket();
 
   function viewSend() {
     push(`/action/view?id=${id}`);
@@ -42,6 +64,7 @@ export default function Task() {
   useEffect(() => {
     getTask();
   }, []);
+  const ItemSeparator = () => <View style={styles.separator} />;
   return (
     <>
       <View style={styles.container}>
@@ -51,7 +74,8 @@ export default function Task() {
 
         <FlatList
           data={tasks}
-          renderItem={renderItem}
+          renderItem={({ item }) => <RenderItem item={item} />}
+          ItemSeparatorComponent={ItemSeparator}
           keyExtractor={(item) => item.id.toString()}
         />
 
@@ -94,8 +118,6 @@ export default function Task() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
-    paddingTop: 20,
     paddingBottom: 150,
     backgroundColor: Colors.bgPrimary,
   },
@@ -103,7 +125,9 @@ const styles = StyleSheet.create({
     width: "100%",
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 5,
+    backgroundColor: "#fff",
+    paddingVertical: 10,
+    paddingHorizontal: 5,
   },
   title: {
     width: "90%",
@@ -113,8 +137,6 @@ const styles = StyleSheet.create({
   item: {
     backgroundColor: "#fff",
     padding: 20,
-    marginVertical: 8,
-    borderRadius: 5,
     boxShadow: "0 0 5px rgba(0, 0, 0, 0.1)",
   },
   titleItem: {
@@ -154,5 +176,15 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.btnSuccess,
     borderRadius: 10,
     alignItems: "center",
+  },
+  separator: {
+    height: 1,
+    backgroundColor: "#ccc",
+  },
+  iconTrash: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: 100,
+    backgroundColor: "red",
   },
 });

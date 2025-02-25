@@ -1,11 +1,11 @@
 import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { ButtonLink } from "@/components/ui/btnLink";
+import { BtnPrimary } from "@/components/ui/btnPrimay";
 import { useLocalSearchParams } from "expo-router";
 import { storeTicket } from "@/store/storeTicket";
 import { ArrowDown } from "lucide-react-native";
 import { Colors } from "@/constants/Colors";
-
+import { useRouter } from "expo-router";
 interface MenuItem {
   title: string;
   path: string;
@@ -41,6 +41,13 @@ const dataMenuPreventive: MenuItem[] = [
 export default function SubMenuModalPreventive() {
   const { id } = useLocalSearchParams();
   const { modalSubMenu, setModalSubMenu } = storeTicket();
+  const { push } = useRouter();
+
+  const goRouter = (path: string) => {
+    setModalSubMenu(!modalSubMenu);
+    push(`${path}?id=${id}` as any);
+  };
+
   return (
     <Modal
       animationType="slide"
@@ -54,10 +61,9 @@ export default function SubMenuModalPreventive() {
         <Text style={styles.title}>Escolha a Tarefa </Text>
         {dataMenuPreventive.map((item, index) => (
           <View key={index} style={styles.boxButton}>
-            <ButtonLink
-              href={`${item.path}?id=${id}`}
+            <BtnPrimary
+              onPress={() => goRouter(item.path)}
               title={item.title}
-              backgroundColor="#0000"
             />
           </View>
         ))}

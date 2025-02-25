@@ -1,19 +1,13 @@
 import { BtnPrimary } from "@/components/ui/btnPrimay";
-import Card from "@/components/ui/card";
-import Input from "@/components/ui/input";
 import { Colors } from "@/constants/Colors";
 import { storeTicket } from "@/store/storeTicket";
-import { ArrowDown, Calendar } from "lucide-react-native";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import DateTimePicker from "@react-native-community/datetimepicker";
-import { Controller } from "react-hook-form";
+
 import {
-  Text,
   StyleSheet,
   Modal,
   View,
-  Pressable,
   ScrollView,
   ToastAndroid,
 } from "react-native";
@@ -47,7 +41,7 @@ export default function ModalEditTicket() {
 
   async function getTicket() {
     const responseBd = await getTicketById(Number(id));
-    console.log("buscar", responseBd);
+
     //@ts-ignore
     setLoadedData(responseBd[0]);
   }
