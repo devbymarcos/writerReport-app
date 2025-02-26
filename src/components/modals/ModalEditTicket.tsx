@@ -10,12 +10,14 @@ import {
   View,
   ScrollView,
   ToastAndroid,
+  Pressable,
 } from "react-native";
 import { useLocalSearchParams } from "expo-router";
 import { getTicketById } from "@/service/getTicketById";
 import React from "react";
 import EditInitTicket from "@/components/forms/EditInitTicket";
 import { updateTicket } from "@/service/updateTicket";
+import { ArrowDown } from "lucide-react-native";
 
 export default function ModalEditTicket() {
   const { modalEditVisible, setModalEditVisible } = storeTicket();
@@ -62,7 +64,15 @@ export default function ModalEditTicket() {
       <ScrollView>
         <View style={styles.container}>
           <EditInitTicket control={control} setValue={setValue} />
-          <BtnPrimary title="Atualizar" onPress={handleSubmit(update)} />
+          <View style={styles.boxBtnModal}>
+            <BtnPrimary title="Atualizar" onPress={handleSubmit(update)} />
+            <Pressable
+              style={styles.modalClose}
+              onPress={() => setModalEditVisible(!modalEditVisible)}
+            >
+              <ArrowDown color="#fff" />
+            </Pressable>
+          </View>
         </View>
       </ScrollView>
     </Modal>
@@ -91,5 +101,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 10,
+  },
+  boxBtnModal: {
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
 });

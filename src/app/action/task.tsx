@@ -1,5 +1,5 @@
 import { Edit, Plus, Send, Timer } from "lucide-react-native";
-import { useEffect, useState } from "react";
+import { memo, useCallback, useEffect, useState } from "react";
 import { View, Text, StyleSheet, FlatList, Pressable } from "react-native";
 import SubMenuModalPreventive from "@/components/app/SubMenuModalPreventive";
 import { Colors } from "@/constants/Colors";
@@ -12,12 +12,14 @@ import ModalTimeTask from "@/components/modals/ModalTimeTask";
 import Swipeable from "react-native-gesture-handler/ReanimatedSwipeable";
 import { Trash } from "lucide-react-native";
 import { deleteTask } from "@/service/deleteTasks";
+import { getTicketAndTasks } from "@/service/getTicketAndTasks";
+import { toast } from "sonner-native";
 
 interface renderItemProps {
   item: { id: number; name: string; content: any };
 }
 
-const RenderItem = ({ item }: renderItemProps) => {
+const RenderItem = memo(({ item }: renderItemProps) => {
   const content = JSON.parse(item.content);
   const { setLoadPage, loadPage } = storeTicket();
   async function removeTask() {
@@ -25,15 +27,18 @@ const RenderItem = ({ item }: renderItemProps) => {
     setLoadPage(!loadPage);
   }
 
-  const Delete = (progress: any, dragX: any) => {
-    return (
-      <Pressable style={styles.iconTrash} onPress={removeTask}>
-        <Text>
-          <Trash color="#fff" />
-        </Text>
-      </Pressable>
-    );
-  };
+  const Delete = useCallback(
+    (progress: any, dragX: any) => {
+      return (
+        <Pressable style={styles.iconTrash} onPress={removeTask}>
+          <Text>
+            <Trash color="#fff" />
+          </Text>
+        </Pressable>
+      );
+    },
+    [removeTask]
+  );
 
   return (
     <Swipeable renderRightActions={Delete}>
@@ -42,7 +47,7 @@ const RenderItem = ({ item }: renderItemProps) => {
       </View>
     </Swipeable>
   );
-};
+});
 
 export default function Task() {
   const { setModalEditVisible, setModalTime, modalSubMenu, setModalSubMenu } =
@@ -50,11 +55,16 @@ export default function Task() {
   const [tasks, setTasks] = useState<any>(null);
   const { id, ticket } = useLocalSearchParams();
   const { push } = useRouter();
-  const { setLoadPage, loadPage } = storeTicket();
 
-  function viewSend() {
+  const viewSend = useCallback(async () => {
+    const data = await getTicketAndTasks(Number(id));
+    //@ts-ignore
+    if (data[0].content == null) {
+      toast.warning("Cadastre uma tarefa");
+      return;
+    }
     push(`/action/view?id=${id}`);
-  }
+  }, [id]);
 
   async function getTask() {
     const data = await getTasksByIdTicket(Number(id));
@@ -118,7 +128,7 @@ export default function Task() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingBottom: 150,
+    paddingBottom: 100,
     backgroundColor: Colors.bgPrimary,
   },
   boxTitle: {

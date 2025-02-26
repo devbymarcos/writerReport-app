@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
   },
   offView: {
-    height: "30%",
+    height: "40%",
   },
   titleInitActiveEnd: {
     fontWeight: "bold",

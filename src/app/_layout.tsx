@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { createTables } from "@/database/schema";
 import { StatusBar } from "expo-status-bar";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { Toaster } from "sonner-native";
 
 import MenuPrimary from "@/components/app/menuPrimary";
 export default function RootLayout() {
@@ -44,6 +45,7 @@ export default function RootLayout() {
       </Stack>
       <StatusBar style="dark" />
       <MenuPrimary />
+      <Toaster offset={100} />
     </GestureHandlerRootView>
   );
 }

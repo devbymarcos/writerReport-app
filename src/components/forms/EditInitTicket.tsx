@@ -27,12 +27,6 @@ export default function EditInitTicket({
     <Card style={{ flex: 1 }}>
       <View style={styles.boxModalClose}>
         <Text style={styles.title}>Atualize a atividade:</Text>
-        <Pressable
-          style={styles.modalClose}
-          onPress={() => setModalEditVisible(!modalEditVisible)}
-        >
-          <ArrowDown color="#fff" />
-        </Pressable>
       </View>
       <Controller
         control={control}

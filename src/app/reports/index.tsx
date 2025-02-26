@@ -4,53 +4,50 @@ import { getAllTicket, IResponse } from "@/service/getAllTicket";
 import { storeTicket } from "@/store/storeTicket";
 import { Link } from "expo-router";
 import { FilePenLine, Trash } from "lucide-react-native";
-import React, { useEffect, useState } from "react";
+import React, { memo, useCallback, useEffect, useState } from "react";
 import { View, Text, StyleSheet, FlatList, Pressable } from "react-native";
 import Swipeable from "react-native-gesture-handler/ReanimatedSwipeable";
 
-const ListItem = ({
-  name,
-  id,
-  ticket,
-}: {
-  name: string;
-  id: number;
-  ticket: string;
-}) => {
-  const { setLoadPage, loadPage } = storeTicket();
+const ListItem = memo(
+  ({ name, id, ticket }: { name: string; id: number; ticket: string }) => {
+    const { setLoadPage, loadPage } = storeTicket();
 
-  async function deleteTicket() {
-    await deleteTicketAndTask({ id });
-    setLoadPage(!loadPage);
-  }
+    async function removeTicket() {
+      await deleteTicketAndTask({ id });
+      setLoadPage(!loadPage);
+    }
 
-  const Delete = (progress: any, dragX: any) => {
-    return (
-      <Pressable style={styles.iconTrash} onPress={deleteTicket}>
-        <Text>
-          <Trash color="#fff" />
-        </Text>
-      </Pressable>
+    const Delete = useCallback(
+      (progress: any, dragX: any) => {
+        return (
+          <Pressable style={styles.iconTrash} onPress={removeTicket}>
+            <Text>
+              <Trash color="#fff" />
+            </Text>
+          </Pressable>
+        );
+      },
+      [removeTicket]
     );
-  };
 
-  return (
-    <Swipeable renderRightActions={Delete}>
-      <View style={styles.item}>
-        <Text style={styles.title}>{name}</Text>
-        <View style={styles.boxIcons}>
-          <Link
-            style={styles.iconView}
-            href={`/action/task?id=${id}&ticket=${ticket}`}
-            replace
-          >
-            <FilePenLine color="#000" />
-          </Link>
+    return (
+      <Swipeable renderRightActions={Delete}>
+        <View style={styles.item}>
+          <Text style={styles.title}>{name}</Text>
+          <View style={styles.boxIcons}>
+            <Link
+              style={styles.iconView}
+              href={`/action/task?id=${id}&ticket=${ticket}`}
+              replace
+            >
+              <FilePenLine color="#000" />
+            </Link>
+          </View>
         </View>
-      </View>
-    </Swipeable>
-  );
-};
+      </Swipeable>
+    );
+  }
+);
 
 const List = () => {
   const [dataSql, setDataSql] = useState<IResponse[]>();
