@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import { StyleSheet, ScrollView, View } from "react-native";
 
 export default function Home() {
-  const { push } = useRouter();
+  const { replace } = useRouter();
   const {
     control,
     handleSubmit,
@@ -28,7 +28,7 @@ export default function Home() {
     });
 
     if (response?.lastInsertRowId) {
-      push(
+      replace(
         `/action/task?id=${response.lastInsertRowId}&ticket=${data.numberTicket}`
       );
     }

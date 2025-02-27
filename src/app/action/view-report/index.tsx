@@ -18,9 +18,9 @@ export default function ViewSend() {
 
     const productiveTime = calculateTimeBetweenDates(
       //@ts-ignore
-      data[0].init_time,
+      data[0].initHour,
       //@ts-ignore
-      data[0].end_time
+      data[0].endHour
     );
     //@ts-ignore
     data[0].productiveTime = productiveTime;

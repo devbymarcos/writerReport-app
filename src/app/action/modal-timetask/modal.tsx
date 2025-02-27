@@ -35,7 +35,7 @@ export default function ModalTimeTask() {
       pauseTime: String(data.pauseTime),
       justifyPause: data.justifyPause,
     });
-    // console.log(response);
+
     if (response?.changes) {
       toast.success("Atualizado com sucesso");
     }

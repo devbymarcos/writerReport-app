@@ -11,7 +11,6 @@ export async function deleteTask({ id }: IDeleteTask) {
     const result = await db.runAsync("DELETE FROM tasks WHERE id = $id", {
       $id: id,
     });
-
     return result;
   } catch (err) {
     console.log("erro deleteTask", err);

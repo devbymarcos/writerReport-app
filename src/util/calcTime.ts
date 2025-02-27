@@ -11,5 +11,5 @@ export function calculateTimeBetweenDates(
   const hours = Math.floor(totalMinutes / 60);
   const minutes = totalMinutes % 60;
 
-  return `${hours} h : ${minutes} m`;
+  return `${hours} horas e ${minutes} minutos`;
 }

@@ -15,20 +15,18 @@ import { toast } from "sonner-native";
 
 interface renderItemProps {
   item: { id: number; name: string; content: any };
+  removeTask: (id: number) => void;
 }
 
-const RenderItem = memo(({ item }: renderItemProps) => {
+const RenderItem = memo(({ item, removeTask }: renderItemProps) => {
   const content = JSON.parse(item.content);
-  const { setLoadPage, loadPage } = storeTicket();
-
-  async function removeTask() {
-    await deleteTask({ id: Number(item.id) });
-    setLoadPage(!loadPage);
-  }
 
   const Delete = useCallback(() => {
     return (
-      <Pressable style={styles.iconTrash} onPress={removeTask}>
+      <Pressable
+        style={styles.iconTrash}
+        onPress={() => removeTask(Number(item.id))}
+      >
         <Text>
           <Trash color="#fff" />
         </Text>
@@ -48,6 +46,7 @@ const RenderItem = memo(({ item }: renderItemProps) => {
 export default function Task() {
   const [tasks, setTasks] = useState<any>(null);
   const { id, ticket } = useLocalSearchParams();
+  const { setLoadPage, loadPage } = storeTicket();
   const { push } = useRouter();
 
   const viewSend = useCallback(async () => {
@@ -65,9 +64,15 @@ export default function Task() {
     setTasks(data);
   }
 
+  const removeTask = useCallback(async (id: number) => {
+    const response = await deleteTask({ id: id });
+
+    setLoadPage(!loadPage);
+  }, []);
+
   useEffect(() => {
     getTask();
-  }, []);
+  }, [loadPage]);
   const ItemSeparator = () => <View style={styles.separator} />;
   return (
     <>
@@ -78,7 +83,9 @@ export default function Task() {
 
         <FlatList
           data={tasks}
-          renderItem={({ item }) => <RenderItem item={item} />}
+          renderItem={({ item }) => (
+            <RenderItem item={item} removeTask={removeTask} />
+          )}
           ItemSeparatorComponent={ItemSeparator}
           keyExtractor={(item) => item.id.toString()}
         />
