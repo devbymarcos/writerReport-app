@@ -17,7 +17,7 @@ import InstallationConditions from "@/components/forms/catraca/InstallationCondi
 
 export default function Catraca() {
   const { id } = useLocalSearchParams();
-  const { push } = useRouter();
+  const { replace } = useRouter();
   const { control, handleSubmit } = useForm();
 
   function save(data: any) {
@@ -25,7 +25,7 @@ export default function Catraca() {
       id_ticket: Number(id),
       content: JSON.stringify({ type: "catraca", ...data }),
     });
-    push(`/action/task?id=${id}`);
+    replace(`/action/task?id=${id}`);
   }
   return (
     <ScrollView>

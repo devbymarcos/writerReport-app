@@ -15,7 +15,7 @@ import FullyResolved from "@/components/forms/corrective/FullyResolved";
 
 export default function Rep() {
   const { id } = useLocalSearchParams();
-  const { push } = useRouter();
+  const { replace } = useRouter();
   const { control, handleSubmit } = useForm();
 
   function save(data: any) {
@@ -23,7 +23,7 @@ export default function Rep() {
       id_ticket: Number(id),
       content: JSON.stringify({ type: "corrective", ...data }),
     });
-    push(`/action/task?id=${id}`);
+    replace(`/action/task?id=${id}`);
   }
 
   return (

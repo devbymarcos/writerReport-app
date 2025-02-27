@@ -12,14 +12,14 @@ import { useLocalSearchParams, useRouter } from "expo-router";
 function Implantacao() {
   const { control, handleSubmit } = useForm();
   const { id } = useLocalSearchParams();
-  const { push } = useRouter();
+  const { replace } = useRouter();
 
   function save(data: any) {
     registerTask({
       id_ticket: Number(id),
       content: JSON.stringify({ type: "deployment", ...data }),
     });
-    push(`/action/task?id=${id}`);
+    replace(`/action/task?id=${id}`);
   }
   return (
     <ScrollView>
