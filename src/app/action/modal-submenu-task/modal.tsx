@@ -49,34 +49,14 @@ export default function SubMenuModalPreventive() {
   };
 
   return (
-    <Modal
-      animationType="slide"
-      transparent={true}
-      visible={modalSubMenu}
-      onRequestClose={() => {
-        setModalSubMenu(false);
-      }}
-    >
-      <View style={styles.container}>
-        <Text style={styles.title}>Escolha a Tarefa </Text>
-        {dataMenuPreventive.map((item, index) => (
-          <View key={index} style={styles.boxButton}>
-            <BtnPrimary
-              onPress={() => goRouter(item.path)}
-              title={item.title}
-            />
-          </View>
-        ))}
-      </View>
-      <View style={styles.boxModalClose}>
-        <Pressable
-          style={styles.modalClose}
-          onPress={() => setModalSubMenu(false)}
-        >
-          <ArrowDown color="#fff" />
-        </Pressable>
-      </View>
-    </Modal>
+    <View style={styles.container}>
+      <Text style={styles.title}>Escolha a Tarefa </Text>
+      {dataMenuPreventive.map((item, index) => (
+        <View key={index} style={styles.boxButton}>
+          <BtnPrimary onPress={() => goRouter(item.path)} title={item.title} />
+        </View>
+      ))}
+    </View>
   );
 }
 

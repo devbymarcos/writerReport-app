@@ -35,11 +35,35 @@ export default function RootLayout() {
         <Stack.Screen name="action/ocr" options={{ title: "Write report" }} />
         <Stack.Screen name="action/rep" options={{ title: "Write report" }} />
         <Stack.Screen name="action/task" options={{ title: "Write report" }} />
-        <Stack.Screen name="action/view" options={{ title: "Write report" }} />
+        <Stack.Screen
+          name="action/view-report/index"
+          options={{ title: "Enviar relatório" }}
+        />
         <Stack.Screen
           name="index"
           options={{
             title: "Home",
+          }}
+        />
+        <Stack.Screen
+          name="action/modal-edit-ticket/modal"
+          options={{
+            presentation: "modal",
+            title: "Editar atividade",
+          }}
+        />
+        <Stack.Screen
+          name="action/modal-timetask/modal"
+          options={{
+            presentation: "modal",
+            title: "Tempo de atividade",
+          }}
+        />
+        <Stack.Screen
+          name="action/modal-submenu-task/modal"
+          options={{
+            presentation: "modal",
+            title: "Submenu de tarefas",
           }}
         />
       </Stack>

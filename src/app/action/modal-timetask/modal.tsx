@@ -3,11 +3,10 @@ import { Controller, useForm } from "react-hook-form";
 import {
   Modal,
   StyleSheet,
-  View,
   Text,
-  Pressable,
   ScrollView,
   ToastAndroid,
+  View,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import TimePicker from "@/components/forms/TimePicker";
@@ -18,9 +17,9 @@ import { Colors } from "@/constants/Colors";
 import { updateTimeTicket } from "@/service/updateTimeTicket";
 import { useLocalSearchParams } from "expo-router";
 import { getTicketById } from "@/service/getTicketById";
-
+import Card from "@/components/ui/card";
+import { toast } from "sonner-native";
 export default function ModalTimeTask() {
-  const { modalTime, setModalTime } = storeTicket();
   const [loadData, setLoadData] = useState(undefined);
   const { control, handleSubmit, setValue } = useForm({
     defaultValues: { justifyPause: "00:00" },
@@ -38,7 +37,7 @@ export default function ModalTimeTask() {
     });
     // console.log(response);
     if (response?.changes) {
-      ToastAndroid.showWithGravity("Registrado", 3000, ToastAndroid.TOP);
+      toast.success("Atualizado com sucesso");
     }
   }
 
@@ -53,17 +52,9 @@ export default function ModalTimeTask() {
     getDataTicket();
   }, []);
   return (
-    <Modal
-      animationType="slide"
-      transparent={true}
-      visible={modalTime}
-      onRequestClose={() => {
-        setModalTime(!modalTime);
-      }}
-    >
-      <View style={styles.offView}></View>
-      <ScrollView>
-        <View style={styles.view}>
+    <ScrollView>
+      <View style={styles.container}>
+        <Card>
           <Text style={styles.titleInitActiveEnd}>
             Incio e fim da atividade:
           </Text>
@@ -97,36 +88,21 @@ export default function ModalTimeTask() {
               />
             )}
           />
-          <View style={styles.boxBtnModal}>
-            <BtnPrimary
-              title="Salvar"
-              onPress={handleSubmit(updateTime)}
-              width="80%"
-            />
-            <Pressable
-              style={styles.modalClose}
-              onPress={() => setModalTime(!modalTime)}
-            >
-              <ArrowDown color="#fff" />
-            </Pressable>
-          </View>
-        </View>
-      </ScrollView>
-    </Modal>
+        </Card>
+        <BtnPrimary
+          title="Salvar"
+          onPress={handleSubmit(updateTime)}
+          width="80%"
+        />
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  view: {
+  container: {
     flex: 1,
-    backgroundColor: "white",
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    paddingHorizontal: 20,
-    paddingVertical: 15,
-  },
-  offView: {
-    height: "40%",
+    padding: 10,
   },
   titleInitActiveEnd: {
     fontWeight: "bold",

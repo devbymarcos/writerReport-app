@@ -15,7 +15,7 @@ export default function ViewSend() {
 
   async function getAlltickets() {
     const data = await getTicketAndTasks(Number(id));
-    console.log(typeof data);
+
     const productiveTime = calculateTimeBetweenDates(
       //@ts-ignore
       data[0].init_time,

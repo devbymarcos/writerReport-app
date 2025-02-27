@@ -1,14 +1,12 @@
 import { Edit, Plus, Send, Timer } from "lucide-react-native";
 import { memo, useCallback, useEffect, useState } from "react";
 import { View, Text, StyleSheet, FlatList, Pressable } from "react-native";
-import SubMenuModalPreventive from "@/components/app/SubMenuModalPreventive";
 import { Colors } from "@/constants/Colors";
-import { useRouter, useLocalSearchParams } from "expo-router";
+import { useRouter, useLocalSearchParams, Link } from "expo-router";
 import React from "react";
 import { getTasksByIdTicket } from "@/service/getTasksByIdTicket";
 import { storeTicket } from "@/store/storeTicket";
-import ModalEditTicket from "@/components/modals/ModalEditTicket";
-import ModalTimeTask from "@/components/modals/ModalTimeTask";
+
 import Swipeable from "react-native-gesture-handler/ReanimatedSwipeable";
 import { Trash } from "lucide-react-native";
 import { deleteTask } from "@/service/deleteTasks";
@@ -22,23 +20,21 @@ interface renderItemProps {
 const RenderItem = memo(({ item }: renderItemProps) => {
   const content = JSON.parse(item.content);
   const { setLoadPage, loadPage } = storeTicket();
+
   async function removeTask() {
     await deleteTask({ id: Number(item.id) });
     setLoadPage(!loadPage);
   }
 
-  const Delete = useCallback(
-    (progress: any, dragX: any) => {
-      return (
-        <Pressable style={styles.iconTrash} onPress={removeTask}>
-          <Text>
-            <Trash color="#fff" />
-          </Text>
-        </Pressable>
-      );
-    },
-    [removeTask]
-  );
+  const Delete = useCallback(() => {
+    return (
+      <Pressable style={styles.iconTrash} onPress={removeTask}>
+        <Text>
+          <Trash color="#fff" />
+        </Text>
+      </Pressable>
+    );
+  }, [removeTask]);
 
   return (
     <Swipeable renderRightActions={Delete}>
@@ -50,8 +46,6 @@ const RenderItem = memo(({ item }: renderItemProps) => {
 });
 
 export default function Task() {
-  const { setModalEditVisible, setModalTime, modalSubMenu, setModalSubMenu } =
-    storeTicket();
   const [tasks, setTasks] = useState<any>(null);
   const { id, ticket } = useLocalSearchParams();
   const { push } = useRouter();
@@ -63,7 +57,7 @@ export default function Task() {
       toast.warning("Cadastre uma tarefa");
       return;
     }
-    push(`/action/view?id=${id}`);
+    push(`/action/view-report?id=${id}`);
   }, [id]);
 
   async function getTask() {
@@ -88,38 +82,33 @@ export default function Task() {
           ItemSeparatorComponent={ItemSeparator}
           keyExtractor={(item) => item.id.toString()}
         />
-
-        <SubMenuModalPreventive />
       </View>
-      <ModalEditTicket />
-      <ModalTimeTask />
+
       <View style={styles.boxBtnAction}>
-        <Pressable
+        <Link
           style={[styles.btnEditTicket]}
-          onPress={() => {
-            setModalEditVisible(true);
-          }}
+          href={`/action/modal-edit-ticket/modal?id=${id}`}
         >
           <Edit color={Colors.colorIconsLight} />
-        </Pressable>
-        <Pressable
+        </Link>
+        <Link
           style={[styles.btnAction, { backgroundColor: Colors.btnSuccess }]}
-          onPress={() => setModalTime(true)}
+          href={`/action/modal-timetask/modal?id=${id}`}
         >
           <Timer color={Colors.colorIconsLight} />
-        </Pressable>
+        </Link>
         <Pressable
           style={[styles.btnAction, { backgroundColor: Colors.btnSuccess }]}
           onPress={viewSend}
         >
           <Send color={Colors.colorIconsLight} />
         </Pressable>
-        <Pressable
+        <Link
           style={[styles.btnAction]}
-          onPress={() => setModalSubMenu(!modalSubMenu)}
+          href={`/action/modal-submenu-task/modal?id=${id}`}
         >
           <Plus color={Colors.colorIconsLight} />
-        </Pressable>
+        </Link>
       </View>
     </>
   );
