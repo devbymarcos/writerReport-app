@@ -1,18 +1,13 @@
-import { StyleSheet, View, ScrollView } from "react-native";
-import React, { useEffect, useState } from "react";
-import { Colors } from "@/constants/Colors";
-import StatusAndData from "@/components/forms/rep/StatusAndData";
-import CleaningActions from "@/components/forms/rep/CleaningActions";
-import InspectionOfEssentialResources from "@/components/forms/rep/InspectionOfEssentialResources";
-import InstallationConditions from "@/components/forms/rep/InstallationConditions";
-import InterviewWithHR from "@/components/forms/rep/InterviewWithHR";
-import Conclusion from "@/components/forms/rep/Conclusion";
-import { BtnPrimary } from "@/components/ui/btnPrimay";
 import TitleForm from "@/components/ui/titleForm";
+import React, { useEffect, useState } from "react";
+import { View, StyleSheet, ScrollView } from "react-native";
+import TitleCheckDeployment from "@/components/forms/deployment/TitleCheckDeployment";
+import { useForm } from "react-hook-form";
+import { BtnPrimary } from "@/components/ui/btnPrimay";
+import InstallationSteps from "@/components/forms/deployment/InstallationSteps";
+import { Colors } from "@/constants/Colors";
 import { registerTask } from "@/service/registerTask";
 import { useLocalSearchParams, useRouter } from "expo-router";
-import { useForm } from "react-hook-form";
-import TitleCheck from "@/components/forms/rep/TitleCheck";
 import { getTasksById } from "@/service/getTaskbyId";
 import { updateTask } from "@/service/updateTask";
 import { toast } from "sonner-native";
@@ -22,7 +17,7 @@ interface TaskData {
   content: string;
 }
 
-export default function Rep() {
+function Deployment() {
   const { idTask, id } = useLocalSearchParams();
   const [data, setData] = useState<any>(null);
   const { replace } = useRouter();
@@ -36,7 +31,7 @@ export default function Rep() {
       if (!idTask) {
         const response = await registerTask({
           id_ticket: Number(id),
-          content: JSON.stringify({ type: "rep", ...data }),
+          content: JSON.stringify({ type: "deployment", ...data }),
         });
         if ((response?.lastInsertRowId ?? 0) > 0) {
           toast.success("Tarefa salva com sucesso!");
@@ -45,9 +40,8 @@ export default function Rep() {
       } else {
         const updateResponse = await updateTask({
           idTask: Number(idTask),
-          content: JSON.stringify({ type: "rep", ...data }),
+          content: JSON.stringify({ type: "deployment", ...data }),
         });
-        console.log(updateResponse);
         if (updateResponse?.changes ?? 0 > 0) {
           toast.success("Tarefa atualizada com sucesso!");
           replace(`/action/task?id=${id}`);
@@ -67,7 +61,6 @@ export default function Rep() {
       titleCheck: string;
       [key: string]: any;
     };
-    console.log(dataParse);
     setData(dataParse);
   };
 
@@ -80,14 +73,9 @@ export default function Rep() {
   return (
     <ScrollView>
       <View style={styles.container}>
-        <TitleForm title="rep preventiva" />
-        <TitleCheck control={control} />
-        <StatusAndData control={control} />
-        <CleaningActions control={control} />
-        <InspectionOfEssentialResources control={control} />
-        <InstallationConditions control={control} />
-        <InterviewWithHR control={control} />
-        <Conclusion control={control} />
+        <TitleForm title="Implantação" />
+        <TitleCheckDeployment control={control} />
+        <InstallationSteps control={control} />
         <View>
           <BtnPrimary title="Salvar" onPress={handleSubmit(save)} />
         </View>
@@ -103,11 +91,11 @@ const styles = StyleSheet.create({
     padding: 20,
     paddingBottom: 150,
   },
-  title: {
+  text: {
     fontSize: 20,
-    marginBottom: 20,
-    fontWeight: "bold",
     textAlign: "center",
-    textTransform: "uppercase",
+    margin: 10,
   },
 });
+
+export default Deployment;

@@ -29,7 +29,7 @@ export default function RootLayout() {
         />
         <Stack.Screen name="action/doors" options={{ title: "Write report" }} />
         <Stack.Screen
-          name="action/implantacao"
+          name="action/deployment"
           options={{ title: "Write report" }}
         />
         <Stack.Screen name="action/ocr" options={{ title: "Write report" }} />

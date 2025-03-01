@@ -1,11 +1,12 @@
 import { Edit, Plus, Send, Timer } from "lucide-react-native";
-import { memo, useCallback, useEffect, useState } from "react";
+import { memo, useCallback, useEffect, useState, useMemo } from "react";
 import { View, Text, StyleSheet, FlatList, Pressable } from "react-native";
 import { Colors } from "@/constants/Colors";
 import { useRouter, useLocalSearchParams, Link } from "expo-router";
 import React from "react";
 import { getTasksByIdTicket } from "@/service/getTasksByIdTicket";
 import { storeTicket } from "@/store/storeTicket";
+import { getTaskRoute, TaskType } from "@/shared/routes";
 
 import Swipeable from "react-native-gesture-handler/ReanimatedSwipeable";
 import { Trash } from "lucide-react-native";
@@ -14,31 +15,37 @@ import { getTicketAndTasks } from "@/service/getTicketAndTasks";
 import { toast } from "sonner-native";
 
 interface renderItemProps {
-  item: { id: number; name: string; content: any };
+  item: { id: string; id_ticket: string; name: string; content: any };
   removeTask: (id: number) => void;
 }
 
 const RenderItem = memo(({ item, removeTask }: renderItemProps) => {
-  const content = JSON.parse(item.content);
+  const content = useMemo(() => JSON.parse(item.content), [item.content]);
 
   const Delete = useCallback(() => {
+    const handlePress = () => removeTask(Number(item.id));
+
     return (
-      <Pressable
-        style={styles.iconTrash}
-        onPress={() => removeTask(Number(item.id))}
-      >
+      <Pressable style={styles.iconTrash} onPress={handlePress}>
         <Text>
           <Trash color="#fff" />
         </Text>
       </Pressable>
     );
-  }, [removeTask]);
+  }, [removeTask, item.id]);
+
+  const renderRightActions = useCallback(() => {
+    return <Delete />;
+  }, [Delete]);
 
   return (
-    <Swipeable renderRightActions={Delete}>
-      <View style={styles.item}>
+    <Swipeable renderRightActions={renderRightActions}>
+      <Link
+        style={styles.item}
+        href={getTaskRoute(content.type as TaskType, item.id, item.id_ticket)}
+      >
         <Text style={styles.titleItem}>{content.titleCheck}</Text>
-      </View>
+      </Link>
     </Swipeable>
   );
 });
@@ -50,7 +57,6 @@ export default function Task() {
   const { push } = useRouter();
 
   const viewSend = useCallback(async () => {
-    const data = await getTicketAndTasks(Number(id));
     //@ts-ignore
     if (data[0].content == null) {
       toast.warning("Cadastre uma tarefa");
@@ -61,6 +67,7 @@ export default function Task() {
 
   async function getTask() {
     const data = await getTasksByIdTicket(Number(id));
+    console.log(data);
     setTasks(data);
   }
 
