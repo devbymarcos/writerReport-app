@@ -1,11 +1,11 @@
 import { StyleSheet, View, ScrollView } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Colors } from "@/constants/Colors";
 import { BtnPrimary } from "@/components/ui/btnPrimay";
 import TitleForm from "@/components/ui/titleForm";
 import TitleCheck from "@/components/forms/catraca/TitleCheck";
 import { useForm } from "react-hook-form";
-import StatusAndDataCatraca from "@/components/forms/catraca/ StatusAndDataCatraca";
+import StatusAndDataCatraca from "@/components/forms/catraca/StatusAndDataCatraca";
 import CleaningActions from "@/components/forms/catraca/CleaningActions";
 import InspectionOfEssentialResources from "@/components/forms/catraca/InspectionOfEssentialResources";
 import FaceReader from "@/components/forms/catraca/FaceReader";
@@ -14,25 +14,72 @@ import Conclusion from "@/components/forms/rep/Conclusion";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { registerTask } from "@/service/registerTask";
 import InstallationConditions from "@/components/forms/catraca/InstallationConditions";
+import { getTasksById } from "@/service/getTaskbyId";
+import { updateTask } from "@/service/updateTask";
+import { toast } from "sonner-native";
+
+interface TaskData {
+  id: number;
+  content: string;
+}
 
 export default function Catraca() {
-  const { id } = useLocalSearchParams();
+  const { idTask, id } = useLocalSearchParams();
+  const [data, setData] = useState<any>(null);
   const { replace } = useRouter();
-  const { control, handleSubmit } = useForm();
+
+  const { control, handleSubmit } = useForm({
+    values: data,
+  });
 
   async function save(data: any) {
-    const response = await registerTask({
-      id_ticket: Number(id),
-      content: JSON.stringify({ type: "catraca", ...data }),
-    });
-    if ((response?.lastInsertRowId ?? 0) > 0) {
-      replace(`/action/task?id=${id}`);
+    try {
+      if (!idTask) {
+        const response = await registerTask({
+          id_ticket: Number(id),
+          content: JSON.stringify({ type: "catraca", ...data }),
+        });
+        if ((response?.lastInsertRowId ?? 0) > 0) {
+          toast.success("Tarefa salva com sucesso!");
+          replace(`/action/task?id=${id}`);
+        }
+      } else {
+        const updateResponse = await updateTask({
+          idTask: Number(idTask),
+          content: JSON.stringify({ type: "catraca", ...data }),
+        });
+        if (updateResponse?.changes ?? 0 > 0) {
+          toast.success("Tarefa atualizada com sucesso!");
+          replace(`/action/task?id=${id}`);
+        }
+      }
+    } catch (error) {
+      toast.error("Erro ao salvar tarefa");
+      console.error(error);
     }
   }
+
+  const getDataTask = async (idTask: number) => {
+    const data = (await getTasksById(idTask)) as TaskData[];
+    if (!data?.[0]?.content) return;
+    const dataParse = JSON.parse(data[0].content) as {
+      type: string;
+      titleCheck: string;
+      [key: string]: any;
+    };
+    setData(dataParse);
+  };
+
+  useEffect(() => {
+    if (idTask) {
+      getDataTask(Number(idTask));
+    }
+  }, []);
+
   return (
     <ScrollView>
       <View style={styles.container}>
-        <TitleForm title="catraca preventiva" />
+        <TitleForm title="Catraca preventiva" />
         <TitleCheck control={control} />
         <StatusAndDataCatraca control={control} />
         <CleaningActions control={control} />
@@ -54,7 +101,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.bgPrimary,
     padding: 20,
-    paddingBottom: 100,
+    paddingBottom: 150,
   },
   title: {
     fontSize: 20,
