@@ -36,6 +36,14 @@ const dataMenuPreventive: MenuItem[] = [
     title: "Corretiva",
     path: "/action/corrective",
   },
+  {
+    title: "Vistoria Mensal Veículos",
+    path: "/action/inspectionVeichleMonth",
+  },
+  {
+    title: "Vistoria Diária Veículos",
+    path: "/action/inspectionVeichleDaily",
+  },
 ];
 
 export default function SubMenuModalPreventive() {

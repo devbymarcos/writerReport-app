@@ -54,26 +54,24 @@ export default function Task() {
   const [tasks, setTasks] = useState<any>(null);
   const { id, ticket } = useLocalSearchParams();
   const { setLoadPage, loadPage } = storeTicket();
-  const { push } = useRouter();
+  const { replace } = useRouter();
 
   const viewSend = useCallback(async () => {
     //@ts-ignore
-    if (data[0].content == null) {
+    if (tasks[0].content == null) {
       toast.warning("Cadastre uma tarefa");
       return;
     }
-    push(`/action/view-report?id=${id}`);
-  }, [id]);
+    replace(`/action/view-report?id=${id}`);
+  }, [id, tasks]);
 
   async function getTask() {
     const data = await getTasksByIdTicket(Number(id));
-    console.log(data);
     setTasks(data);
   }
 
   const removeTask = useCallback(async (id: number) => {
     const response = await deleteTask({ id: id });
-
     setLoadPage(!loadPage);
   }, []);
 

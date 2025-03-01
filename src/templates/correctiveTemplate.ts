@@ -17,5 +17,6 @@ ${item.nonRepetitionSuggestion}
 *4 - O problema foi 100% resolvido ou existe pendência?*
 ${item.fullyResolved}
 
+########################
 `;
 }

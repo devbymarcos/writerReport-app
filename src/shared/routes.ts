@@ -5,6 +5,7 @@ export const TASK_ROUTES = {
   ocr: "/action/ocr",
   doors: "/action/doors",
   corrective: "/action/corrective",
+  inspectionVeichleMonth: "/action/inspectionVeichleMonth",
 } as const;
 
 export type TaskType = keyof typeof TASK_ROUTES;

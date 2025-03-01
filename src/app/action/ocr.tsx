@@ -1,5 +1,5 @@
 import { StyleSheet, View, ScrollView } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Colors } from "@/constants/Colors";
 import { BtnPrimary } from "@/components/ui/btnPrimay";
 import TitleForm from "@/components/ui/titleForm";
@@ -12,26 +12,72 @@ import ExternalInspection from "@/components/forms/ocr/ExternalInspection";
 import CableInspection from "@/components/forms/ocr/CableInspection";
 import Testes from "@/components/forms/ocr/Teste";
 import Conclusion from "@/components/forms/ocr/Conclusion";
+import { getTasksById } from "@/service/getTaskbyId";
+import { updateTask } from "@/service/updateTask";
+import { toast } from "sonner-native";
 
-export default function Rep() {
-  const { id } = useLocalSearchParams();
+interface TaskData {
+  id: number;
+  content: string;
+}
+
+export default function Ocr() {
+  const { idTask, id } = useLocalSearchParams();
+  const [data, setData] = useState<any>(null);
   const { replace } = useRouter();
-  const { control, handleSubmit } = useForm();
+
+  const { control, handleSubmit } = useForm({
+    values: data,
+  });
 
   async function save(data: any) {
-    const response = await registerTask({
-      id_ticket: Number(id),
-      content: JSON.stringify({ type: "ocr", ...data }),
-    });
-    if ((response?.lastInsertRowId ?? 0) > 0) {
-      replace(`/action/task?id=${id}`);
+    try {
+      if (!idTask) {
+        const response = await registerTask({
+          id_ticket: Number(id),
+          content: JSON.stringify({ type: "ocr", ...data }),
+        });
+        if ((response?.lastInsertRowId ?? 0) > 0) {
+          toast.success("Tarefa salva com sucesso!");
+          replace(`/action/task?id=${id}`);
+        }
+      } else {
+        const updateResponse = await updateTask({
+          idTask: Number(idTask),
+          content: JSON.stringify({ type: "ocr", ...data }),
+        });
+        if (updateResponse?.changes ?? 0 > 0) {
+          toast.success("Tarefa atualizada com sucesso!");
+          replace(`/action/task?id=${id}`);
+        }
+      }
+    } catch (error) {
+      toast.error("Erro ao salvar tarefa");
+      console.error(error);
     }
   }
+
+  const getDataTask = async (idTask: number) => {
+    const data = (await getTasksById(idTask)) as TaskData[];
+    if (!data?.[0]?.content) return;
+    const dataParse = JSON.parse(data[0].content) as {
+      type: string;
+      titleCheck: string;
+      [key: string]: any;
+    };
+    setData(dataParse);
+  };
+
+  useEffect(() => {
+    if (idTask) {
+      getDataTask(Number(idTask));
+    }
+  }, []);
 
   return (
     <ScrollView>
       <View style={styles.container}>
-        <TitleForm title=" Preventiva OCR" />
+        <TitleForm title="Preventiva OCR" />
         <TitleCheck control={control} />
         <CleaningOcr control={control} />
         <ExternalInspection control={control} />
