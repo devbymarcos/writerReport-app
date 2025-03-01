@@ -19,7 +19,6 @@ export default function Rep() {
   const { control, handleSubmit } = useForm();
 
   function save(data: any) {
-    console.log("ocr", data);
     registerTask({
       id_ticket: Number(id),
       content: JSON.stringify({ type: "ocr", ...data }),
