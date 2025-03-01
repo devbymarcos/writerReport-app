@@ -14,12 +14,14 @@ function Implantacao() {
   const { id } = useLocalSearchParams();
   const { replace } = useRouter();
 
-  function save(data: any) {
-    registerTask({
+  async function save(data: any) {
+    const response = await registerTask({
       id_ticket: Number(id),
       content: JSON.stringify({ type: "deployment", ...data }),
     });
-    replace(`/action/task?id=${id}`);
+    if ((response?.lastInsertRowId ?? 0) > 0) {
+      replace(`/action/task?id=${id}`);
+    }
   }
   return (
     <ScrollView>

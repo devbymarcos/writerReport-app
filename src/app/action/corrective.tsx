@@ -18,12 +18,14 @@ export default function Rep() {
   const { replace } = useRouter();
   const { control, handleSubmit } = useForm();
 
-  function save(data: any) {
-    registerTask({
+  async function save(data: any) {
+    const response = await registerTask({
       id_ticket: Number(id),
       content: JSON.stringify({ type: "corrective", ...data }),
     });
-    replace(`/action/task?id=${id}`);
+    if ((response?.lastInsertRowId ?? 0) > 0) {
+      replace(`/action/task?id=${id}`);
+    }
   }
 
   return (
