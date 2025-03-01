@@ -16,4 +16,6 @@ export const Colors = {
   //icons
   colorIconsLight: "#fff",
   colorIconsDark: "#000",
+  //text
+  text: "#000",
 };

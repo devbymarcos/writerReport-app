@@ -15,7 +15,7 @@ export default function CleaningActions({ control }: { control: any }) {
         render={({ field }) => (
           <Select
             label="Gabinete Interno:"
-            items={["...", "Realizada", "Não Realizada", "Não aplicavel"]}
+            items={["Realizada", "Não Realizada", "Não aplicavel"]}
             value={field.value}
             setValue={field.onChange}
           />
@@ -27,7 +27,7 @@ export default function CleaningActions({ control }: { control: any }) {
         render={({ field }) => (
           <Select
             label="Placa principal:"
-            items={["...", "Realizada", "Não Realizada", "Não aplicavel"]}
+            items={["Realizada", "Não Realizada", "Não aplicavel"]}
             value={field.value}
             setValue={field.onChange}
           />
@@ -39,7 +39,7 @@ export default function CleaningActions({ control }: { control: any }) {
         render={({ field }) => (
           <Select
             label="Leitores:"
-            items={["...", "Realizada", "Não Realizada", "Não aplicavel"]}
+            items={["Realizada", "Não Realizada", "Não aplicavel"]}
             value={field.value}
             setValue={field.onChange}
           />
@@ -51,7 +51,7 @@ export default function CleaningActions({ control }: { control: any }) {
         render={({ field }) => (
           <Select
             label="Switch (caso exista)::"
-            items={["...", "Realizada", "Não Realizada", "Não aplicavel"]}
+            items={["Realizada", "Não Realizada", "Não aplicavel"]}
             value={field.value}
             setValue={field.onChange}
           />

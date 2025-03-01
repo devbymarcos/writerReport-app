@@ -15,7 +15,7 @@ export default function InstallationConditions({ control }: { control: any }) {
         render={({ field }) => (
           <Select
             label="Fixação do equipamento"
-            items={["...", "Ok", "Abrir Ticket", "Corrigido", "Não realizado"]}
+            items={["Ok", "Abrir Ticket", "Corrigido", "Não realizado"]}
             value={field.value}
             setValue={field.onChange}
           />
@@ -27,7 +27,7 @@ export default function InstallationConditions({ control }: { control: any }) {
         render={({ field }) => (
           <Select
             label="Organização cabos de rede/energia"
-            items={["...", "Ok", "Abrir Ticket", "Corrigido", "Não realizado"]}
+            items={["Ok", "Abrir Ticket", "Corrigido", "Não realizado"]}
             value={field.value}
             setValue={field.onChange}
           />
@@ -39,7 +39,7 @@ export default function InstallationConditions({ control }: { control: any }) {
         render={({ field }) => (
           <Select
             label="Canaletas e Eletrodutos"
-            items={["...", "Ok", "Abrir Ticket", "Corrigido", "Não realizado"]}
+            items={["Ok", "Abrir Ticket", "Corrigido", "Não realizado"]}
             value={field.value}
             setValue={field.onChange}
           />
@@ -51,7 +51,7 @@ export default function InstallationConditions({ control }: { control: any }) {
         render={({ field }) => (
           <Select
             label="Exposição a Chuva/Sol"
-            items={["...", "Ok", "Abrir Ticket", "Corrigido", "Não realizado"]}
+            items={["Ok", "Abrir Ticket", "Corrigido", "Não realizado"]}
             value={field.value}
             setValue={field.onChange}
           />

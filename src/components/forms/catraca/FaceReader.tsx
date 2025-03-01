@@ -14,7 +14,7 @@ export default function FaceReader({ control }: { control: any }) {
         render={({ field }) => (
           <Select
             label="Limpeza:"
-            items={["...", "Realizada", "Abrir Ticket", "Não realizado"]}
+            items={["Realizada", "Abrir Ticket", "Não realizado"]}
             value={field.value}
             setValue={field.onChange}
           />
@@ -26,7 +26,7 @@ export default function FaceReader({ control }: { control: any }) {
         render={({ field }) => (
           <Select
             label="Display:"
-            items={["...", "Ok", "Abrir Ticket", "Não realizado"]}
+            items={["Ok", "Abrir Ticket", "Não realizado"]}
             value={field.value}
             setValue={field.onChange}
           />
@@ -39,13 +39,7 @@ export default function FaceReader({ control }: { control: any }) {
           <Select
             label="Possui admin padrão cadastrado(Padrão estipulado para o
                 cliente)"
-            items={[
-              "...",
-              "Ok",
-              "Corrigido",
-              "Não aplicavel",
-              "Não verificado",
-            ]}
+            items={["Ok", "Corrigido", "Não aplicavel", "Não verificado"]}
             value={field.value}
             setValue={field.onChange}
           />
@@ -57,7 +51,7 @@ export default function FaceReader({ control }: { control: any }) {
         render={({ field }) => (
           <Select
             label="Cabos e conexões:"
-            items={["...", "Ok", "Corrigido", "Abrir Ticket", "Não verificado"]}
+            items={["Ok", "Corrigido", "Não verificado", "Abrir ticket"]}
             value={field.value}
             setValue={field.onChange}
           />

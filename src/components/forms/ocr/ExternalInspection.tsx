@@ -15,7 +15,6 @@ export default function ExternalInspection({ control }: { control: any }) {
           <Select
             label="Cancela (cabos e conexões)"
             items={[
-              "...",
               "Ok",
               "Reaperto ou fixação realizada",
               "Abrir ticket Correção",
@@ -33,7 +32,6 @@ export default function ExternalInspection({ control }: { control: any }) {
           <Select
             label="Câmera (cabos e conexões fixação quando necessário)"
             items={[
-              "...",
               "Ok",
               "Posicionamento ou fixação realizada",
               "Abrir ticket Correção",
@@ -51,7 +49,6 @@ export default function ExternalInspection({ control }: { control: any }) {
           <Select
             label="Laços Indutivos (cabos e conexões fixação quando necessário)"
             items={[
-              "...",
               "Ok",
               "Reaperto ou fixação realizada",
               "Abrir ticket Correção",
@@ -70,7 +67,6 @@ export default function ExternalInspection({ control }: { control: any }) {
             label="Sensores de automação (cabos e conexões fixação quando
                   necessário)"
             items={[
-              "...",
               "Ok",
               "Reaperto ou fixação realizada",
               "Abrir ticket Correção",
@@ -88,7 +84,6 @@ export default function ExternalInspection({ control }: { control: any }) {
           <Select
             label="Pedestais (Reaperto quando necessário)"
             items={[
-              "...",
               "Ok",
               "Reaperto ou fixação realizada",
               "Abrir ticket Correção",
@@ -106,7 +101,6 @@ export default function ExternalInspection({ control }: { control: any }) {
           <Select
             label="Braços e postes de fixação (Reaperto quando necessário)"
             items={[
-              "...",
               "Ok",
               "Reaperto ou fixação realizada",
               "Abrir ticket Correção",

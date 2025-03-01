@@ -20,7 +20,6 @@ export default function StatusAndData({ control }: StatusAndDataProps) {
           <Select
             label="Funcionamento"
             items={[
-              "...",
               "Em pleno funcionamento",
               "Parcial",
               "Desligado ou desativado",
@@ -36,7 +35,7 @@ export default function StatusAndData({ control }: StatusAndDataProps) {
         render={({ field }) => (
           <Select
             label="Marca do relógio"
-            items={["...", "Madis", "Control ID", "Proveu"]}
+            items={["Madis", "Control ID", "Proveu"]}
             value={field.value}
             setValue={field.onChange}
           />

@@ -15,7 +15,6 @@ export default function Testes({ control }: { control: any }) {
           <Select
             label="Módulo I/O status do led (Foto)"
             items={[
-              "...",
               "Em operação foto registrada",
               "Não realizado",
               "Abrir ticket",
@@ -32,7 +31,6 @@ export default function Testes({ control }: { control: any }) {
           <Select
             label="Cancela teste abertura e fechamento"
             items={[
-              "...",
               "Abertura e fechamento 100%",
               "Não autorizado em operação",
               "Abrir ticket",

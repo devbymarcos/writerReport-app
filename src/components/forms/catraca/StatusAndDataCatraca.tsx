@@ -1,27 +1,26 @@
-import React from "react";
+import { View } from "react-native";
+import { Control } from "react-hook-form";
 import Card from "@/components/ui/card";
-import Input from "@/components/ui/input";
 import Select from "@/components/ui/select";
+import Input from "@/components/ui/input";
 import TitleSectionForm from "@/components/ui/titleSectionForm";
 import { Controller } from "react-hook-form";
 
-interface StatusAndDataCatracaProps {
-  control: any;
+interface Props {
+  control: Control<any>;
 }
-export default function StatusAndDataCatraca({
-  control,
-}: StatusAndDataCatracaProps) {
+
+export default function StatusAndDataCatraca({ control }: Props) {
   return (
     <Card>
-      <TitleSectionForm title="Dados e status:" />
+      <TitleSectionForm title="Dados e status" />
       <Controller
         control={control}
         name="stateOperation"
         render={({ field }) => (
           <Select
-            label="Funcionamento"
+            label="Estado de Funcionamento"
             items={[
-              "...",
               "Em pleno funcionamento",
               "Parcial",
               "Desligado ou desativado",
@@ -37,7 +36,7 @@ export default function StatusAndDataCatraca({
         render={({ field }) => (
           <Select
             label="Marca"
-            items={["...", "Madis", "Control ID"]}
+            items={["Control ID", "Henry", "Dimep", "Outros"]}
             value={field.value}
             setValue={field.onChange}
           />
@@ -60,9 +59,9 @@ export default function StatusAndDataCatraca({
         render={({ field }) => (
           <Input
             label="IP"
-            keyboardType="default"
             value={field.value}
             onChangeText={field.onChange}
+            keyboardType="numeric"
           />
         )}
       />
@@ -71,10 +70,10 @@ export default function StatusAndDataCatraca({
         name="masc"
         render={({ field }) => (
           <Input
-            label="Mascara"
-            keyboardType="phone-pad"
+            label="Máscara de rede"
             value={field.value}
             onChangeText={field.onChange}
+            keyboardType="numeric"
           />
         )}
       />
@@ -84,9 +83,9 @@ export default function StatusAndDataCatraca({
         render={({ field }) => (
           <Input
             label="Gateway"
-            keyboardType="phone-pad"
             value={field.value}
             onChangeText={field.onChange}
+            keyboardType="numeric"
           />
         )}
       />
@@ -95,10 +94,10 @@ export default function StatusAndDataCatraca({
         name="sealWork"
         render={({ field }) => (
           <Input
-            label="Lacre Work"
-            keyboardType="phone-pad"
+            label="Número lacre Work"
             value={field.value}
             onChangeText={field.onChange}
+            keyboardType="numeric"
           />
         )}
       />

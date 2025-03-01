@@ -15,7 +15,6 @@ export default function CleaningOcr({ control }: { control: any }) {
           <Select
             label="Cancelas"
             items={[
-              "...",
               "Limpeza realizada",
               "Não autorizado ação",
               "Abrir ticket Correção",
@@ -33,7 +32,6 @@ export default function CleaningOcr({ control }: { control: any }) {
           <Select
             label="Sensores Antiesmagamento:"
             items={[
-              "...",
               "Limpeza realizada",
               "Não autorizado ação",
               "Abrir ticket Correção",
@@ -51,7 +49,6 @@ export default function CleaningOcr({ control }: { control: any }) {
           <Select
             label="Câmeras:"
             items={[
-              "...",
               "Limpeza realizada",
               "Não autorizado ação",
               "Abrir ticket Correção",
@@ -69,7 +66,6 @@ export default function CleaningOcr({ control }: { control: any }) {
           <Select
             label="Postes e pedestais:"
             items={[
-              "...",
               "Limpeza realizada",
               "Não autorizado ação",
               "Abrir ticket Correção",
@@ -87,7 +83,6 @@ export default function CleaningOcr({ control }: { control: any }) {
           <Select
             label="Sensores de automação:"
             items={[
-              "...",
               "Limpeza realizada",
               "Não autorizado ação",
               "Abrir ticket Correção",

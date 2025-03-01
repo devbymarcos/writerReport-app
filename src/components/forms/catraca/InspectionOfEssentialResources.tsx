@@ -20,7 +20,6 @@ export default function InspectionOfEssentialResources({
           <Select
             label="Display:"
             items={[
-              "...",
               "Ok",
               "Necessário troca",
               "Corrigido na preventiva",
@@ -38,7 +37,6 @@ export default function InspectionOfEssentialResources({
           <Select
             label="Teclado:"
             items={[
-              "...",
               "Ok",
               "Necessário troca",
               "Corrigido na preventiva",
@@ -56,7 +54,6 @@ export default function InspectionOfEssentialResources({
           <Select
             label="Leitores (cartão):"
             items={[
-              "...",
               "Ok",
               "Necessário troca",
               "Corrigido na preventiva",
@@ -74,7 +71,6 @@ export default function InspectionOfEssentialResources({
           <Select
             label="Corpo metalico::"
             items={[
-              "...",
               "Ok",
               "Necessário troca",
               "Corrigido na preventiva",

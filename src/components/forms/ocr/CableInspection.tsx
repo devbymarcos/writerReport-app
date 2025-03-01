@@ -15,7 +15,6 @@ export default function CableInspection({ control }: { control: any }) {
           <Select
             label="Cancela (cabos e conexões)"
             items={[
-              "...",
               "Ok",
               "Não possui cabo aparente",
               "Organizado ou Adicionado Enrola cabo",

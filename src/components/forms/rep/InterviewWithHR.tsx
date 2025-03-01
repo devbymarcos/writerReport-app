@@ -14,7 +14,7 @@ export default function InterviewWithHR({ control }: { control: any }) {
         render={({ field }) => (
           <Select
             label="Funcionamento do equipamento"
-            items={["...", "Sem dúvidas", "Abrir Ticket", "Não perguntado"]}
+            items={["Sem dúvidas", "Abrir Ticket", "Não perguntado"]}
             value={field.value}
             setValue={field.onChange}
           />

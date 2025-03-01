@@ -1,5 +1,10 @@
 import InitTicket from "@/components/forms/InitTicket";
 import TitleCheck from "@/components/forms/TitleCheck";
+import Clear from "@/components/forms/vehicleDaily/Clear";
+import Level from "@/components/forms/vehicleDaily/Level";
+import Light from "@/components/forms/vehicleDaily/Light";
+import NoConformities from "@/components/forms/vehicleDaily/NoConformities";
+import Vehicle from "@/components/forms/vehicleDaily/Vehicle";
 import { BtnPrimary } from "@/components/ui/btnPrimay";
 import TitleForm from "@/components/ui/titleForm";
 import { Colors } from "@/constants/Colors";
@@ -40,6 +45,11 @@ export default function inspectionVeichleDaily() {
       <View style={styles.container}>
         <TitleForm title="Inspeção Diária de Veículos" />
         <TitleCheck control={control} />
+        <Vehicle control={control} />
+        <Clear control={control} />
+        <Level control={control} />
+        <Light control={control} />
+        <NoConformities control={control} />
         <BtnPrimary title="Salvar" onPress={handleSubmit(save)} />
       </View>
     </ScrollView>

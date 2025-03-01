@@ -15,7 +15,7 @@ export default function CleaningActions({ control }: { control: any }) {
         render={({ field }) => (
           <Select
             label="Estética e Externa (Silicone):"
-            items={["...", "Realizada", "Não Realizada"]}
+            items={["Realizada", "Não Realizada"]}
             value={field.value}
             setValue={field.onChange}
           />
@@ -27,7 +27,7 @@ export default function CleaningActions({ control }: { control: any }) {
         render={({ field }) => (
           <Select
             label="Compartimento de bobina:"
-            items={["...", "Realizada", "Não Realizada"]}
+            items={["Realizada", "Não Realizada"]}
             value={field.value}
             setValue={field.onChange}
           />
@@ -39,7 +39,7 @@ export default function CleaningActions({ control }: { control: any }) {
         render={({ field }) => (
           <Select
             label="Cabeça de impressão:"
-            items={["...", "Realizada", "Não Realizada"]}
+            items={["Realizada", "Não Realizada"]}
             value={field.value}
             setValue={field.onChange}
           />

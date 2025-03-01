@@ -14,7 +14,7 @@ export default function AccessControlPanel({ control }: { control: any }) {
         render={({ field }) => (
           <Select
             label="Fixação:"
-            items={["...", "OK", "Abrir ticket correção", "Não verificado"]}
+            items={["OK", "Abrir ticket correção", "Não verificado"]}
             value={field.value}
             setValue={field.onChange}
           />
@@ -26,12 +26,7 @@ export default function AccessControlPanel({ control }: { control: any }) {
         render={({ field }) => (
           <Select
             label="Limpeza do painel:"
-            items={[
-              "...",
-              "Realizada",
-              "Abrir ticket Correção",
-              "Não verificado",
-            ]}
+            items={["Realizada", "Abrir ticket Correção", "Não verificado"]}
             value={field.value}
             setValue={field.onChange}
           />
@@ -43,12 +38,7 @@ export default function AccessControlPanel({ control }: { control: any }) {
         render={({ field }) => (
           <Select
             label="Status:"
-            items={[
-              "...",
-              "Operando normalmente",
-              "Corrigido",
-              "Não verificado",
-            ]}
+            items={["Operando normalmente", "Corrigido", "Não verificado"]}
             value={field.value}
             setValue={field.onChange}
           />
@@ -60,7 +50,7 @@ export default function AccessControlPanel({ control }: { control: any }) {
         render={({ field }) => (
           <Select
             label="Cabos e conexões:"
-            items={["...", "OK", "Corrigido", "Não verificado", "Abrir ticket"]}
+            items={["OK", "Corrigido", "Não verificado", "Abrir ticket"]}
             value={field.value}
             setValue={field.onChange}
           />

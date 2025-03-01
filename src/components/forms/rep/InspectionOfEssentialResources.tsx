@@ -19,7 +19,7 @@ export default function InspectionOfEssentialResources({
         render={({ field }) => (
           <Select
             label="Display"
-            items={["...", "Ok", "Abrir Ticket", "Não realizado"]}
+            items={["Ok", "Abrir Ticket", "Não realizado"]}
             value={field.value}
             setValue={field.onChange}
           />
@@ -31,7 +31,7 @@ export default function InspectionOfEssentialResources({
         render={({ field }) => (
           <Select
             label="Impressor"
-            items={["...", "Ok", "Abrir Ticket", "Não realizado"]}
+            items={["Ok", "Abrir Ticket", "Não realizado"]}
             value={field.value}
             setValue={field.onChange}
           />
@@ -43,7 +43,7 @@ export default function InspectionOfEssentialResources({
         render={({ field }) => (
           <Select
             label="Teclado"
-            items={["...", "Ok", "Abrir Ticket", "Não realizado"]}
+            items={["Ok", "Abrir Ticket", "Não realizado"]}
             value={field.value}
             setValue={field.onChange}
           />
@@ -55,7 +55,7 @@ export default function InspectionOfEssentialResources({
         render={({ field }) => (
           <Select
             label="Leitores (carão e biometria):"
-            items={["...", "Ok", "Abrir Ticket", "Não realizado"]}
+            items={["Ok", "Abrir Ticket", "Não realizado"]}
             value={field.value}
             setValue={field.onChange}
           />
@@ -67,7 +67,7 @@ export default function InspectionOfEssentialResources({
         render={({ field }) => (
           <Select
             label="Guilhotina ou serrilha:"
-            items={["...", "Ok", "Abrir Ticket", "Não realizado"]}
+            items={["Ok", "Abrir Ticket", "Não realizado"]}
             value={field.value}
             setValue={field.onChange}
           />
@@ -79,7 +79,7 @@ export default function InspectionOfEssentialResources({
         render={({ field }) => (
           <Select
             label="Caixa fronta/traseira:"
-            items={["...", "Ok", "Abrir Ticket", "Não realizado"]}
+            items={["Ok", "Abrir Ticket", "Não realizado"]}
             value={field.value}
             setValue={field.onChange}
           />
