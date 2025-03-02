@@ -11,6 +11,17 @@ export default function Conclusion({ control }: { control: any }) {
       <TitleSectionForm title="Conclusão:(use 'ENTER' para quebra de linha) " />
       <Controller
         control={control}
+        name="improvementSuggestions"
+        render={({ field }) => (
+          <InputMultiplo
+            label="Sugestão de melhorias:"
+            value={field.value}
+            onChangeText={field.onChange}
+          />
+        )}
+      />
+      <Controller
+        control={control}
         name="nonConformitiesDescription"
         render={({ field }) => (
           <InputMultiplo

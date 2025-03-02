@@ -1,9 +1,10 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import React, { useState } from "react";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { Controller } from "react-hook-form";
 import Input from "@/components/ui/input";
 import { Clock } from "lucide-react-native";
+import { Colors } from "@/constants/Colors";
 
 interface TimePeckerProps {
   control: any;
@@ -58,9 +59,9 @@ export default function TimePicker({
                   : ""
               }
             />
-            <Pressable onPress={showDatepicker}>
-              <Clock color="#000" />
-            </Pressable>
+            <TouchableOpacity style={styles.btnIcon} onPress={showDatepicker}>
+              <Clock color={Colors.colorIconsLight} size={16} />
+            </TouchableOpacity>
           </View>
         </>
       )}
@@ -74,6 +75,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    gap: 20,
+    gap: 5,
+  },
+  btnIcon: {
+    padding: 14,
+    backgroundColor: Colors.btnPrimary,
+    borderRadius: 8,
+    marginTop: 10,
   },
 });

@@ -48,11 +48,9 @@ const dataMenuPreventive: MenuItem[] = [
 
 export default function SubMenuModalPreventive() {
   const { id } = useLocalSearchParams();
-  const { modalSubMenu, setModalSubMenu } = storeTicket();
   const { push } = useRouter();
 
   const goRouter = (path: string) => {
-    setModalSubMenu(!modalSubMenu);
     push(`${path}?id=${id}` as any);
   };
 

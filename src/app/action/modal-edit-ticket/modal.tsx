@@ -13,8 +13,6 @@ import { updateTicket } from "@/service/updateTicket";
 import { toast } from "sonner-native";
 
 export default function ModalEditTicket() {
-  const { modalEditVisible, setModalEditVisible } = storeTicket();
-
   const [loadedData, setLoadedData] = useState(undefined);
   const { control, handleSubmit, setValue } = useForm({ values: loadedData });
   const { id } = useLocalSearchParams();

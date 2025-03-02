@@ -54,7 +54,7 @@ export default function Task() {
   const [tasks, setTasks] = useState<any>(null);
   const { id, ticket } = useLocalSearchParams();
   const { setLoadPage, loadPage } = storeTicket();
-  const { replace } = useRouter();
+  const { push } = useRouter();
 
   const viewSend = useCallback(async () => {
     //@ts-ignore
@@ -62,7 +62,7 @@ export default function Task() {
       toast.warning("Cadastre uma tarefa");
       return;
     }
-    replace(`/action/view-report?id=${id}`);
+    push(`/action/view-report?id=${id}`);
   }, [id, tasks]);
 
   async function getTask() {

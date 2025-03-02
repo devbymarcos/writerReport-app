@@ -16,7 +16,6 @@ export default function InterviewWithClient({ control }: { control: any }) {
           <Select
             label="Funcionamento do equipamento:"
             items={[
-              "...",
               "Sem dúvidas",
               "Abrir Ticket",
               "Resolvido na preventiva",

@@ -41,17 +41,6 @@ export default function InstallationSteps({ control }: { control: any }) {
           />
         )}
       />
-      <Controller
-        control={control}
-        name="unproductiveTime"
-        render={({ field }) => (
-          <InputMultiplo
-            label="Justificativas de horas improdutivas (se houver)?"
-            value={field.value}
-            onChangeText={field.onChange}
-          />
-        )}
-      />
     </Card>
   );
 }

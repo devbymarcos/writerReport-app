@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.bgPrimary,
-    padding: 20,
+    padding: 10,
     paddingBottom: 150,
   },
   title: {
