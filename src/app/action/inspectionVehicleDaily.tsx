@@ -8,17 +8,26 @@ import Vehicle from "@/components/forms/vehicleDaily/Vehicle";
 import { BtnPrimary } from "@/components/ui/btnPrimay";
 import TitleForm from "@/components/ui/titleForm";
 import { Colors } from "@/constants/Colors";
+import { getTasksById } from "@/service/getTaskbyId";
 import { registerTask } from "@/service/registerTask";
 import { updateTask } from "@/service/updateTask";
 import { useLocalSearchParams, useRouter } from "expo-router";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { StyleSheet, ScrollView, View } from "react-native";
 import { toast } from "sonner-native";
 
+interface TaskData {
+  id: number;
+  content: string;
+}
+
 export default function InspectionVehicleDaily() {
   const { replace } = useRouter();
   const { idTask, id } = useLocalSearchParams();
+  const [data, setData] = useState<any>(null);
   const { control, handleSubmit, reset } = useForm({
+    values: data,
     defaultValues: {
       date: new Date(),
     },
@@ -52,6 +61,24 @@ export default function InspectionVehicleDaily() {
       console.error(error);
     }
   }
+
+  const getDataTask = async (idTask: number) => {
+    const data = (await getTasksById(idTask)) as TaskData[];
+    if (!data?.[0]?.content) return;
+    const dataParse = JSON.parse(data[0].content) as {
+      type: string;
+      titleCheck: string;
+      [key: string]: any;
+    };
+    console.log(dataParse);
+    setData(dataParse);
+  };
+
+  useEffect(() => {
+    if (idTask) {
+      getDataTask(Number(idTask));
+    }
+  }, []);
 
   return (
     <ScrollView>

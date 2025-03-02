@@ -6,12 +6,10 @@ import { useRouter, useLocalSearchParams, Link } from "expo-router";
 import React from "react";
 import { getTasksByIdTicket } from "@/service/getTasksByIdTicket";
 import { storeTicket } from "@/store/storeTicket";
-import { getTaskRoute, TaskType } from "@/shared/routes";
-
+import { getTaskRoute, TaskType } from "@/shared/routesDinamicInLinks";
 import Swipeable from "react-native-gesture-handler/ReanimatedSwipeable";
 import { Trash } from "lucide-react-native";
 import { deleteTask } from "@/service/deleteTasks";
-import { getTicketAndTasks } from "@/service/getTicketAndTasks";
 import { toast } from "sonner-native";
 
 interface renderItemProps {

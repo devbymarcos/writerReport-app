@@ -5,7 +5,7 @@ interface MenuItem {
 
 export const dataMenu: MenuItem[] = [
   {
-    title: "Veiculos",
+    title: "Cadastro de Veículos",
     path: "/action/vehicle",
   },
 ];
