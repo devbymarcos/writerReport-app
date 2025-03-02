@@ -18,7 +18,7 @@ import { toast } from "sonner-native";
 export default function InspectionVehicleDaily() {
   const { replace } = useRouter();
   const { idTask, id } = useLocalSearchParams();
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit, reset } = useForm({
     defaultValues: {
       date: new Date(),
     },
@@ -33,6 +33,7 @@ export default function InspectionVehicleDaily() {
         });
         if ((response?.lastInsertRowId ?? 0) > 0) {
           toast.success("Tarefa salva com sucesso!");
+          reset();
           replace(`/action/task?id=${id}`);
         }
       } else {
@@ -42,6 +43,7 @@ export default function InspectionVehicleDaily() {
         });
         if (updateResponse?.changes ?? 0 > 0) {
           toast.success("Tarefa atualizada com sucesso!");
+          reset();
           replace(`/action/task?id=${id}`);
         }
       }
