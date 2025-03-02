@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
     fontWeight: "500",
   },
   input: {
+    minHeight: 45,
     paddingHorizontal: 10,
     borderWidth: 1,
     borderColor: "#ced4da",

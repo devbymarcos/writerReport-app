@@ -56,7 +56,7 @@ export default function Task() {
 
   const viewSend = useCallback(async () => {
     //@ts-ignore
-    if (tasks[0].content == null) {
+    if (tasks.length <= 0) {
       toast.warning("Cadastre uma tarefa");
       return;
     }
