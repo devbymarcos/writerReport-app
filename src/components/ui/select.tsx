@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { Colors } from "@/constants/Colors";
-import { TouchableOpacity } from "react-native";
+import { RadioButton } from "react-native-paper";
 
 interface SelectProps {
   label: string;
@@ -14,20 +14,14 @@ export default function Select({ label, items, value, setValue }: SelectProps) {
   return (
     <View style={styles.container}>
       <Text style={styles.label}>{label}</Text>
-      <View style={styles.radioGroup}>
-        {items.map((item, key) => (
-          <TouchableOpacity
-            key={key}
-            style={styles.radioButton}
-            onPress={() => setValue(item)}
-          >
-            <View style={styles.radio}>
-              {value === item && <View style={styles.radioSelected} />}
-            </View>
+      <RadioButton.Group onValueChange={setValue} value={value}>
+        {items.map((item, index) => (
+          <View key={index} style={styles.radioButton}>
+            <RadioButton.Android value={item} color={Colors.primary} />
             <Text style={styles.radioLabel}>{item}</Text>
-          </TouchableOpacity>
+          </View>
         ))}
-      </View>
+      </RadioButton.Group>
     </View>
   );
 }
@@ -42,31 +36,14 @@ const styles = StyleSheet.create({
     color: Colors.text,
     fontWeight: "bold",
   },
-  radioGroup: {
-    gap: 8,
-  },
   radioButton: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 8,
-  },
-  radio: {
-    height: 20,
-    width: 20,
-    borderRadius: 10,
-    borderWidth: 2,
-    borderColor: Colors.primary,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  radioSelected: {
-    height: 10,
-    width: 10,
-    borderRadius: 5,
-    backgroundColor: Colors.primary,
+    marginVertical: 4,
   },
   radioLabel: {
     fontSize: 14,
     color: Colors.text,
+    marginLeft: 8,
   },
 });

@@ -30,7 +30,7 @@ Caixa Frontal e turaseira: ${item.frontAndRear}
 Fixação do equipamento: ${item.installationConditionsEquipmentMounting}
 Organização cabos de rede/energia: ${item.installationConditionsCableOrganization}
 Canaletas e Eletrodutos: ${item.installationConditionsConduitsAndRaceways}
-Exposição a Chuva/Sol: ${item.installationConditionsExposureToRainOrSun}
+Exposição a Chuva/Sol: ${item.installationConditionsExposureToRainSun}
 
 *ENTREVISTA COM RH*
 Funcionamento do equipamento: ${item.hrInterviewEquipmentFunctioning}

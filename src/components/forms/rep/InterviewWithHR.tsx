@@ -27,7 +27,6 @@ export default function InterviewWithHR({ control }: { control: any }) {
           <Select
             label="Dúvidas no software"
             items={[
-              "...",
               "Sem dúvidas",
               "Resolvido na preventiva",
               "Abrir Ticket",
