@@ -80,6 +80,15 @@ export default function RootLayout() {
               title: "Submenu de tarefas",
             }}
           />
+          <Stack.Screen name="action/vehicle" options={{ title: "Veiculos" }} />
+          <Stack.Screen
+            name="action/inspectionVehicleDaily"
+            options={{ title: "Inspeção veiculo" }}
+          />
+          <Stack.Screen
+            name="action/inspectionVehicleMonth"
+            options={{ title: "Inspeção veiculo" }}
+          />
         </Stack>
         <StatusBar style="dark" />
         <MenuPrimary />

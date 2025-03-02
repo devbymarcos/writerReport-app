@@ -25,6 +25,12 @@ export const createTables = async () => {
           id_ticket INTEGER NOT NULL,
           content TEXT NOT NULL
       );
+
+      CREATE TABLE IF NOT EXISTS vehicles (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      vehicle TEXT NOT NULL,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
       
     `);
     console.log("Tabela criada com sucesso!");

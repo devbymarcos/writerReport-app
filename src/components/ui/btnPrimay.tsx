@@ -1,48 +1,62 @@
-import React from "react";
-import {
-  TouchableOpacity,
-  Text,
-  StyleSheet,
-  GestureResponderEvent,
-} from "react-native";
+import { ActivityIndicator, Pressable, StyleSheet, Text } from "react-native";
+import React, { useState } from "react";
 import { Colors } from "@/constants/Colors";
 
-interface ButtonProps {
+interface Props {
   title?: string;
-  onPress: (event: GestureResponderEvent) => void;
+  onPress: () => void;
   children?: React.ReactNode;
-  width?: any;
+  style?: any;
 }
 
-export function BtnPrimary({ onPress, title, children }: ButtonProps) {
+export function BtnPrimary({ title, onPress, children, style }: Props) {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handlePress = async () => {
+    if (isLoading) return; // Previne múltiplos cliques
+
+    setIsLoading(true);
+    try {
+      await onPress();
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
-    <TouchableOpacity
-      onPress={onPress}
-      style={[styles.button]} // Aplicando opacidade ao pressionar
+    <Pressable
+      onPress={handlePress}
+      style={({ pressed }) => [styles.button, style, pressed && styles.pressed]}
+      android_ripple={{ color: Colors.primary + "40" }}
+      disabled={isLoading}
     >
-      <Text style={styles.buttonText}>{title ? title : children}</Text>
-    </TouchableOpacity>
+      {isLoading ? (
+        <ActivityIndicator color="#fff" />
+      ) : (
+        <>
+          {title && <Text style={styles.title}>{title}</Text>}
+          {children}
+        </>
+      )}
+    </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: Colors.btnPrimary,
-    paddingVertical: 12,
-    paddingHorizontal: 24,
-    borderRadius: 6,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3, // Sombra para Android
-    justifyContent: "center", // Centralizando conteúdo
-    alignItems: "center", // Centralizando conteúdo
+    backgroundColor: Colors.primary,
+    padding: 12,
+    borderRadius: 8,
+    alignItems: "center",
+    justifyContent: "center",
+    minHeight: 48,
   },
-  buttonText: {
+  pressed: {
+    opacity: 0.8,
+  },
+  title: {
     color: "#fff",
     fontSize: 16,
-    fontWeight: "600",
-    textAlign: "center",
+    fontWeight: "bold",
   },
 });

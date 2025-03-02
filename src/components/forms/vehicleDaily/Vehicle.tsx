@@ -1,23 +1,28 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Controller } from "react-hook-form";
 import Select from "@/components/ui/select";
 import TitleSectionForm from "@/components/ui/titleSectionForm";
 import Card from "@/components/ui/card";
+import { getAllVehicle } from "@/service/getAllVehicle";
 
-const configVehicles = [
-  "...",
-  "UNO JJ6789",
-  "CELTA JJ6789",
-  "PALIO JJ6789",
-  "SANDERO JJ6789",
-  "FIORINO JJ6789",
-  "DUSTER JJ6789",
-  "DUSTER JJ6789",
-  "DUSTER JJ6789",
-];
+interface Vehicle {
+  id: number;
+  vehicle: string;
+}
 
 export default function Vehicle({ control }: { control: any }) {
+  const [vehicles, setVehicles] = useState<Vehicle[]>([]);
+
+  const fetchVehicles = async () => {
+    const response = await getAllVehicle();
+    setVehicles(response as Vehicle[]); // Armazena array de objetos completo
+  };
+
+  useEffect(() => {
+    fetchVehicles();
+  }, []);
+
   return (
     <Card>
       <TitleSectionForm title="Dados do veiculo" />
@@ -27,7 +32,7 @@ export default function Vehicle({ control }: { control: any }) {
         render={({ field }) => (
           <Select
             label="Modelo e placa:"
-            items={configVehicles}
+            items={vehicles.map((v) => v.vehicle)}
             value={field.value}
             setValue={field.onChange}
           />

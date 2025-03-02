@@ -38,11 +38,11 @@ const dataMenuPreventive: MenuItem[] = [
   },
   {
     title: "Vistoria Mensal Veículos",
-    path: "/action/inspectionVeichleMonth",
+    path: "/action/inspectionVehicleMonth",
   },
   {
     title: "Vistoria Diária Veículos",
-    path: "/action/inspectionVeichleDaily",
+    path: "/action/inspectionVehicleDaily",
   },
 ];
 

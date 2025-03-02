@@ -31,6 +31,6 @@ ${body}
 Produtivo: ${text[0].productiveTime}
 Inprodutivo: ${formatTime(text[0].pauseTime)}
 
-Justificativa: 
+*Justificativa tempo improdutivo:*
 ${text[0].justifyPause}   `;
 }

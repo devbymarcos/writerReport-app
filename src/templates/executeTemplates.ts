@@ -4,6 +4,8 @@ import { deploymentTemplate } from "./deploymentTemplate";
 import { preventivaDoorsTemplate } from "./preventivaDoorsTemplate";
 import { preventivaOcrTemplate } from "./preventivaOcrTemplate";
 import { preventivaRepTemplate } from "./preventivaRepTemplate";
+import { vehicleDailyTemplate } from "./vehicleDailyTemplate";
+import { vehicleMonthTemplate } from "./vehicleMonthTemplate";
 
 export const executeTemplates = {
   rep: (obj: any) => preventivaRepTemplate(obj),
@@ -12,4 +14,6 @@ export const executeTemplates = {
   ocr: (obj: any) => preventivaOcrTemplate(obj),
   corrective: (obj: any) => correctiveTemplate(obj),
   deployment: (obj: any) => deploymentTemplate(obj),
+  inspectionVehicleDaily: (obj: any) => vehicleDailyTemplate(obj),
+  inspectionVehicleMonth: (obj: any) => vehicleMonthTemplate(obj),
 };
