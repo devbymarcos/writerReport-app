@@ -1,7 +1,8 @@
 export function deploymentTemplate(item: any) {
   return `
 *TAREFA: ${item.titleCheck}:* 
- 
+*Tipo: Implantação*
+
 *1 - Quais etapas da instalação foram realizadas?*
 ${item.installationSteps}
 

@@ -1,7 +1,7 @@
 export function correctiveTemplate(item: any) {
   return `    
 *TAREFA: ${item.titleCheck}:* 
-
+*Tipo: Corretiva*
 *1 - O defeito reclamado foi confirmado ou outro problema foi identificado?*
 
 ${item.reportedProblemOrIdentifiedProblem}

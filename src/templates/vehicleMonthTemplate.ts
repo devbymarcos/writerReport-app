@@ -1,7 +1,6 @@
 export function vehicleMonthTemplate(item: any) {
   return `
 *VEÍCULO*: ${item.vehicle}
-Está no loca para vistoria: ${item.isOnSiteForInspection};
 
 FLUIDOS: 
 Freios: ${item.brakes}
@@ -22,19 +21,19 @@ BATERIA:
 Status: ${item.battery}
 
 SUSPENSÃO:
-Armotecedor:${item.shockAbsorber}
-Molas:${item.springs}
+Amortecedor: ${item.shockAbsorber}
+Molas: ${item.springs}
 Componentes de direção: ${item.steeringComponents}
 
 CORREIAS E MANGUEIRAS:
-Status:${item.beltsAndHoses}
+Status: ${item.beltsAndHoses}
 
 INSPEÇÃO GERAL
-Carroceria:${item.bodywork}
-Sinais de corrosão:${item.signsOfCorrosion}
+Carroceria: ${item.bodywork}
+Sinais de corrosão: ${item.signsOfCorrosion}
 
 Descrição das não conformidades e correções:
-${item.nonConformitiesDescription}
+${item.noConformities}
 
 #####################################
     `;

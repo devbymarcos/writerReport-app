@@ -11,6 +11,7 @@ import Swipeable from "react-native-gesture-handler/ReanimatedSwipeable";
 import { Trash } from "lucide-react-native";
 import { deleteTask } from "@/service/deleteTasks";
 import { toast } from "sonner-native";
+import { replace } from "expo-router/build/global-state/routing";
 
 interface renderItemProps {
   item: { id: string; id_ticket: string; name: string; content: any };
@@ -52,7 +53,7 @@ export default function Task() {
   const [tasks, setTasks] = useState<any>(null);
   const { id, ticket } = useLocalSearchParams();
   const { setLoadPage, loadPage } = storeTicket();
-  const { push } = useRouter();
+  const { replace } = useRouter();
 
   const viewSend = useCallback(async () => {
     //@ts-ignore
@@ -60,7 +61,10 @@ export default function Task() {
       toast.warning("Cadastre uma tarefa");
       return;
     }
-    push(`/action/view-report?id=${id}`);
+    replace({
+      pathname: "/action/view-report",
+      params: { id },
+    });
   }, [id, tasks]);
 
   async function getTask() {
@@ -98,12 +102,14 @@ export default function Task() {
         <Link
           style={[styles.btnEditTicket]}
           href={`/action/modal-edit-ticket/modal?id=${id}`}
+          replace={true}
         >
           <Edit color={Colors.colorIconsLight} />
         </Link>
         <Link
           style={[styles.btnAction, { backgroundColor: Colors.btnSuccess }]}
           href={`/action/modal-timetask/modal?id=${id}`}
+          replace={true}
         >
           <Timer color={Colors.colorIconsLight} />
         </Link>
@@ -116,6 +122,7 @@ export default function Task() {
         <Link
           style={[styles.btnAction]}
           href={`/action/modal-submenu-task/modal?id=${id}`}
+          replace={true}
         >
           <Plus color={Colors.colorIconsLight} />
         </Link>

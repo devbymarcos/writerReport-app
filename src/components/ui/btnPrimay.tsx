@@ -17,7 +17,7 @@ export function BtnPrimary({ title, onPress, children, style }: Props) {
 
     setIsLoading(true);
     try {
-      await onPress();
+      await Promise.resolve(onPress());
     } finally {
       setIsLoading(false);
     }

@@ -22,7 +22,6 @@ Chamado/Cliente: ${text[0].numberTicket} - ${text[0].titleTicket}
 Data: ${formatDate(text[0].date)}
 Hora: ${formatTime(text[0].initHour)} até ${formatTime(text[0].endHour)}
 Técnico:  ${text[0].operator}
-Tipo: Preventiva
 Acompanhou: ${text[0].followed}
 Empresa contratante: ${text[0].nameBusiness}
 ${body}

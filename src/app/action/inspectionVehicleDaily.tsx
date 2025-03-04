@@ -43,7 +43,6 @@ export default function InspectionVehicleDaily() {
         if ((response?.lastInsertRowId ?? 0) > 0) {
           toast.success("Tarefa salva com sucesso!");
           reset();
-          replace(`/action/task?id=${id}`);
         }
       } else {
         const updateResponse = await updateTask({
@@ -53,12 +52,16 @@ export default function InspectionVehicleDaily() {
         if (updateResponse?.changes ?? 0 > 0) {
           toast.success("Tarefa atualizada com sucesso!");
           reset();
-          replace(`/action/task?id=${id}`);
         }
       }
     } catch (error) {
       toast.error("Erro ao salvar tarefa");
       console.error(error);
+    } finally {
+      replace({
+        pathname: "/action/task",
+        params: { id },
+      });
     }
   }
 
@@ -70,7 +73,7 @@ export default function InspectionVehicleDaily() {
       titleCheck: string;
       [key: string]: any;
     };
-    console.log(dataParse);
+
     setData(dataParse);
   };
 
@@ -90,7 +93,7 @@ export default function InspectionVehicleDaily() {
         <Level control={control} />
         <Light control={control} />
         <NoConformities control={control} />
-        <BtnPrimary title="Salvar" onPress={handleSubmit(save)} />
+        <BtnPrimary title="Salvar" onPress={() => handleSubmit(save)()} />
       </View>
     </ScrollView>
   );

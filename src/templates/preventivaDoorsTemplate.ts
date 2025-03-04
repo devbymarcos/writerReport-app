@@ -1,6 +1,7 @@
 export function preventivaDoorsTemplate(item: any) {
   return `
 *TAREFA: ${item.titleCheck}:* 
+*Tipo: Preventiva*
 
 *Fechadura Eletroímã*
 Funcionamento:${item.electromagneticLock}

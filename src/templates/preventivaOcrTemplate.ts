@@ -1,6 +1,7 @@
 export function preventivaOcrTemplate(item: any) {
   return `    
 *TAREFA: ${item.titleCheck}:* 
+*Tipo: Preventiva*
 
 1 - Descrição das ações realizadas:
 

@@ -46,7 +46,6 @@ export default function InspectionVehicleMonth() {
         if ((response?.lastInsertRowId ?? 0) > 0) {
           toast.success("Tarefa salva com sucesso!");
           reset();
-          replace(`/action/task?id=${id}`);
         }
       } else {
         const updateResponse = await updateTask({
@@ -56,12 +55,16 @@ export default function InspectionVehicleMonth() {
         if (updateResponse?.changes ?? 0 > 0) {
           toast.success("Tarefa atualizada com sucesso!");
           reset();
-          replace(`/action/task?id=${id}`);
         }
       }
     } catch (error) {
       toast.error("Erro ao salvar tarefa");
       console.error(error);
+    } finally {
+      replace({
+        pathname: "/action/task",
+        params: { id },
+      });
     }
   }
 

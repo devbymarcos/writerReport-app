@@ -4,9 +4,9 @@ import { createTables } from "@/database/schema";
 import { StatusBar } from "expo-status-bar";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Toaster } from "sonner-native";
-
 import MenuPrimary from "@/components/app/menuPrimary";
 import { PaperProvider } from "react-native-paper";
+
 export default function RootLayout() {
   useEffect(() => {
     const initializeDatabase = async () => {
@@ -80,7 +80,6 @@ export default function RootLayout() {
               title: "Submenu de tarefas",
             }}
           />
-          <Stack.Screen name="action/vehicle" options={{ title: "Veiculos" }} />
           <Stack.Screen
             name="action/inspectionVehicleDaily"
             options={{ title: "Inspeção veiculo" }}
@@ -89,10 +88,18 @@ export default function RootLayout() {
             name="action/inspectionVehicleMonth"
             options={{ title: "Inspeção veiculo" }}
           />
+          <Stack.Screen
+            name="settings/index"
+            options={{ title: "Configurações" }}
+          />
+          <Stack.Screen
+            name="settings/vehicle"
+            options={{ title: "Configurações - Veiculos" }}
+          />
         </Stack>
         <StatusBar style="dark" />
         <MenuPrimary />
-        <Toaster offset={100} />
+        <Toaster offset={100} swipeToDismissDirection="left" />
       </PaperProvider>
     </GestureHandlerRootView>
   );
